@@ -1,13 +1,11 @@
-<<<<<<< HEAD
 rtype
 Grup_5:
-=======
+R-Type
 Grup_5: R·Type
->>>>>>> origin/master
 -Arnald
 -Aleix
 -Marti
 -Josep
 -Ningú
-1
+12
 
