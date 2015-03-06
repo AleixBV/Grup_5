@@ -1,2 +1,5 @@
-Grup_5
-Arnald
+Grup_5:
+-Arnald
+-Aleix
+-Marti
+-Aleix
