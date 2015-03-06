@@ -1,3 +1,4 @@
+rtype
 Grup_5:
 -Arnald
 -Aleix
