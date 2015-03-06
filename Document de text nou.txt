@@ -2,5 +2,6 @@ Grup_5:
 -Arnald
 -Aleix
 -Marti
--Aleix
+-Josep
 -Ningú
+
