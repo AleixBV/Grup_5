@@ -68,13 +68,13 @@ update_status ModulePlayer::Update()
 	// debug camera movement --------------------------------
 	int speed = 1;
 
-	if(App->input->keyboard[SDL_SCANCODE_A] == 1)
+	if(App->input->keyboard[SDL_SCANCODE_LEFT] == 1)
 	{
 		current_animation = &backward;
 		position.x -= speed;
 	}
 
-	if(App->input->keyboard[SDL_SCANCODE_D] == 1)
+	if(App->input->keyboard[SDL_SCANCODE_RIGHT] == 1)
 	{
 		current_animation = &forward;
 		position.x += speed;
