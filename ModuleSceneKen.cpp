@@ -1,4 +1,4 @@
-/*#include "Globals.h"
+#include "Globals.h"
 #include "Application.h"
 #include "ModuleSceneKen.h"
 
@@ -97,4 +97,4 @@ update_status ModuleSceneKen::Update()
 		App->fade->FadeToBlack(this, App->scene_honda, 2.0f);
 
 	return UPDATE_CONTINUE;
-}*/
+}
