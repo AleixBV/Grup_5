@@ -5,9 +5,9 @@
 ModuleRender::ModuleRender(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 	renderer = NULL;
-	camera.x = camera.y = 0;
-	camera.w = SCREEN_WIDTH;
-	camera.h = SCREEN_HEIGHT;
+	background.x = background.y = 0;
+	background.w = SCREEN_WIDTH;
+	background.h = SCREEN_HEIGHT;
 }
 
 // Destructor
@@ -17,7 +17,7 @@ ModuleRender::~ModuleRender()
 // Called before render is available
 bool ModuleRender::Init()
 {
-	//LOG("Creating Renderer context");
+	LOG("Creating Renderer context");
 	bool ret = true;
 	Uint32 flags = 0;
 
@@ -30,7 +30,7 @@ bool ModuleRender::Init()
 	
 	if(renderer == NULL)
 	{
-		//LOG("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
+		LOG("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}
 
@@ -47,19 +47,6 @@ update_status ModuleRender::PreUpdate()
 // Update: debug camera
 update_status ModuleRender::Update()
 {
-	int speed = 3;
-
-	if(App->input->keyboard[SDL_SCANCODE_UP] == 1)
-		App->renderer->camera.y += speed;
-
-	if(App->input->keyboard[SDL_SCANCODE_DOWN] == 1)
-		App->renderer->camera.y -= speed;
-
-	if(App->input->keyboard[SDL_SCANCODE_LEFT] == 1)
-		App->renderer->camera.x += speed;
-
-	if(App->input->keyboard[SDL_SCANCODE_RIGHT] == 1)
-		App->renderer->camera.x -= speed;
 
 	return UPDATE_CONTINUE;
 }
@@ -74,7 +61,7 @@ update_status ModuleRender::PostUpdate()
 // Called before quitting
 bool ModuleRender::CleanUp()
 {
-	//LOG("Destroying renderer");
+	LOG("Destroying renderer");
 
 	//Destroy window
 	if(renderer != NULL)
@@ -86,12 +73,12 @@ bool ModuleRender::CleanUp()
 }
 
 // Blit to screen
-bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, float speed)
+bool ModuleRender::Blit(SDL_Texture* texture, float x, float y, SDL_Rect* section, float speed)
 {
 	bool ret = true;
 	SDL_Rect rect;
-	rect.x = (int) (camera.x * speed) + x * SCREEN_SIZE;
-	rect.y = (int) (camera.y * speed) + y * SCREEN_SIZE;
+	rect.x = (float) (background.x * speed) + x * SCREEN_SIZE;
+	rect.y = (float) (background.y * speed) + y * SCREEN_SIZE;
 
 	if(section != NULL)
 	{
@@ -108,7 +95,7 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, f
 
 	if(SDL_RenderCopy(renderer, texture, section, &rect) != 0)
 	{
-		//LOG("Cannot blit to screen. SDL_RenderCopy error: %s", SDL_GetError());
+		LOG("Cannot blit to screen. SDL_RenderCopy error: %s", SDL_GetError());
 		ret = false;
 	}
 

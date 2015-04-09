@@ -1,13 +1,14 @@
 #include "Globals.h"
 #include "Application.h"
-#include "ModuleSceneKen.h"
+#include "ModuleSceneStage1.h"
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
-ModuleSceneKen::ModuleSceneKen(Application* app, bool start_enabled) : Module(app, start_enabled)
+ModuleSceneStage1::ModuleSceneStage1(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 	graphics = NULL;
-
+	background = { 0, 0, 1782, 600 };
+	/*
 	// ground
 	ground.x = 8;
 	ground.y = 391;
@@ -41,17 +42,18 @@ ModuleSceneKen::ModuleSceneKen(Application* app, bool start_enabled) : Module(ap
 	// for moving the foreground
 	foreground_pos = 0;
 	forward = true;
+	*/
 }
 
-ModuleSceneKen::~ModuleSceneKen()
+ModuleSceneStage1::~ModuleSceneStage1()
 {}
 
 // Load assets
-bool ModuleSceneKen::Start()
+bool ModuleSceneStage1::Start()
 {
 	LOG("Loading ken scene");
 	
-	graphics = App->textures->Load("ken_stage.png");
+	graphics = App->textures->Load("Background3.png");
 //	App->audio->PlayMusic("ken.ogg", 1.0f);
 	App->player->Enable();
 	
@@ -59,9 +61,9 @@ bool ModuleSceneKen::Start()
 }
 
 // UnLoad assets
-bool ModuleSceneKen::CleanUp()
+bool ModuleSceneStage1::CleanUp()
 {
-	LOG("Unloading ken scene");
+	LOG("Unloading stage scene");
 
 	App->textures->Unload(graphics);
 	App->player->Disable();
@@ -70,31 +72,19 @@ bool ModuleSceneKen::CleanUp()
 }
 
 // Update: draw background
-update_status ModuleSceneKen::Update()
+update_status ModuleSceneStage1::Update()
 {
-	// Calculate boat Y position -----------------------------
-	if(foreground_pos < -6.0f)
-		forward = false;
-	else if(foreground_pos > 0.0f)
-		forward = true;
-	
-	if(forward)
-		foreground_pos -= 0.02f;
-	else
-		foreground_pos += 0.02f;
 
-	// Draw everything --------------------------------------
-	App->renderer->Blit(graphics, 0, 0, &background, 0.75f); // sea and sky
-	App->renderer->Blit(graphics, 560, 8, &(flag.GetCurrentFrame()), 0.75f); // flag animation
+	App->renderer->Blit(graphics, 0, 0, &background);
 
-	App->renderer->Blit(graphics, 0, (int)foreground_pos, &foreground, 0.92f);
-	App->renderer->Blit(graphics, 192, 104 + (int)foreground_pos, &(girl.GetCurrentFrame()), 0.92f); // girl animation
-	
-	App->renderer->Blit(graphics, 0, 170, &ground);
+	unsigned int speed = 2;
+	App->renderer->background.x -= speed;
 
-	// hack for testing
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
-		App->fade->FadeToBlack(this, App->scene_honda, 2.0f);
+		App->fade->FadeToBlack(this, App->scene_end, 2.0f);
+
+
+		
 
 	return UPDATE_CONTINUE;
 }

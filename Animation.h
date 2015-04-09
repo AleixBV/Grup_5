@@ -11,15 +11,21 @@ private:
 	float current_frame;
 
 public:
-	Animation() : frames(5), speed(1.0f), current_frame(0)
+	Animation() : frames(2), speed(0.1f), current_frame(0)
 	{}
 
 	SDL_Rect& GetCurrentFrame()
 	{
 		current_frame += speed;
-		if(current_frame >= frames.Count())
-			current_frame = 0;
 
+		if (current_frame >= frames.Count()) {
+			current_frame = 0;
+		
+		}
+
+
+		
 		return frames[(int)current_frame];
+
 	}
 };

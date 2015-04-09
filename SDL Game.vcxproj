@@ -74,12 +74,13 @@
     <ClInclude Include="List.h" />
     <ClInclude Include="Module.h" />
     <ClInclude Include="ModuleAudio.h" />
-    <ClInclude Include="ModuleSceneKen.h" />
+    <ClInclude Include="ModuleSceneEnd.h" />
+    <ClInclude Include="ModuleSceneStage1.h" />
     <ClInclude Include="ModuleFadeToBlack.h" />
     <ClInclude Include="ModuleInput.h" />
     <ClInclude Include="ModulePlayer.h" />
     <ClInclude Include="ModuleRender.h" />
-    <ClInclude Include="ModuleSceneHonda.h" />
+    <ClInclude Include="ModuleSceneTitle.h" />
     <ClInclude Include="ModuleTextures.h" />
     <ClInclude Include="ModuleWindow.h" />
     <ClInclude Include="p2DynArray.h" />
@@ -90,12 +91,13 @@
     <ClCompile Include="log.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />
-    <ClCompile Include="ModuleSceneKen.cpp" />
+    <ClCompile Include="ModuleSceneEnd.cpp" />
+    <ClCompile Include="ModuleSceneStage1.cpp" />
     <ClCompile Include="ModuleFadeToBlack.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModulePlayer.cpp" />
     <ClCompile Include="ModuleRender.cpp" />
-    <ClCompile Include="ModuleSceneHonda.cpp" />
+    <ClCompile Include="ModuleSceneTitle.cpp" />
     <ClCompile Include="ModuleTextures.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
   </ItemGroup>

@@ -1,13 +1,16 @@
 #include "Globals.h"
 #include "Application.h"
-#include "ModuleSceneHonda.h"
+#include "ModuleSceneEnd.h"
 
 // Reference at https://youtu.be/6OlenbCC4WI?t=382
 
-ModuleSceneHonda::ModuleSceneHonda(Application* app, bool start_enabled) : Module(app, start_enabled)
+ModuleSceneEnd::ModuleSceneEnd(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 	graphics = NULL;
+	background = { 0, 0, 400, 200 };
 
+
+	/*
 	// ground
 	ground = {8, 376, 848, 64};
 
@@ -25,47 +28,50 @@ ModuleSceneHonda::ModuleSceneHonda(Application* app, bool start_enabled) : Modul
 	water.frames.PushBack({296, 447, 283, 12});
 	water.frames.PushBack({588, 447, 283, 18});
 	water.speed = 0.02f;
+	*/
 }
 
-ModuleSceneHonda::~ModuleSceneHonda()
+ModuleSceneEnd::~ModuleSceneEnd()
 {}
 
 // Load assets
-bool ModuleSceneHonda::Start()
+bool ModuleSceneEnd::Start()
 {
 	LOG("Loading background assets");
 	bool ret = true;
-	graphics = App->textures->Load("honda_stage2.png");
+	graphics = App->textures->Load("End.png");
 	//App->audio->PlayMusic("honda.ogg", 1.0f);
-	App->player->Enable();
+	App->player->Disable();
 
 	return ret;
 }
 
 // Load assets
-bool ModuleSceneHonda::CleanUp()
+bool ModuleSceneEnd::CleanUp()
 {
-	LOG("Unloading honda stage");
+	LOG("Unloading End stage");
 
 	App->textures->Unload(graphics);
-	App->player->Disable();
+
 
 	return true;
 }
 
 // Update: draw background
-update_status ModuleSceneHonda::Update()
+update_status ModuleSceneEnd::Update()
 {
 	// Draw everything --------------------------------------	
+
+	App->renderer->Blit(graphics, 0, 0, &background);
+
+	/*
 	App->renderer->Blit(graphics, 0, 160, &ground);
 	App->renderer->Blit(graphics, 50, -15, &background, 0.75f); // back of the room
-	
+
 	App->renderer->Blit(graphics, 280, 125, &foreground);
 	App->renderer->Blit(graphics, 305, 136, &(water.GetCurrentFrame())); // water animation
 	App->renderer->Blit(graphics, 0, -16, &roof, 0.75f);
-
-	if(App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
-		App->fade->FadeToBlack(this, App->scene_ken, 2.0f);
+	*/
 
 	return UPDATE_CONTINUE;
 }
