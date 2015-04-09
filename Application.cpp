@@ -7,10 +7,10 @@ Application::Application()
 	window = new ModuleWindow(this);
 	textures = new ModuleTextures(this);
 	input = new ModuleInput(this);
-	audio = new ModuleAudio(this);
-	scene_ken = new ModuleSceneKen(this, false); 	// TODO 0: Decidir quina scene començar
+	//audio = new ModuleAudio(this);
+	scene_ken = new ModuleSceneKen(this, false);
 	player = new ModulePlayer(this, false);
-	scene_honda = new ModuleSceneHonda(this, false);
+	scene_honda = new ModuleSceneHonda(this, true);
 	fade = new ModuleFadeToBlack(this);
 
 	// The order of calls is very important!
@@ -22,7 +22,7 @@ Application::Application()
 	AddModule(renderer);
 	AddModule(textures);
 	AddModule(input);
-	AddModule(audio);
+	//AddModule(audio);
 
 	// Scenes
 	AddModule(scene_ken);
@@ -41,7 +41,7 @@ Application::~Application()
 	delete window;
 	delete textures;
 	delete input;
-	delete audio;
+	//delete audio;
 	delete scene_honda;
 	delete scene_ken;
 	delete player;
@@ -67,7 +67,7 @@ bool Application::Init()
 
 	while(item != NULL && ret == true)
 	{
-		if(item->data->IsEnabled())
+		//if(item->data->IsEnabled())
 			ret = item->data->Start();
 		item = item->next;
 	}

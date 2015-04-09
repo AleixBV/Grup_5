@@ -17,7 +17,7 @@ ModuleRender::~ModuleRender()
 // Called before render is available
 bool ModuleRender::Init()
 {
-	LOG("Creating Renderer context");
+	//LOG("Creating Renderer context");
 	bool ret = true;
 	Uint32 flags = 0;
 
@@ -30,7 +30,7 @@ bool ModuleRender::Init()
 	
 	if(renderer == NULL)
 	{
-		LOG("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
+		//LOG("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}
 
@@ -74,7 +74,7 @@ update_status ModuleRender::PostUpdate()
 // Called before quitting
 bool ModuleRender::CleanUp()
 {
-	LOG("Destroying renderer");
+	//LOG("Destroying renderer");
 
 	//Destroy window
 	if(renderer != NULL)
@@ -108,7 +108,7 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, f
 
 	if(SDL_RenderCopy(renderer, texture, section, &rect) != 0)
 	{
-		LOG("Cannot blit to screen. SDL_RenderCopy error: %s", SDL_GetError());
+		//LOG("Cannot blit to screen. SDL_RenderCopy error: %s", SDL_GetError());
 		ret = false;
 	}
 

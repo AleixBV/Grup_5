@@ -8,7 +8,7 @@
 #include "ModuleRender.h"
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
-#include "ModuleAudio.h"
+//#include "ModuleAudio.h"
 #include "ModuleSceneKen.h"
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
@@ -21,7 +21,7 @@ public:
 	ModuleWindow* window;
 	ModuleTextures* textures;
 	ModuleInput* input;
-	ModuleAudio* audio;
+//	ModuleAudio* audio;
 	ModuleSceneKen* scene_ken;
 	ModulePlayer* player;
 	ModuleFadeToBlack* fade;

@@ -39,7 +39,7 @@ int main(int argc, char ** argv)
 			LOG("-------------- Application Init --------------");
 			if (App->Init() == false)
 			{
-				LOG("Application Init exits with ERROR");
+				LOG("Application Init exits with ERROR: %s", SDL_GetError());
 				state = MAIN_EXIT;
 			}
 			else
