@@ -43,7 +43,7 @@ ModuleSceneStage1::~ModuleSceneStage1()
 // Load assets
 bool ModuleSceneStage1::Start()
 {
-	LOG("Loading ken scene");
+	LOG("Loading stage1 scene");
 
 	graphics = App->textures->Load("ken_stage.png");
 
@@ -55,7 +55,7 @@ bool ModuleSceneStage1::Start()
 // UnLoad assets
 bool ModuleSceneStage1::CleanUp()
 {
-	LOG("Unloading ken scene");
+	LOG("Unloading stage1 scene");
 
 	App->textures->Unload(graphics);
 

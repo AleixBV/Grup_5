@@ -8,7 +8,7 @@ Application::Application()
 	textures = new ModuleTextures(this);
 	input = new ModuleInput(this);
 	audio = new ModuleAudio(this);
-	scene_stage1 = new ModuleSceneStage1(this, true); 	// TODO 0: Decidir quina scene començar
+	scene_stage1 = new ModuleSceneStage1(this, true); 
 	player = new ModulePlayer(this, false);
 	scene_honda = new ModuleSceneHonda(this, false);
 	fade = new ModuleFadeToBlack(this);
