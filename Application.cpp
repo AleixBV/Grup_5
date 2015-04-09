@@ -8,7 +8,7 @@ Application::Application()
 	textures = new ModuleTextures(this);
 	input = new ModuleInput(this);
 	audio = new ModuleAudio(this);
-	scene_ken = new ModuleSceneKen(this, false); 	// TODO 0: Decidir quina scene començar
+	scene_stage1 = new ModuleSceneStage1(this, true); 	// TODO 0: Decidir quina scene començar
 	player = new ModulePlayer(this, false);
 	scene_honda = new ModuleSceneHonda(this, false);
 	fade = new ModuleFadeToBlack(this);
@@ -25,7 +25,7 @@ Application::Application()
 	AddModule(audio);
 
 	// Scenes
-	AddModule(scene_ken);
+	AddModule(scene_stage1);
 	AddModule(scene_honda);
 	
 	// Characters
@@ -43,7 +43,7 @@ Application::~Application()
 	delete input;
 	delete audio;
 	delete scene_honda;
-	delete scene_ken;
+	delete scene_stage1;
 	delete player;
 	delete fade;
 }

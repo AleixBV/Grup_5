@@ -3,11 +3,11 @@
 #include "Animation.h"
 #include "Globals.h"
 
-class ModuleSceneKen : public Module
+class ModuleSceneStage1 : public Module
 {
 public:
-	ModuleSceneKen(Application* app, bool start_enabled = true);
-	~ModuleSceneKen();
+	ModuleSceneStage1(Application* app, bool start_enabled = true);
+	~ModuleSceneStage1();
 
 	bool Start();
 	update_status Update();
@@ -19,7 +19,6 @@ public:
 	SDL_Rect ground;
 	SDL_Rect foreground;
 	SDL_Rect background;
-	Animation flag;
 	Animation girl;
 
 	float foreground_pos;

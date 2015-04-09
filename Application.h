@@ -9,7 +9,7 @@
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
 #include "ModuleAudio.h"
-#include "ModuleSceneKen.h"
+#include "ModuleSceneStage1.h"
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneHonda.h"
@@ -22,7 +22,7 @@ public:
 	ModuleTextures* textures;
 	ModuleInput* input;
 	ModuleAudio* audio;
-	ModuleSceneKen* scene_ken;
+	ModuleSceneStage1* scene_stage1;
 	ModulePlayer* player;
 	ModuleFadeToBlack* fade;
 	ModuleSceneHonda* scene_honda;
