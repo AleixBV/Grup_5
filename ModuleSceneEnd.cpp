@@ -40,7 +40,7 @@ update_status ModuleSceneEnd::Update()
 {
 	// Draw everything --------------------------------------	
 
-	App->renderer->Blit(graphics, 0, 0, &background);
+	App->renderer->Blit(graphics, (-3930 + SCREEN_WIDTH)*SCREEN_SIZE, 0, &background);
 
 	return UPDATE_CONTINUE;
 }

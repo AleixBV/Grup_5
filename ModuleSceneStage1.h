@@ -15,8 +15,7 @@ public:
 
 public:
 	
-	SDL_Texture* graphics;
-	SDL_Rect background;
+	SDL_Texture* background;
 
 
 	float foreground_pos;

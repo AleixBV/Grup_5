@@ -5,9 +5,9 @@
 ModuleRender::ModuleRender(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 	renderer = NULL;
-	background.x = background.y = 0;
-	background.w = SCREEN_WIDTH;
-	background.h = SCREEN_HEIGHT;
+	camera.x = camera.y = 0;
+	camera.w = SCREEN_WIDTH;
+	camera.h = SCREEN_HEIGHT;
 }
 
 // Destructor
@@ -77,8 +77,8 @@ bool ModuleRender::Blit(SDL_Texture* texture, float x, float y, SDL_Rect* sectio
 {
 	bool ret = true;
 	SDL_Rect rect;
-	rect.x = (float) (background.x * speed) + x * SCREEN_SIZE;
-	rect.y = (float) (background.y * speed) + y * SCREEN_SIZE;
+	rect.x = (float) (camera.x * speed) + x * SCREEN_SIZE;
+	rect.y = (float) (camera.y * speed) + y * SCREEN_SIZE;
 
 	if(section != NULL)
 	{

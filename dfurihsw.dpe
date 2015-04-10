@@ -41,17 +41,21 @@ update_status ModuleSceneStage1::Update()
 
 	float scroll_speed = 0.75f;
 
-	if (App->renderer->camera.x >= (-3930 + SCREEN_WIDTH)*SCREEN_SIZE)
+	if (App->renderer->camera.x < 3930 - SCREEN_WIDTH)
 	{
 		App->player->position.x += 1;
 		App->renderer->camera.x -= 3;
 	}
-	else
-		App->fade->FadeToBlack(this, App->scene_end, 2.0f);
 
 
 	// Draw everything --------------------------------------
 	App->renderer->Blit(background, 0, 0, NULL);
+
+	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
+		App->fade->FadeToBlack(this, App->scene_end, 2.0f);
+
+
+		
 
 	return UPDATE_CONTINUE;
 }

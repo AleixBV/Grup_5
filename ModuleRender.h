@@ -18,5 +18,5 @@ public:
 
 public:
 	SDL_Renderer* renderer;
-	SDL_Rect background;
+	SDL_Rect camera;
 };
