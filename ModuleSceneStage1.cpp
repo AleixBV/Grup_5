@@ -75,10 +75,10 @@ bool ModuleSceneStage1::CleanUp()
 update_status ModuleSceneStage1::Update()
 {
 
-	App->renderer->Blit(graphics, 0, 0, &background);
+	App->renderer->Blit(graphics, background.x, 0, &background);
 
 	unsigned int speed = 2;
-	App->renderer->background.x -= speed;
+	App->scene_stage1->background.x -= speed;
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
 		App->fade->FadeToBlack(this, App->scene_end, 2.0f);

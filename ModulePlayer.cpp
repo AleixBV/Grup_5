@@ -57,7 +57,6 @@ update_status ModulePlayer::Update()
 	// debug camera movement --------------------------------
 	float speed = 0.75f;
 	if (position.x < 900)
-		position.x += speed;
 	if(App->input->keyboard[SDL_SCANCODE_A] == 1)
 	{
 		if (position.x > 0)
