@@ -8,12 +8,13 @@
 #include "ModuleRender.h"
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
-//#include "ModuleAudio.h"
+#include "ModuleAudio.h"
 #include "ModuleSceneStage1.h"
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneTitle.h"
 #include "ModuleSceneEnd.h"
+#include "ModuleParticles.h"
 
 class Application
 {
@@ -22,12 +23,13 @@ public:
 	ModuleWindow* window;
 	ModuleTextures* textures;
 	ModuleInput* input;
-//	ModuleAudio* audio;
+	ModuleAudio* audio;
 	ModuleSceneEnd* scene_end;
 	ModuleSceneStage1* scene_stage1;
 	ModulePlayer* player;
 	ModuleFadeToBlack* fade;
 	ModuleSceneTitle* scene_title;
+	ModuleParticles* particles;
 
 private:
 

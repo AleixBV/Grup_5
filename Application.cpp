@@ -7,7 +7,8 @@ Application::Application()
 	window = new ModuleWindow(this);
 	textures = new ModuleTextures(this);
 	input = new ModuleInput(this);
-	//audio = new ModuleAudio(this);
+	audio = new ModuleAudio(this);
+	particles = new ModuleParticles(this);
 	scene_title = new ModuleSceneTitle(this, true);
 	player = new ModulePlayer(this, false);
 	scene_stage1 = new ModuleSceneStage1(this, false);
@@ -23,7 +24,8 @@ Application::Application()
 	AddModule(renderer);
 	AddModule(textures);
 	AddModule(input);
-	//AddModule(audio);
+	AddModule(audio);
+	AddModule(particles);
 
 	// Scenes
 	AddModule(scene_stage1);
@@ -43,7 +45,8 @@ Application::~Application()
 	delete window;
 	delete textures;
 	delete input;
-	//delete audio;
+	delete audio;
+	delete particles;
 	delete scene_title;
 	delete scene_stage1;
 	delete scene_end;
