@@ -17,6 +17,7 @@ public:
 public:
 
 	SDL_Texture* graphics;
+	Animation* current_animation;
 	Animation still;
 	Animation up;
 	Animation down;

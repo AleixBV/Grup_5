@@ -7,6 +7,7 @@
 ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 	graphics = NULL;
+	current_animation = NULL;
 
 	position.x = 100;
 	position.y = 150;
@@ -18,12 +19,14 @@ ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, s
 	//up animation
 	up.frames.PushBack({ 200, 1, 32, 16 });
 	up.frames.PushBack({ 232, 1, 32, 16 });
-	up.speed = 0.1f;
+	up.speed = 0.2f;
+	up.loop = false;
 
 	//down animation
 	down.frames.PushBack({ 133, 1, 32, 16 });
 	down.frames.PushBack({ 100, 1, 32, 16 });
-	down.speed = 0.1f;
+	down.speed = 0.2f;
+	down.loop = false;
 
 }
 
@@ -53,11 +56,8 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 update_status ModulePlayer::Update()
 {
-	Animation* current_animation = &still;
-	// debug camera movement --------------------------------
 	float speed = 0.75f;
-	if (position.x < 900)
-		position.x += speed;
+	position.x += speed;
 	if(App->input->keyboard[SDL_SCANCODE_A] == 1)
 	{
 		if (position.x > 0)
@@ -66,32 +66,44 @@ update_status ModulePlayer::Update()
 
 	if(App->input->keyboard[SDL_SCANCODE_D] == 1)
 	{
-		if (position.x < 900)
-			position.x += speed;
+		position.x += speed;
 	}
 	if (App->input->keyboard[SDL_SCANCODE_S] == 1)
 	{
-		
-		if (position.y < 225) {
+		position.y += speed;
+		if (current_animation != &down)
+		{
+			down.Reset();
 			current_animation = &down;
-			position.y += speed;
 		}
-
 	}
+
 	if (App->input->keyboard[SDL_SCANCODE_W] == 1)
 	{
-		
-		if (position.y > 15) {
-			position.y -= speed;
+		position.y -= speed;
+		if (current_animation != &up)
+		{
+			up.Reset();
 			current_animation = &up;
 		}
 	}
+
+	/*if (App->input->keyboard_down[SDL_SCANCODE_B] == 1)
+	{
+		App->particles->AddParticle(App->particles->explosion, position.x, position.y + 25);
+		App->particles->AddParticle(App->particles->explosion, position.x - 25, position.y, 500);
+		App->particles->AddParticle(App->particles->explosion, position.x, position.y - 25, 1000);
+		App->particles->AddParticle(App->particles->explosion, position.x + 25, position.y, 1500);
+	}*/
+
+	if (App->input->keyboard[SDL_SCANCODE_S] == 0 && App->input->keyboard[SDL_SCANCODE_W] == 0)
+		current_animation = &still;
 
 
 	// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();
 
-	App->renderer->Blit(graphics, position.x, position.y - r.h, &r);
+	App->renderer->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 
 	return UPDATE_CONTINUE;
 }

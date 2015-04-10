@@ -74,6 +74,7 @@
     <ClInclude Include="List.h" />
     <ClInclude Include="Module.h" />
     <ClInclude Include="ModuleAudio.h" />
+    <ClInclude Include="ModuleParticles.h" />
     <ClInclude Include="ModuleSceneEnd.h" />
     <ClInclude Include="ModuleSceneStage1.h" />
     <ClInclude Include="ModuleFadeToBlack.h" />
@@ -91,6 +92,7 @@
     <ClCompile Include="log.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />
+    <ClCompile Include="ModuleParticles.cpp" />
     <ClCompile Include="ModuleSceneEnd.cpp" />
     <ClCompile Include="ModuleSceneStage1.cpp" />
     <ClCompile Include="ModuleFadeToBlack.cpp" />
