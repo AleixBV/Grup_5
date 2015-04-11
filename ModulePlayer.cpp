@@ -27,6 +27,11 @@ ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, s
 	down.loop = false;
 	down.speed = 0.5f;
 
+	//projectile_standard
+	projectile_standard.frames.PushBack({ 232, 100, 16, 16 });
+	projectile_standard.frames.PushBack({ 248, 100, 16, 16 });
+	projectile_standard.loop = true;
+	projectile_standard.speed = 0.1f;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -100,8 +105,28 @@ update_status ModulePlayer::Update()
 	if (App->input->keyboard[SDL_SCANCODE_S] == 0 && App->input->keyboard[SDL_SCANCODE_W] == 0)
 		current_animation = &still;
 
+	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
+	{
+		projectile.x = position.x + 32;
+		projectile.y = position.y;
+		projectiles.add(projectile);
+	}
+
 	// Draw everything --------------------------------------
 
 	App->renderer->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
+	if (projectiles.getFirst() != NULL)
+	{
+		p2List_item<p2Point<float>>* tmp = projectiles.getFirst();
+
+		while (tmp != NULL)
+		{
+			App->renderer->Blit(graphics, tmp->data.x, tmp->data.y, &(projectile_standard.GetCurrentFrame()));
+			tmp = tmp->next;
+		}
+
+		delete tmp;
+	}
+
 	return UPDATE_CONTINUE;
 }
