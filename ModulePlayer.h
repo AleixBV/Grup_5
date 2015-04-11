@@ -4,6 +4,8 @@
 #include "Globals.h"
 #include "p2Point.h"
 
+#include "List.h"
+
 class ModulePlayer : public Module
 {
 public:
@@ -21,6 +23,9 @@ public:
 	Animation still;
 	Animation up;
 	Animation down;
+	Animation projectile_standard;
 	p2Point<float> position;
 
+	p2List<p2Point<float>> projectiles;
+	p2Point<float> projectile;
 };
