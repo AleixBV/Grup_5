@@ -18,9 +18,12 @@ bool ModuleSceneTitle::Start()
 {
 	LOG("Loading background assets");
 	bool ret = true;
+	App->player->has_collided = false;
+
 	graphics = App->textures->Load("TitleProb.png");
 	App->audio->PlayMusic("Title.ogg", 1.0f);
 	App->player->Disable();
+	App->renderer->camera.x = App->renderer->camera.y = 0;
 
 	return ret;
 }
@@ -43,7 +46,7 @@ update_status ModuleSceneTitle::Update()
 
 	App->renderer->Blit(graphics, 0, 0, &background);
 
-	if(App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
+	if(App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP)
 		App->fade->FadeToBlack(this, App->scene_stage1, 2.0f);
 
 	return UPDATE_CONTINUE;

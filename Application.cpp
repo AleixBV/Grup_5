@@ -14,6 +14,7 @@ Application::Application()
 	scene_stage1 = new ModuleSceneStage1(this, false);
 	scene_end = new ModuleSceneEnd(this, false);
 	fade = new ModuleFadeToBlack(this);
+	collision = new ModuleCollision(this, false);
 
 	// The order of calls is very important!
 	// Modules will Init() Start() and Update in this order
@@ -25,7 +26,6 @@ Application::Application()
 	AddModule(textures);
 	AddModule(input);
 	AddModule(audio);
-	AddModule(particles);
 
 	// Scenes
 	AddModule(scene_stage1);
@@ -36,6 +36,8 @@ Application::Application()
 	AddModule(player);
 
 	// Misc
+	AddModule(particles);
+	AddModule(collision);
 	AddModule(fade); // let this after all drawing
 }
 
@@ -52,6 +54,7 @@ Application::~Application()
 	delete scene_end;
 	delete player;
 	delete fade;
+	delete collision;
 }
 
 bool Application::Init()

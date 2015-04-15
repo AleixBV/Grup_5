@@ -16,16 +16,20 @@ public:
 	update_status Update();
 	bool CleanUp();
 
+	void OnCollision(Collider*, Collider*);
+
 public:
 
 	SDL_Texture* graphics;
+	Collider* collider;
 	Animation* current_animation;
 	Animation still;
 	Animation up;
 	Animation down;
-	Animation projectile_standard;
-	p2Point<float> position;
+	Animation explosion;
+	p2Point<int> position;
 
-	p2List<p2Point<float>> projectiles;
-	p2Point<float> projectile;
+	bool has_collided;
+
+	int speed = 1;
 };

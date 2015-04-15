@@ -18,6 +18,5 @@ public:
 	SDL_Texture* background;
 
 
-	float foreground_pos;
-	bool forward;
+	int player_speed;
 };

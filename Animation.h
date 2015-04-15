@@ -33,7 +33,7 @@ public:
 
 	bool Finished()
 	{
-		return loops > 0;
+		return loops > 0;			
 	}
 
 	void Reset()

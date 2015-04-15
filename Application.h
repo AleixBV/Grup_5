@@ -15,6 +15,7 @@
 #include "ModuleSceneTitle.h"
 #include "ModuleSceneEnd.h"
 #include "ModuleParticles.h"
+#include "ModuleCollision.h"
 
 class Application
 {
@@ -30,6 +31,7 @@ public:
 	ModuleFadeToBlack* fade;
 	ModuleSceneTitle* scene_title;
 	ModuleParticles* particles;
+	ModuleCollision* collision;
 
 private:
 
