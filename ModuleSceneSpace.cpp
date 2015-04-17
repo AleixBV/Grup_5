@@ -27,8 +27,18 @@ bool ModuleSceneSpace::Start()
 	App->renderer->camera.x = App->renderer->camera.y = 0;
 
 	App->collision->AddCollider({0,224,3930, 16}, COLLIDER_WALL);
+	App->collision->AddCollider({ 142, 193, 64, 31 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 206, 209, 64, 15 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 592, 209, 64, 15 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 720, 193, 64, 31 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 1232, 209, 64, 15 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 1376, 0, 560, 16 }, COLLIDER_WALL);
+	
 	App->collision->AddCollider({ 1376, 16, 110, 80 }, COLLIDER_WALL);
 	App->collision->AddCollider({ 1376, 144, 110, 80 }, COLLIDER_WALL);
+
+	App->collision->AddCollider({ 1936, 0, 704, 16 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2640, 0, 1290, 16 }, COLLIDER_WALL);
 
 	// TODO 1: Afegir colliders a les primeres columnes del nivell
 
