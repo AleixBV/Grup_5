@@ -10,6 +10,7 @@ Application::Application()
 	audio = new ModuleAudio(this, false);
 	scene_space = new ModuleSceneSpace(this, false);
 	player = new ModulePlayer(this, false);
+	enemy = new ModuleEnemy(this, false);
 	scene_intro = new ModuleSceneIntro(this, true);
 	fade = new ModuleFadeToBlack(this);
 	particles = new ModuleParticles(this);
@@ -33,6 +34,7 @@ Application::Application()
 	
 	// Characters
 	AddModule(player);
+	AddModule(enemy);
 
 	// Misc
 	AddModule(particles);
@@ -50,6 +52,7 @@ Application::~Application()
 	delete audio;
 	delete scene_intro;
 	delete scene_space;
+	delete enemy;
 	delete player;
 	delete fade;
 	delete collision;
