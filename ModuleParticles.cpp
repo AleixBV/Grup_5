@@ -40,9 +40,9 @@ bool ModuleParticles::Start()
 	explosion.anim.frames.PushBack({ 69, 343, 32, 28 });
 	explosion.anim.frames.PushBack({ 103, 343, 32, 28 });
 	explosion.anim.frames.PushBack({ 137, 343, 32, 28 });
-	explosion.anim.frames.PushBack({ 171, 343, 32, 28 });
-	explosion.anim.frames.PushBack({ 205, 343, 32, 28 });
-	explosion.anim.frames.PushBack({ 239, 343, 32, 28 });
+	explosion.anim.frames.PushBack({ 169, 343, 32, 28 });
+	explosion.anim.frames.PushBack({ 201, 343, 32, 28 });
+	explosion.anim.frames.PushBack({ 233, 343, 34, 28 });
 	explosion.anim.loop = false;
 	explosion.anim.speed = 0.3f;
 
