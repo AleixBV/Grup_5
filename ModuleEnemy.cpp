@@ -31,6 +31,12 @@ bool ModuleEnemy::CleanUp()
 update_status ModuleEnemy::Update()
 {
 
+	return UPDATE_CONTINUE;
+}
+
+void ModuleEnemy::OnCollision(Collider* c1, Collider* c2)
+{
+	//Segons el tipus de colisio el resultat sera diferent
 }
 
 void ModuleEnemy::AddEnemy(const Enemy& enemy, int x, int y, COLLIDER_TYPE collider_type)
