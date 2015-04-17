@@ -3,11 +3,11 @@
 #include "Animation.h"
 #include "Globals.h"
 
-class ModuleSceneTitle : public Module
+class ModuleSceneIntro : public Module
 {
 public:
-	ModuleSceneTitle(Application* app, bool start_enabled = true);
-	~ModuleSceneTitle();
+	ModuleSceneIntro(Application* app, bool start_enabled = true);
+	~ModuleSceneIntro();
 
 	bool Start();
 	update_status Update();
@@ -16,6 +16,6 @@ public:
 public:
 
 	SDL_Texture* graphics;
-	SDL_Rect background;
-
+	Animation water;
+	unsigned int fx;
 };

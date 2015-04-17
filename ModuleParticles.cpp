@@ -17,22 +17,34 @@ bool ModuleParticles::Start()
 
 	/*// Explosion particle
 	explosion.fx = App->audio->LoadFx("rtype/explosion.wav");
-	explosion.anim.frames.PushBack({ 274, 296, 33, 30 });
-	explosion.anim.frames.PushBack({ 313, 296, 33, 30 });
-	explosion.anim.frames.PushBack({ 346, 296, 33, 30 });
-	explosion.anim.frames.PushBack({ 382, 296, 33, 30 });
-	explosion.anim.frames.PushBack({ 419, 296, 33, 30 });
-	explosion.anim.frames.PushBack({ 457, 296, 33, 30 });
+	explosion.anim.frames.PushBack({274, 296, 33, 30});
+	explosion.anim.frames.PushBack({313, 296, 33, 30});
+	explosion.anim.frames.PushBack({346, 296, 33, 30});
+	explosion.anim.frames.PushBack({382, 296, 33, 30});
+	explosion.anim.frames.PushBack({419, 296, 33, 30});
+	explosion.anim.frames.PushBack({457, 296, 33, 30});
 	explosion.anim.loop = false;
 	explosion.anim.speed = 0.3f;*/
 
 	// Laser particle
 	laser.fx = App->audio->LoadFx("rtype/slimeball.wav");
-	laser.anim.frames.PushBack({ 200, 120, 32, 12 });
-	laser.anim.frames.PushBack({ 230, 120, 32, 12 });
+	laser.anim.frames.PushBack({200, 120, 32, 12});
+	laser.anim.frames.PushBack({230, 120, 32, 12});
 	laser.speed.x = 7;
 	laser.life = 1000;
 	laser.anim.speed = 0.05f;
+
+	//Explosion_Player
+	explosion.anim.frames.PushBack({ 1, 343, 32, 28 });
+	explosion.anim.frames.PushBack({ 35, 343, 32, 28 });
+	explosion.anim.frames.PushBack({ 69, 343, 32, 28 });
+	explosion.anim.frames.PushBack({ 103, 343, 32, 28 });
+	explosion.anim.frames.PushBack({ 137, 343, 32, 28 });
+	explosion.anim.frames.PushBack({ 171, 343, 32, 28 });
+	explosion.anim.frames.PushBack({ 205, 343, 32, 28 });
+	explosion.anim.frames.PushBack({ 239, 343, 32, 28 });
+	explosion.anim.loop = false;
+	explosion.anim.speed = 0.3f;
 
 	return true;
 }
@@ -51,20 +63,20 @@ update_status ModuleParticles::Update()
 	p2List_item<Particle*>* tmp = active.getFirst();
 	p2List_item<Particle*>* tmp_next = active.getFirst();
 
-	while (tmp != NULL)
+	while(tmp != NULL)
 	{
 		Particle* p = tmp->data;
 		tmp_next = tmp->next;
 
-		if (p->Update() == false)
+		if(p->Update() == false)
 		{
 			delete p;
 			active.del(tmp);
 		}
-		else if (SDL_GetTicks() >= p->born)
+		else if(SDL_GetTicks() >= p->born)
 		{
 			App->renderer->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
-			if (p->fx_played == false)
+			if(p->fx_played == false)
 			{
 				p->fx_played = true;
 				App->audio->PlayFx(p->fx);
@@ -81,12 +93,12 @@ update_status ModuleParticles::Update()
 void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 {
 	// TODO 5: Fer que cada vegada que un laser collisini sorti una explosio
-	p2List_item<Particle*>* tmp = active.getFirst();
+  	p2List_item<Particle*>* tmp = active.getFirst();
 
-	while (tmp != NULL)
+	while(tmp != NULL)
 	{
-		if (tmp->data->collider == c1)
-		{
+		if(tmp->data->collider == c1 )
+		{	
 			delete tmp->data;
 			active.del(tmp);
 			break;
@@ -103,9 +115,9 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 	p->position.x = x;
 	p->position.y = y;
 
-	if (collider_type != COLLIDER_NONE)
+	if(collider_type != COLLIDER_NONE)
 	{
-		p->collider = App->collision->AddCollider({ p->position.x, p->position.y, 0, 0 }, collider_type, this);
+		p->collider = App->collision->AddCollider({p->position.x, p->position.y, 0, 0}, collider_type, this);
 	}
 
 	active.add(p);
@@ -129,7 +141,7 @@ Particle::Particle(const Particle& p) : anim(p.anim), position(p.position), spee
 
 Particle::~Particle()
 {
-	if (collider)
+	if(collider)
 		collider->to_delete = true;
 }
 
@@ -137,22 +149,22 @@ bool Particle::Update()
 {
 	bool ret = true;
 
-	if (life > 0)
+	if(life > 0)
 	{
-		if ((SDL_GetTicks() - born) > life)
+		if((SDL_GetTicks() - born) > life)
 			ret = false;
 	}
 	else
-	if (anim.Finished())
-		ret = false;
+		if(anim.Finished())
+			ret = false;
 
 	position.x += speed.x;
 	position.y += speed.y;
 
-	if (collider != NULL)
+	if(collider != NULL)
 	{
-		SDL_Rect r = anim.GetCurrentFrame();
-		collider->rect = { position.x, position.y, r.w, r.h };
+		SDL_Rect r = anim.PeekCurrentFrame();
+		collider->rect = {position.x, position.y, r.w, r.h};
 	}
 
 	return ret;

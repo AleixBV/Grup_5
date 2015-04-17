@@ -15,10 +15,10 @@ enum main_states
 	MAIN_EXIT
 };
 
-
 int main(int argc, char ** argv)
 {
 	LOG("Starting game '%s'...", TITLE);
+
 	int main_return = EXIT_FAILURE;
 	main_states state = MAIN_CREATION;
 	Application* App = NULL;
@@ -39,7 +39,7 @@ int main(int argc, char ** argv)
 			LOG("-------------- Application Init --------------");
 			if (App->Init() == false)
 			{
-				LOG("Application Init exits with ERROR: %s", SDL_GetError());
+				LOG("Application Init exits with ERROR");
 				state = MAIN_EXIT;
 			}
 			else

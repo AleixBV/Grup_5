@@ -4,8 +4,6 @@
 #include "Globals.h"
 #include "p2Point.h"
 
-#include "List.h"
-
 class ModulePlayer : public Module
 {
 public:
@@ -23,13 +21,13 @@ public:
 	SDL_Texture* graphics;
 	Collider* collider;
 	Animation* current_animation;
-	Animation still;
+	Animation idle;
 	Animation up;
 	Animation down;
 	Animation explosion;
 	p2Point<int> position;
 
-	bool has_collided;
+	bool exploding;
 
 	int speed = 1;
 };

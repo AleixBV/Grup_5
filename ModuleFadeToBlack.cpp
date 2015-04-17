@@ -8,22 +8,14 @@ Module(app, start_enabled),
 start_time(0), 
 total_time(0), 
 fading_in(true),
-module_to_disable(NULL),
-module_to_enable(NULL)
+mod_on(NULL),
+mod_off(NULL)
 {
 	screen = {0, 0, SCREEN_WIDTH * SCREEN_SIZE, SCREEN_HEIGHT * SCREEN_SIZE};
 }
 
 ModuleFadeToBlack::~ModuleFadeToBlack()
 {}
-
-// Load assets
-bool ModuleFadeToBlack::Start()
-{
-	LOG("Preparing Fade Screen");
-	SDL_SetRenderDrawBlendMode(App->renderer->renderer, SDL_BLENDMODE_BLEND);
-	return true;
-}
 
 // Update: draw background
 update_status ModuleFadeToBlack::Update()
@@ -39,18 +31,17 @@ update_status ModuleFadeToBlack::Update()
 		if(fading_in == false)
 			normalized = 1.0f - normalized;
 
-		SDL_SetRenderDrawColor(App->renderer->renderer, 0, 0, 0, (Uint8) (normalized * 255.0f));
-		SDL_RenderFillRect(App->renderer->renderer, &screen);
+		App->renderer->DrawQuad(screen, 0, 0, 0, (Uint8)(normalized * 255.0f), false);
 
 		if(now >= total_time)
 		{
 			if(fading_in == true)
 			{
 				total_time += total_time;
-				start_time = SDL_GetTicks();
 				fading_in = false;
-				module_to_disable->Disable();
-				module_to_enable->Enable();
+				mod_off->Disable();
+				mod_on->Enable();
+				start_time = SDL_GetTicks();
 			}
 			else
 				start_time = 0;
@@ -65,7 +56,7 @@ void ModuleFadeToBlack::FadeToBlack(Module* module_off, Module* module_on, float
 {
 	fading_in = true;
 	start_time = SDL_GetTicks();
-	total_time = (Uint32) (time * 0.5f * 1000.0f);
-	module_to_disable = module_off;
-	module_to_enable = module_on;
+	total_time = (Uint32)(time * 0.5f * 1000.0f);
+	mod_on = module_on;
+	mod_off = module_off;
 }

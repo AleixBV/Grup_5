@@ -48,9 +48,6 @@
     <ClInclude Include="p2DynArray.h">
       <Filter>Header Files\Containers</Filter>
     </ClInclude>
-    <ClInclude Include="List.h">
-      <Filter>Header Files\Containers</Filter>
-    </ClInclude>
     <ClInclude Include="ModulePlayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -60,17 +57,17 @@
     <ClInclude Include="ModuleAudio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleSceneTitle.h">
+    <ClInclude Include="ModuleSceneSpace.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleSceneStage1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleSceneEnd.h">
+    <ClInclude Include="ModuleSceneIntro.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ModuleParticles.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="p2List.h">
+      <Filter>Header Files\Containers</Filter>
     </ClInclude>
     <ClInclude Include="ModuleCollision.h">
       <Filter>Header Files</Filter>
@@ -107,13 +104,10 @@
     <ClCompile Include="ModuleAudio.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleSceneTitle.cpp">
+    <ClCompile Include="ModuleSceneSpace.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleSceneStage1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleSceneEnd.cpp">
+    <ClCompile Include="ModuleSceneIntro.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ModuleParticles.cpp">

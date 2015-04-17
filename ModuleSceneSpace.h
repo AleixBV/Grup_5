@@ -3,11 +3,13 @@
 #include "Animation.h"
 #include "Globals.h"
 
-class ModuleSceneStage1 : public Module
+struct Collider;
+
+class ModuleSceneSpace : public Module
 {
 public:
-	ModuleSceneStage1(Application* app, bool start_enabled = true);
-	~ModuleSceneStage1();
+	ModuleSceneSpace(Application* app, bool start_enabled = true);
+	~ModuleSceneSpace();
 
 	bool Start();
 	update_status Update();
@@ -16,7 +18,7 @@ public:
 public:
 	
 	SDL_Texture* background;
-
+	SDL_Texture* stars;
 
 	int player_speed;
 };

@@ -47,10 +47,10 @@ update_status ModuleCollision::PreUpdate()
 	p2List_item<Collider*>* tmp = colliders.getFirst();
 	p2List_item<Collider*>* tmp2;
 
-	while (tmp != NULL)
+	while(tmp != NULL)
 	{
 		tmp2 = tmp->next;
-		if (tmp->data->to_delete == true)
+		if(tmp->data->to_delete == true)
 		{
 			delete tmp->data;
 			colliders.del(tmp);
@@ -69,25 +69,25 @@ update_status ModuleCollision::Update()
 	Collider* c1;
 	Collider* c2;
 
-	while (tmp != NULL)
+	while(tmp != NULL)
 	{
 		c1 = tmp->data;
 
 		// Debug ---
-		if (debug)
+		if(debug)
 			DrawDebug(c1);
 
 		p2List_item<Collider*>* tmp2 = tmp->next; // avoid checking collisions already checked
-		while (tmp2 != NULL)
+		while(tmp2 != NULL)
 		{
 			c2 = tmp2->data;
 
-			if (c1->CheckCollision(c2->rect) == true)
+			if(c1->CheckCollision(c2->rect) == true)
 			{
-				if (matrix[c1->type][c2->type] && c1->callback)
+				if(matrix[c1->type][c2->type] && c1->callback) 
 					c1->callback->OnCollision(c1, c2);
-
-				if (matrix[c2->type][c1->type] && c2->callback)
+				
+				if(matrix[c2->type][c1->type] && c2->callback) 
 					c2->callback->OnCollision(c2, c1);
 			}
 
@@ -100,7 +100,7 @@ update_status ModuleCollision::Update()
 
 
 	// Debug ---
-	if (App->input->GetKey(SDL_SCANCODE_F1) == 1)
+	if(App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 		debug = !debug;
 
 	return UPDATE_CONTINUE;
@@ -109,28 +109,28 @@ update_status ModuleCollision::Update()
 void ModuleCollision::DrawDebug(Collider* col)
 {
 	Uint8 alpha = 80;
-	switch (col->type)
+	switch(col->type)
 	{
-	case COLLIDER_NONE:
+		case COLLIDER_NONE:
 		App->renderer->DrawQuad(col->rect, 255, 255, 255, alpha);
 		break;
-	case COLLIDER_WALL:
+		case COLLIDER_WALL:
 		App->renderer->DrawQuad(col->rect, 0, 0, 255, alpha);
 		break;
-	case COLLIDER_PLAYER:
+		case COLLIDER_PLAYER:
 		App->renderer->DrawQuad(col->rect, 0, 255, 0, alpha);
 		break;
-	case COLLIDER_ENEMY:
+		case COLLIDER_ENEMY:
 		App->renderer->DrawQuad(col->rect, 255, 0, 0, alpha);
 		break;
-	case COLLIDER_PLAYER_SHOT:
+		case COLLIDER_PLAYER_SHOT:
 		App->renderer->DrawQuad(col->rect, 255, 255, 0, alpha);
 		break;
-	case COLLIDER_ENEMY_SHOT:
+		case COLLIDER_ENEMY_SHOT:
 		App->renderer->DrawQuad(col->rect, 0, 255, 255, alpha);
 		break;
 	}
-
+	
 }
 
 // Called before quitting
@@ -140,7 +140,7 @@ bool ModuleCollision::CleanUp()
 
 	p2List_item<Collider*>* item = colliders.getLast();
 
-	while (item != NULL)
+	while(item != NULL)
 	{
 		delete item->data;
 		item = item->prev;
@@ -162,7 +162,7 @@ Collider* ModuleCollision::AddCollider(SDL_Rect rect, COLLIDER_TYPE type, Module
 bool Collider::CheckCollision(SDL_Rect r) const
 {
 	return (rect.x < r.x + r.w &&
-		rect.x + rect.w > r.x &&
-		rect.y < r.y + r.h &&
-		rect.h + rect.y > r.y);
+			rect.x + rect.w > r.x &&
+			rect.y < r.y + r.h &&
+			rect.h + rect.y > r.y);
 }

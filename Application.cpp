@@ -7,13 +7,12 @@ Application::Application()
 	window = new ModuleWindow(this);
 	textures = new ModuleTextures(this);
 	input = new ModuleInput(this);
-	audio = new ModuleAudio(this);
-	particles = new ModuleParticles(this);
-	scene_title = new ModuleSceneTitle(this, true);
+	audio = new ModuleAudio(this, false);
+	scene_space = new ModuleSceneSpace(this, false);
 	player = new ModulePlayer(this, false);
-	scene_stage1 = new ModuleSceneStage1(this, false);
-	scene_end = new ModuleSceneEnd(this, false);
+	scene_intro = new ModuleSceneIntro(this, true);
 	fade = new ModuleFadeToBlack(this);
+	particles = new ModuleParticles(this);
 	collision = new ModuleCollision(this, false);
 
 	// The order of calls is very important!
@@ -26,11 +25,11 @@ Application::Application()
 	AddModule(textures);
 	AddModule(input);
 	AddModule(audio);
-
+	
+	
 	// Scenes
-	AddModule(scene_stage1);
-	AddModule(scene_title);
-	AddModule(scene_end);
+	AddModule(scene_space);
+	AddModule(scene_intro);
 	
 	// Characters
 	AddModule(player);
@@ -47,11 +46,10 @@ Application::~Application()
 	delete window;
 	delete textures;
 	delete input;
-	delete audio;
 	delete particles;
-	delete scene_title;
-	delete scene_stage1;
-	delete scene_end;
+	delete audio;
+	delete scene_intro;
+	delete scene_space;
 	delete player;
 	delete fade;
 	delete collision;
@@ -76,7 +74,7 @@ bool Application::Init()
 
 	while(item != NULL && ret == true)
 	{
-		//if(item->data->IsEnabled())
+		if(item->data->IsEnabled())
 			ret = item->data->Start();
 		item = item->next;
 	}
@@ -102,7 +100,7 @@ update_status Application::Update()
 	while(item != NULL && ret == UPDATE_CONTINUE)
 	{
 		if(item->data->IsEnabled())
-			ret = item->data->Update();
+  			ret = item->data->Update();
 		item = item->next;
 	}
 

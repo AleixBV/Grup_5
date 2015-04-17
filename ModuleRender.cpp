@@ -40,6 +40,7 @@ bool ModuleRender::Init()
 // PreUpdate: clear buffer
 update_status ModuleRender::PreUpdate()
 {
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
 	SDL_RenderClear(renderer);
 	return UPDATE_CONTINUE;
 }
@@ -47,7 +48,6 @@ update_status ModuleRender::PreUpdate()
 // Update: debug camera
 update_status ModuleRender::Update()
 {
-
 	return UPDATE_CONTINUE;
 }
 
@@ -73,12 +73,12 @@ bool ModuleRender::CleanUp()
 }
 
 // Blit to screen
-bool ModuleRender::Blit(SDL_Texture* texture, float x, float y, SDL_Rect* section, float speed)
+bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, float speed)
 {
 	bool ret = true;
 	SDL_Rect rect;
-	rect.x = (float) (camera.x * speed) + x * SCREEN_SIZE;
-	rect.y = (float) (camera.y * speed) + y * SCREEN_SIZE;
+	rect.x = (int) (camera.x * speed) + x * SCREEN_SIZE;
+	rect.y = (int) (camera.y * speed) + y * SCREEN_SIZE;
 
 	if(section != NULL)
 	{
@@ -110,7 +110,7 @@ bool ModuleRender::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uin
 	SDL_SetRenderDrawColor(renderer, r, g, b, a);
 
 	SDL_Rect rec(rect);
-	if (use_camera)
+	if(use_camera)
 	{
 		rec.x = (int)(camera.x + rect.x * SCREEN_SIZE);
 		rec.y = (int)(camera.y + rect.y * SCREEN_SIZE);
@@ -118,7 +118,7 @@ bool ModuleRender::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uin
 		rec.h *= SCREEN_SIZE;
 	}
 
-	if (SDL_RenderFillRect(renderer, &rec) != 0)
+	if(SDL_RenderFillRect(renderer, &rec) != 0)
 	{
 		LOG("Cannot draw quad to screen. SDL_RenderFillRect error: %s", SDL_GetError());
 		ret = false;

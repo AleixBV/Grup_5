@@ -1,43 +1,44 @@
 #include "Globals.h"
 #include "Application.h"
-#include "ModuleSceneStage1.h"
+#include "ModuleSceneSpace.h"
 
-// Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
-
-ModuleSceneStage1::ModuleSceneStage1(Application* app, bool start_enabled) : Module(app, start_enabled)
+ModuleSceneSpace::ModuleSceneSpace(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 	background = NULL;
+	stars = NULL;
 }
 
-ModuleSceneStage1::~ModuleSceneStage1()
+ModuleSceneSpace::~ModuleSceneSpace()
 {}
 
 // Load assets
-bool ModuleSceneStage1::Start()
+bool ModuleSceneSpace::Start()
 {
-	LOG("Loading ken scene");
+	LOG("Loading space scene");
 	
-	background = App->textures->Load("lvl1.png");
+	background = App->textures->Load("rtype/background.png");
 
 	player_speed = 1;
 
-	App->collision->Enable();
-	App->audio->PlayMusic("stage1.ogg", 1.0f);
+	App->collision->Enable(); // enable before player
 	App->player->Enable();
+	App->audio->PlayMusic("rtype/stage1.ogg", 1.0f);
 
 	App->renderer->camera.x = App->renderer->camera.y = 0;
 
-	App->collision->AddCollider({ 0, 224, 3930, 16 }, COLLIDER_WALL);
+	App->collision->AddCollider({0,224,3930, 16}, COLLIDER_WALL);
 	App->collision->AddCollider({ 1376, 16, 110, 80 }, COLLIDER_WALL);
 	App->collision->AddCollider({ 1376, 144, 110, 80 }, COLLIDER_WALL);
-	
+
+	// TODO 1: Afegir colliders a les primeres columnes del nivell
+
 	return true;
 }
 
 // UnLoad assets
-bool ModuleSceneStage1::CleanUp()
+bool ModuleSceneSpace::CleanUp()
 {
-	LOG("Unloading stage scene");
+	LOG("Unloading space scene");
 
 	App->textures->Unload(background);
 	App->player->Disable();
@@ -47,9 +48,9 @@ bool ModuleSceneStage1::CleanUp()
 }
 
 // Update: draw background
-update_status ModuleSceneStage1::Update()
+update_status ModuleSceneSpace::Update()
 {
-
+	// Move camera forward -----------------------------
 	float scroll_speed = 0.75f;
 
 	if (App->renderer->camera.x >= (-3930 + SCREEN_WIDTH)*SCREEN_SIZE)
@@ -57,12 +58,11 @@ update_status ModuleSceneStage1::Update()
 		App->player->position.x += player_speed;
 		App->renderer->camera.x -= 3;
 	}
-	else
-		App->fade->FadeToBlack(this, App->scene_end, 2.0f);
-
-
+	//else
+		//App->fade->FadeToBlack(this, App->scene_end, 2.0f);
+	
 	// Draw everything --------------------------------------
 	App->renderer->Blit(background, 0, 0, NULL);
-
+	
 	return UPDATE_CONTINUE;
 }

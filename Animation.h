@@ -22,7 +22,7 @@ public:
 	SDL_Rect& GetCurrentFrame()
 	{
 		current_frame += speed;
-		if (current_frame >= frames.Count())
+		if(current_frame >= frames.Count())
 		{
 			current_frame = (loop) ? 0.0f : frames.Count() - 1;
 			loops++;
@@ -31,9 +31,14 @@ public:
 		return frames[(int)current_frame];
 	}
 
+	const SDL_Rect& PeekCurrentFrame() const
+	{
+		return frames[(int)current_frame];
+	}
+
 	bool Finished()
 	{
-		return loops > 0;			
+		return loops > 0;
 	}
 
 	void Reset()
