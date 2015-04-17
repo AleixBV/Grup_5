@@ -42,7 +42,7 @@ bool ModulePlayer::Start()
 	speed = 1;
 
 	// TODO 2: Afegir collider al jugador
-	collider = App->collision->AddCollider({ position.x, position.y, 32, 14 }, COLLIDER_PLAYER, this);
+	collider = App->collision->AddCollider({ position.x, position.y, 32, 12 }, COLLIDER_PLAYER, this);
 
 	return true;
 }
@@ -60,9 +60,6 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 update_status ModulePlayer::Update()
 {
-	collider->rect.x = position.x;
-	collider->rect.y = position.y;
-
 	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 	{
 		if (position.x > (App->renderer->camera.x) / -3)
@@ -110,7 +107,8 @@ update_status ModulePlayer::Update()
 	if(App->input->GetKey(SDL_SCANCODE_S) == KEY_IDLE && App->input->GetKey(SDL_SCANCODE_W) == KEY_IDLE)
 		current_animation = &idle;
 
-	// TODO 3: Actualitzar la posicio del collider del jugador perque el segueixi//Fet
+	collider->rect.x = position.x;
+	collider->rect.y = position.y;
 
 	// Draw everything --------------------------------------
 

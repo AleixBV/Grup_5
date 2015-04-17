@@ -51,7 +51,6 @@ bool ModuleSceneSpace::CleanUp()
 update_status ModuleSceneSpace::Update()
 {
 	// Move camera forward -----------------------------
-	float scroll_speed = 0.75f;
 
 	if (App->renderer->camera.x >= (-3930 + SCREEN_WIDTH)*SCREEN_SIZE)
 	{
