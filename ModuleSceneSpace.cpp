@@ -32,13 +32,13 @@ bool ModuleSceneSpace::Start()
 	App->collision->AddCollider({ 592, 209, 64, 15 }, COLLIDER_WALL);
 	App->collision->AddCollider({ 720, 193, 64, 31 }, COLLIDER_WALL);
 	App->collision->AddCollider({ 1232, 209, 64, 15 }, COLLIDER_WALL);
-	App->collision->AddCollider({ 1376, 0, 560, 16 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 1376, 0, 560, 16 }, COLLIDER_WALL);//paret de dalt
 	
 	App->collision->AddCollider({ 1376, 16, 110, 80 }, COLLIDER_WALL);
 	App->collision->AddCollider({ 1376, 144, 110, 80 }, COLLIDER_WALL);
 
-	App->collision->AddCollider({ 1936, 0, 704, 16 }, COLLIDER_WALL);
-	App->collision->AddCollider({ 2640, 0, 1290, 16 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2000, 0, 640, 16 }, COLLIDER_WALL);//paret de dalt
+	App->collision->AddCollider({ 2704, 0, 1226, 16 }, COLLIDER_WALL);//paret de dalt
 
 	// TODO 1: Afegir colliders a les primeres columnes del nivell
 
