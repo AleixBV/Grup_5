@@ -15,11 +15,11 @@ bool ModuleEnemy::Start()
 	graphics = App->textures->Load("rtype/RedEnemySprites.png");
 
 	red.anim.frames.PushBack({ 5, 6, 21, 24 });
-	red.anim.loop = false;
+	red.anim.loop = true;
 	red.anim.speed = 0.0f;
 
 	//Add all enemies
-	AddEnemy(red, 600, 100, COLLIDER_ENEMY);
+	AddEnemy(red, 600, 100);
 
 	return true;
 }
@@ -47,7 +47,6 @@ update_status ModuleEnemy::preUpdate()
 update_status ModuleEnemy::Update()
 {
 	p2List_item<Enemy*>* tmp = EnemyList.getFirst();
-	p2List_item<Enemy*>* tmp_next = EnemyList.getFirst();
 
 	while (tmp != NULL)
 	{
@@ -56,13 +55,14 @@ update_status ModuleEnemy::Update()
 		{
 			App->renderer->Blit(graphics, e->position.x, e->position.y, &(e->anim.GetCurrentFrame()));
 		}
+		tmp = tmp->next;
 	}
 	return UPDATE_CONTINUE;
 }
 
 void ModuleEnemy::OnCollision(Collider* c1, Collider* c2)
 {
-	p2List_item<Enemy*>* tmp = EnemyList.getFirst();
+	/*p2List_item<Enemy*>* tmp = EnemyList.getFirst();
 
 	Enemy* e = tmp->data;
 
@@ -70,19 +70,27 @@ void ModuleEnemy::OnCollision(Collider* c1, Collider* c2)
 	{
 		e->alive = false;
 		App->particles->AddParticle(App->particles->enemy_death, e->position.x, e->position.y);
-	}
+	}*/
 }
 
-void ModuleEnemy::AddEnemy(const Enemy& enemy, int x, int y, COLLIDER_TYPE collider_type)
+void ModuleEnemy::AddEnemy(const Enemy& enemy, int x, int y)
 {
 	Enemy* e = new Enemy(enemy);
 	e->position.x = x;
 	e->position.y = y;
-
-	if (collider_type != COLLIDER_NONE)
-	{
-		e->collider = App->collision->AddCollider({ e->position.x, e->position.y, 0, 0 }, collider_type, this);
-	}
+	
+	e->collider = App->collision->AddCollider({ e->position.x, e->position.y, 0, 0 }, COLLIDER_ENEMY, this);
 
 	EnemyList.add(e);
+}
+
+Enemy::Enemy() :collider(NULL), alive(true), onScreen(false)
+{}
+
+Enemy::~Enemy()
+{
+	if (collider)
+	{
+		collider->to_delete = true;
+	}
 }
