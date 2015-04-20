@@ -19,7 +19,7 @@ bool ModuleEnemy::Start()
 	red.anim.speed = 0.0f;
 
 	//Add all enemies
-	AddEnemy(red, 600, 100);
+	//AddEnemy(red, 600, 100); //al module stage
 
 	return true;
 }
@@ -66,11 +66,18 @@ void ModuleEnemy::OnCollision(Collider* c1, Collider* c2)
 
 	Enemy* e = tmp->data;
 
-	if (c1->type == COLLIDER_PLAYER_SHOT || c2->type == COLLIDER_PLAYER_SHOT)
+   while (tmp != NULL)
 	{
+		Enemy* e = tmp->data;
+		if (c1->type == COLLIDER_PLAYER_SHOT || c2->type == COLLIDER_PLAYER_SHOT)
+    	{
 		e->alive = false;
 		App->particles->AddParticle(App->particles->enemy_death, e->position.x, e->position.y);
-	}*/
+    	}
+		tmp = tmp->next;
+	}
+	
+*/
 }
 
 void ModuleEnemy::AddEnemy(const Enemy& enemy, int x, int y)

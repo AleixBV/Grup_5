@@ -42,6 +42,7 @@ bool ModuleSceneSpace::Start()
 
 	// TODO 1: Afegir colliders a les primeres columnes del nivell
 
+    App->enemy->AddEnemy(red, 600, 100);
 	return true;
 }
 
