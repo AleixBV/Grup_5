@@ -39,11 +39,13 @@ public:
 private:
 
 	SDL_Texture* graphics;
+	SDL_Texture* enemy_explosion;
 	p2List<Particle*> active;
 
 public:
 
 	Particle explosion;
+	Particle enemy_death;
 	Particle laser;
 
 };

@@ -14,8 +14,8 @@ struct Enemy
 	p2Point<int> speed;
 	Collider* collider;
 	Particle shoot;
-	bool alive;
-	bool onScreen;
+	bool alive = true;
+	bool onScreen = false;
 
 	Enemy();
 	~Enemy();
@@ -29,6 +29,7 @@ public:
 	~ModuleEnemy();
 
 	bool Start();
+	update_status preUpdate();
 	update_status Update();
 	bool CleanUp();
 	void OnCollision(Collider*, Collider*);

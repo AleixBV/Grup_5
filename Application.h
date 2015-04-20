@@ -16,6 +16,7 @@
 #include "ModuleParticles.h"
 #include "ModuleCollision.h"
 #include "ModuleEnemy.h"
+#include "ModuleSceneEnd.h"
 
 class Application
 {
@@ -29,6 +30,7 @@ public:
 	ModulePlayer* player;
 	ModuleFadeToBlack* fade;
 	ModuleSceneIntro* scene_intro;
+	ModuleSceneEnd* scene_end;
 	ModuleParticles* particles;
 	ModuleCollision* collision;
 	ModuleEnemy* enemy;

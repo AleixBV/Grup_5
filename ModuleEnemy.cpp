@@ -18,6 +18,9 @@ bool ModuleEnemy::Start()
 	red.anim.loop = false;
 	red.anim.speed = 0.0f;
 
+	//Add all enemies
+	AddEnemy(red, 600, 100, COLLIDER_ENEMY);
+
 	return true;
 }
 
@@ -28,15 +31,46 @@ bool ModuleEnemy::CleanUp()
 	return true;
 }
 
+update_status ModuleEnemy::preUpdate()
+{
+	p2List_item<Enemy*>* tmp = EnemyList.getFirst();
+	while (tmp != NULL)
+	{
+		if (tmp->data->alive == false)
+		{
+			EnemyList.del(tmp);
+		}
+	}
+	return UPDATE_CONTINUE;
+}
+
 update_status ModuleEnemy::Update()
 {
+	p2List_item<Enemy*>* tmp = EnemyList.getFirst();
+	p2List_item<Enemy*>* tmp_next = EnemyList.getFirst();
 
+	while (tmp != NULL)
+	{
+		Enemy* e = tmp->data;
+		if (tmp->data->alive != false)
+		{
+			App->renderer->Blit(graphics, e->position.x, e->position.y, &(e->anim.GetCurrentFrame()));
+		}
+	}
 	return UPDATE_CONTINUE;
 }
 
 void ModuleEnemy::OnCollision(Collider* c1, Collider* c2)
 {
-	//Segons el tipus de colisio el resultat sera diferent
+	p2List_item<Enemy*>* tmp = EnemyList.getFirst();
+
+	Enemy* e = tmp->data;
+
+	if (c1->type == COLLIDER_PLAYER_SHOT || c2->type == COLLIDER_PLAYER_SHOT)
+	{
+		e->alive = false;
+		App->particles->AddParticle(App->particles->enemy_death, e->position.x, e->position.y);
+	}
 }
 
 void ModuleEnemy::AddEnemy(const Enemy& enemy, int x, int y, COLLIDER_TYPE collider_type)

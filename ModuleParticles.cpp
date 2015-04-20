@@ -14,6 +14,7 @@ bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
 	graphics = App->textures->Load("rtype/particles.png");
+	enemy_explosion = App->textures->Load("ExplosionSprites.png");
 
 	/*// Explosion particle
 	explosion.fx = App->audio->LoadFx("rtype/explosion.wav");
@@ -45,6 +46,17 @@ bool ModuleParticles::Start()
 	explosion.anim.frames.PushBack({ 233, 343, 34, 28 });
 	explosion.anim.loop = false;
 	explosion.anim.speed = 0.3f;
+
+	//Enemy explosion
+	enemy_death.anim.frames.PushBack({ 129, 1, 31, 31});
+	enemy_death.anim.frames.PushBack({ 162, 1, 31, 31 });
+	enemy_death.anim.frames.PushBack({ 193, 1, 31, 31 });
+	enemy_death.anim.frames.PushBack({ 227, 1, 31, 31 });
+	enemy_death.anim.frames.PushBack({ 261, 1, 31, 31 });
+	enemy_death.anim.frames.PushBack({ 293, 1, 31, 31 });
+	enemy_death.anim.loop = false;
+	enemy_death.anim.speed = 0.3f;
+
 
 	return true;
 }
