@@ -37,10 +37,17 @@ update_status ModuleEnemy::preUpdate()
 	p2List_item<Enemy*>* tmp = EnemyList.getFirst();
 	while (tmp != NULL)
 	{
+		if (tmp->data->position.x < (App->renderer->camera.x / -3) + SCREEN_WIDTH - 32)
+		{
+			tmp->data->onScreen = true;
+		}
+
 		if (tmp->data->alive == false)
 		{
 			EnemyList.del(tmp);
 		}
+
+
 		tmp = tmp->next;
 	}
 	return UPDATE_CONTINUE;
@@ -70,18 +77,21 @@ void ModuleEnemy::OnCollision(Collider* c1, Collider* c2)
 {
 	p2List_item<Enemy*>* tmp = EnemyList.getFirst();
 
-   while (tmp != NULL)
+	while (tmp != NULL)
 	{
 		Enemy* e = tmp->data;
-		if (c1->type == COLLIDER_PLAYER_SHOT || c2->type == COLLIDER_PLAYER_SHOT)
-    	{
-		e->alive = false;
-		e->collider->to_delete = true;
-		App->particles->AddParticle(App->particles->enemy_death, e->position.x, e->position.y);
-    	}
+		if (e->onScreen == true)
+		{
+			if (e->collider == c2)
+			{
+				e->alive = false;
+				e->collider->to_delete = true;
+				App->particles->AddParticle(App->particles->enemy_death, e->position.x, e->position.y);
+			}
+		}
 		tmp = tmp->next;
 	}
-	
+
 
 }
 
@@ -90,7 +100,7 @@ void ModuleEnemy::AddEnemy(const Enemy& enemy, int x, int y)
 	Enemy* e = new Enemy(enemy);
 	e->position.x = x;
 	e->position.y = y;
-	
+
 	e->collider = App->collision->AddCollider({ e->position.x, e->position.y, 21, 24 }, COLLIDER_ENEMY, this);
 
 	EnemyList.add(e);

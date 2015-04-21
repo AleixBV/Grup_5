@@ -10,6 +10,7 @@
 struct Enemy
 {
 	Animation anim;
+	Animation death;
 	p2Point<int> position;
 	p2Point<int> speed;
 	Collider* collider;
@@ -23,7 +24,7 @@ struct Enemy
 
 class ModuleEnemy : public Module
 {
-public: 
+public:
 
 	ModuleEnemy(Application* app, bool start_enabled = true);
 	~ModuleEnemy();

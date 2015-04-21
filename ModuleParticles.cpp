@@ -14,7 +14,7 @@ bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
 	graphics = App->textures->Load("rtype/particles.png");
-	enemy_explosion = App->textures->Load("ExplosionSprites.png");
+	//enemy_explosion = App->textures->Load("ExplosionSprites.png");
 
 	/*// Explosion particle
 	explosion.fx = App->audio->LoadFx("rtype/explosion.wav");
@@ -29,8 +29,8 @@ bool ModuleParticles::Start()
 
 	// Laser particle
 	laser.fx = App->audio->LoadFx("rtype/slimeball.wav");
-	laser.anim.frames.PushBack({200, 120, 32, 12});
-	laser.anim.frames.PushBack({230, 120, 32, 12});
+	laser.anim.frames.PushBack({ 200, 120, 32, 12 });
+	laser.anim.frames.PushBack({ 230, 120, 32, 12 });
 	laser.speed.x = 7;
 	laser.life = 1000;
 	laser.anim.speed = 0.05f;
@@ -48,14 +48,14 @@ bool ModuleParticles::Start()
 	explosion.anim.speed = 0.3f;
 
 	//Enemy explosion
-	enemy_death.anim.frames.PushBack({ 129, 1, 31, 31});
-	enemy_death.anim.frames.PushBack({ 162, 1, 31, 31 });
-	enemy_death.anim.frames.PushBack({ 193, 1, 31, 31 });
-	enemy_death.anim.frames.PushBack({ 227, 1, 31, 31 });
-	enemy_death.anim.frames.PushBack({ 261, 1, 31, 31 });
-	enemy_death.anim.frames.PushBack({ 293, 1, 31, 31 });
+	enemy_death.anim.frames.PushBack({ 128, 384, 31, 31 });
+	enemy_death.anim.frames.PushBack({ 161, 384, 31, 31 });
+	enemy_death.anim.frames.PushBack({ 192, 384, 31, 31 });
+	enemy_death.anim.frames.PushBack({ 226, 384, 31, 31 });
+	enemy_death.anim.frames.PushBack({ 260, 384, 31, 31 });
+	enemy_death.anim.frames.PushBack({ 292, 384, 31, 31 });
 	enemy_death.anim.loop = false;
-	enemy_death.anim.speed = 0.3f;
+	enemy_death.anim.speed = 0.2f;
 
 
 	return true;
@@ -75,36 +75,26 @@ update_status ModuleParticles::Update()
 	p2List_item<Particle*>* tmp = active.getFirst();
 	p2List_item<Particle*>* tmp_next = active.getFirst();
 
-	while(tmp != NULL)
+	while (tmp != NULL)
 	{
 		Particle* p = tmp->data;
 		tmp_next = tmp->next;
 
-		if(p->Update() == false)
+		if (p->Update() == false)
 		{
 			delete p;
 			active.del(tmp);
 		}
-		else if(SDL_GetTicks() >= p->born)
+		else if (SDL_GetTicks() >= p->born)
 		{
 			App->renderer->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
-			
-			if(p->fx_played == false)
+
+			if (p->fx_played == false)
 			{
 				p->fx_played = true;
 				App->audio->PlayFx(p->fx);
 			}
 		}
-
-		/*if (p->collider->type == COLLIDER_PLAYER_SHOT)
-		{
-			if (p->position.x < (App->renderer->camera.x) / -3 || p->position.x >(App->renderer->camera.x / -3) + SCREEN_WIDTH - 32 / -3)
-			{
-				//p->life = 0;
-				delete p;
-				active.del(tmp);
-			}
-		}*/
 
 		tmp = tmp_next;
 	}
@@ -116,12 +106,12 @@ update_status ModuleParticles::Update()
 void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 {
 	// TODO 5: Fer que cada vegada que un laser collisini sorti una explosio
-  	p2List_item<Particle*>* tmp = active.getFirst();
+	p2List_item<Particle*>* tmp = active.getFirst();
 
-	while(tmp != NULL)
+	while (tmp != NULL)
 	{
-		if(tmp->data->collider == c1 )
-		{	
+		if (tmp->data->collider == c1)
+		{
 			delete tmp->data;
 			active.del(tmp);
 			break;
@@ -138,9 +128,9 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 	p->position.x = x;
 	p->position.y = y;
 
-	if(collider_type != COLLIDER_NONE)
+	if (collider_type != COLLIDER_NONE)
 	{
-		p->collider = App->collision->AddCollider({p->position.x, p->position.y, 0, 0}, collider_type, this);
+		p->collider = App->collision->AddCollider({ p->position.x, p->position.y, 0, 0 }, collider_type, this);
 	}
 
 	active.add(p);
@@ -164,7 +154,7 @@ Particle::Particle(const Particle& p) : anim(p.anim), position(p.position), spee
 
 Particle::~Particle()
 {
-	if(collider)
+	if (collider)
 		collider->to_delete = true;
 }
 
@@ -172,22 +162,22 @@ bool Particle::Update()
 {
 	bool ret = true;
 
-	if(life > 0)
+	if (life > 0)
 	{
-		if((SDL_GetTicks() - born) > life)
+		if ((SDL_GetTicks() - born) > life)
 			ret = false;
 	}
 	else
-		if(anim.Finished())
+		if (anim.Finished())
 			ret = false;
 
 	position.x += speed.x;
 	position.y += speed.y;
 
-	if(collider != NULL)
+	if (collider != NULL)
 	{
 		SDL_Rect r = anim.PeekCurrentFrame();
-		collider->rect = {position.x, position.y, r.w, r.h};
+		collider->rect = { position.x, position.y, r.w, r.h };
 	}
 
 	return ret;

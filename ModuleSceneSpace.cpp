@@ -15,7 +15,7 @@ ModuleSceneSpace::~ModuleSceneSpace()
 bool ModuleSceneSpace::Start()
 {
 	LOG("Loading space scene");
-	
+
 	background = App->textures->Load("rtype/background.png");
 
 	player_speed = 1;
@@ -27,21 +27,21 @@ bool ModuleSceneSpace::Start()
 
 	App->renderer->camera.x = App->renderer->camera.y = 0;
 
-	App->collision->AddCollider({0,224,3930, 16}, COLLIDER_WALL);
+	App->collision->AddCollider({ 0, 224, 3930, 16 }, COLLIDER_WALL);
 	App->collision->AddCollider({ 142, 193, 64, 31 }, COLLIDER_WALL);
 	App->collision->AddCollider({ 206, 209, 64, 15 }, COLLIDER_WALL);
 	App->collision->AddCollider({ 592, 209, 64, 15 }, COLLIDER_WALL);
 	App->collision->AddCollider({ 720, 193, 64, 31 }, COLLIDER_WALL);
 	App->collision->AddCollider({ 1232, 209, 64, 15 }, COLLIDER_WALL);
 	App->collision->AddCollider({ 1376, 0, 560, 16 }, COLLIDER_WALL);//paret de dalt
-	
+
 	App->collision->AddCollider({ 1376, 16, 110, 80 }, COLLIDER_WALL);
 	App->collision->AddCollider({ 1376, 144, 110, 80 }, COLLIDER_WALL);
 
 	App->collision->AddCollider({ 2000, 0, 640, 16 }, COLLIDER_WALL);//paret de dalt
 	App->collision->AddCollider({ 2704, 0, 1226, 16 }, COLLIDER_WALL);//paret de dalt
 
-    App->enemy->AddEnemy(App->enemy->red, 600, 100);
+	App->enemy->AddEnemy(App->enemy->red, 600, 100);
 	return true;
 }
 
@@ -54,7 +54,7 @@ bool ModuleSceneSpace::CleanUp()
 	App->player->Disable();
 	App->enemy->Disable();
 	App->collision->Disable();
-	
+
 	return true;
 }
 
@@ -69,10 +69,10 @@ update_status ModuleSceneSpace::Update()
 		App->renderer->camera.x -= 3;
 	}
 	//else
-		//App->fade->FadeToBlack(this, App->scene_end, 2.0f);
-	
+	//App->fade->FadeToBlack(this, App->scene_end, 2.0f);
+
 	// Draw everything --------------------------------------
 	App->renderer->Blit(background, 0, 0, NULL);
-	
+
 	return UPDATE_CONTINUE;
 }
