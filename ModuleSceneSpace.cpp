@@ -45,15 +45,15 @@ bool ModuleSceneSpace::Start()
 
 	//Add all enmies
 
-	App->enemy->AddEnemy(App->enemy->red, 600, 100, 'sin', 0);
-	App->enemy->AddEnemy(App->enemy->red, 630, 120, 'sin', (3.14 / 4));
+	App->enemy->AddEnemy(App->enemy->red, 600, 50, 'sin', 0);
+	App->enemy->AddEnemy(App->enemy->red, 630, 60, 'sin', (3.14 / 4));
 	App->enemy->AddEnemy(App->enemy->red, 660, 140, 'sin', (3.14 / 2));
 	App->enemy->AddEnemy(App->enemy->red, 690, 160, 'sin', (3.14));
 
-	App->enemy->AddEnemy(App->enemy->red, 1000, 230, 'sin', 0);
-	App->enemy->AddEnemy(App->enemy->red, 1030, 230, 'sin', (3.14 / 4));
-	App->enemy->AddEnemy(App->enemy->red, 1060, 230, 'sin', (3.14 / 2));
-	App->enemy->AddEnemy(App->enemy->red, 1080, 230, 'sin', (3.14));
+	App->enemy->AddEnemy(App->enemy->red, 1000, 120, 'sin', 0);
+	App->enemy->AddEnemy(App->enemy->red, 1030, 80, 'sin', (3.14 / 4));
+	App->enemy->AddEnemy(App->enemy->red, 1060, 40, 'sin', (3.14 / 2));
+	App->enemy->AddEnemy(App->enemy->red, 1080, 170, 'sin', (3.14));
 
 	return true;
 }

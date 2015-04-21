@@ -78,8 +78,7 @@ update_status ModuleEnemy::Update()
 			if (e->mov_type == x)
 			{
 				float t = SDL_GetTicks();
-				//e->position.y = 50 + 30 * sin((25 + t / 250) + e->fase);
-				e->position.y = 50 + 30 * sin((25 + t / 250) + e->fase);
+				e->position.y = e->initial_height + 25 * sin((25 + t / 250) + e->fase);
 				e->position.x--;
 			}
 		}
@@ -155,6 +154,7 @@ Enemy* ModuleEnemy::AddEnemy(const Enemy& enemy, int x, int y, char mov, float f
 	e->position.x = x;
 	e->position.y = y;
 	e->fase = fase;
+	e->initial_height = y;
 
 	e->collider = App->collision->AddCollider({ e->position.x, e->position.y, 21, 24 }, COLLIDER_ENEMY, this);
 

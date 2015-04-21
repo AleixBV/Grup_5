@@ -19,6 +19,7 @@ struct Enemy
 	bool on_screen;
 	char mov_type;
 	float fase;
+	int initial_height;
 
 	Enemy();
 	~Enemy();
