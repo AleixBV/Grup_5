@@ -16,7 +16,8 @@ struct Enemy
 	Collider* collider;
 	Particle shoot;
 	bool alive;
-	bool onScreen;
+	bool on_screen;
+	char mov_type;
 
 	Enemy();
 	~Enemy();
@@ -30,12 +31,12 @@ public:
 	~ModuleEnemy();
 
 	bool Start();
-	update_status preUpdate();
+	update_status PreUpdate();
 	update_status Update();
 	bool CleanUp();
 	void OnCollision(Collider*, Collider*);
 
-	void AddEnemy(const Enemy& enemy, int x, int y);
+	void AddEnemy(const Enemy& enemy, int x, int y, char mov);
 
 private:
 

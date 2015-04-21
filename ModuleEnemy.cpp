@@ -1,7 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleEnemy.h"
-
+#include <math.h>
 
 ModuleEnemy::ModuleEnemy(Application* app, bool start_enabled) : Module(app, start_enabled), graphics(NULL)
 {}
@@ -19,9 +19,6 @@ bool ModuleEnemy::Start()
 	red.anim.speed = 0.0f;
 	red.alive = true;
 
-	//Add all enemies
-	//AddEnemy(red, 600, 100); //al module stage
-
 	return true;
 }
 
@@ -32,14 +29,17 @@ bool ModuleEnemy::CleanUp()
 	return true;
 }
 
-update_status ModuleEnemy::preUpdate()
+update_status ModuleEnemy::PreUpdate()
 {
 	p2List_item<Enemy*>* tmp = EnemyList.getFirst();
+	p2List_item<Enemy*>* tmp_next;
 	while (tmp != NULL)
 	{
+		tmp_next = tmp->next;
+
 		if (tmp->data->position.x < (App->renderer->camera.x / -3) + SCREEN_WIDTH - 32)
 		{
-			tmp->data->onScreen = true;
+			tmp->data->on_screen = true;
 		}
 
 		if (tmp->data->alive == false)
@@ -48,7 +48,7 @@ update_status ModuleEnemy::preUpdate()
 		}
 
 
-		tmp = tmp->next;
+		tmp = tmp_next;
 	}
 	return UPDATE_CONTINUE;
 }
@@ -60,13 +60,25 @@ update_status ModuleEnemy::Update()
 	while (tmp != NULL)
 	{
 		Enemy* e = tmp->data;
-		if (tmp->data->alive != false)
+
+		if (e->on_screen)
 		{
-			App->renderer->Blit(graphics, e->position.x, e->position.y, &(e->anim.GetCurrentFrame()));
+			char x = 'sin';
+			if (e->mov_type == x)
+			{
+				float t = SDL_GetTicks();
+				e->position.y = 100 + 40 * sin(25 + t / 250);
+				e->position.x--;
+			}
 		}
 
-		e->collider->rect.x = e->position.x;
-		e->collider->rect.y = e->position.y;
+		if (tmp->data->alive)
+		{
+			e->collider->rect.x = e->position.x;
+			e->collider->rect.y = e->position.y;
+
+			App->renderer->Blit(graphics, e->position.x, e->position.y, &(e->anim.GetCurrentFrame()));
+		}
 
 		tmp = tmp->next;
 	}
@@ -80,9 +92,9 @@ void ModuleEnemy::OnCollision(Collider* c1, Collider* c2)
 	while (tmp != NULL)
 	{
 		Enemy* e = tmp->data;
-		if (e->onScreen == true)
+		if (e->on_screen)
 		{
-			if (e->collider == c2)
+			if (c1->type == COLLIDER_PLAYER_SHOT || c2->type == COLLIDER_PLAYER_SHOT)
 			{
 				e->alive = false;
 				e->collider->to_delete = true;
@@ -95,7 +107,7 @@ void ModuleEnemy::OnCollision(Collider* c1, Collider* c2)
 
 }
 
-void ModuleEnemy::AddEnemy(const Enemy& enemy, int x, int y)
+void ModuleEnemy::AddEnemy(const Enemy& enemy, int x, int y, char mov)
 {
 	Enemy* e = new Enemy(enemy);
 	e->position.x = x;
@@ -103,10 +115,12 @@ void ModuleEnemy::AddEnemy(const Enemy& enemy, int x, int y)
 
 	e->collider = App->collision->AddCollider({ e->position.x, e->position.y, 21, 24 }, COLLIDER_ENEMY, this);
 
+	e->mov_type = mov;
+
 	EnemyList.add(e);
 }
 
-Enemy::Enemy() :collider(NULL), alive(true), onScreen(false)
+Enemy::Enemy() :collider(NULL), alive(true), on_screen(false)
 {}
 
 Enemy::~Enemy()
