@@ -34,7 +34,6 @@ bool ModuleEnemy::CleanUp()
 	LOG("Unloading enemies");
 	App->textures->Unload(graphics);
 
-	//TODO ClearAll
 	EnemyList.clear();
 
 	return true;
