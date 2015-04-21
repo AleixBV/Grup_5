@@ -23,7 +23,7 @@ bool ModuleEnemy::Start()
 	red.anim.frames.PushBack({ 203, 6, 21, 24 });
 	red.anim.frames.PushBack({ 236, 6, 21, 24 });
 	red.anim.loop = true;
-	red.anim.speed = 0.11f;
+	red.anim.speed = 0.15f;
 	red.alive = true;
 
 	return true;
@@ -74,13 +74,13 @@ update_status ModuleEnemy::Update()
 
 		if (e->on_screen)
 		{
-			//char x = 'sin';
-			//if (e->mov_type == x)
-			//{
-				//float t = SDL_GetTicks();
-				//e->position.y = 80 + 30 * sin(25 + t / 250);
-				//e->position.x--;
-			//}
+			char x = 'sin';
+			if (e->mov_type == x)
+			{
+				float t = SDL_GetTicks();
+				e->position.y = 80 + 30 * sin(25 + t / 250);
+				e->position.x--;
+			}
 		}
 
 		if (tmp->data->alive)
@@ -90,27 +90,27 @@ update_status ModuleEnemy::Update()
 
 			App->renderer->Blit(graphics, e->position.x, e->position.y, &(e->anim.GetCurrentFrame()));
 			
-			if (SDL_GetTicks() % 10 == 0.0f){
+			if (SDL_GetTicks() % 30 == 0){
 			
 				if (e->position.y > App->player->position.y && e->position.x > App->player->position.x) 
 				{
-					App->particles->shot.speed.x = 2.5f;
-					App->particles->shot.speed.y = 2.5f;
+					App->particles->shot.speed.x = -2.5f;
+					App->particles->shot.speed.y = -2.5f;
 				}
 				if (e->position.y > App->player->position.y && e->position.x < App->player->position.x)
 				{
-					App->particles->shot.speed.x = -2.5f;
-					App->particles->shot.speed.y = 2.5f;
-				}
-				if (e->position.y < App->player->position.y && e->position.x > App->player->position.x)
-				{
 					App->particles->shot.speed.x = 2.5f;
 					App->particles->shot.speed.y = -2.5f;
 				}
-				if (e->position.y < App->player->position.y && e->position.x < App->player->position.x)
+				if (e->position.y < App->player->position.y && e->position.x > App->player->position.x)
 				{
 					App->particles->shot.speed.x = -2.5f;
-					App->particles->shot.speed.y = -2.5f;
+					App->particles->shot.speed.y = 2.5f;
+				}
+				if (e->position.y < App->player->position.y && e->position.x < App->player->position.x)
+				{
+					App->particles->shot.speed.x = 2.5f;
+					App->particles->shot.speed.y = 2.5f;
 				}
 		
 
@@ -137,6 +137,7 @@ void ModuleEnemy::OnCollision(Collider* c1, Collider* c2)
 				e->alive = false;
 				e->collider->to_delete = true;
 				App->particles->AddParticle(App->particles->enemy_death, e->position.x, e->position.y);
+				App->fade->FadeToBlack(App->scene_space, App->scene_end, 2.0f);
 			}
 		}
 		tmp = tmp->next;
