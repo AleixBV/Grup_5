@@ -74,13 +74,13 @@ update_status ModuleEnemy::Update()
 
 		if (e->on_screen)
 		{
-			char x = 'sin';
-			if (e->mov_type == x)
-			{
-				float t = SDL_GetTicks();
-				e->position.y = 80 + 30 * sin(25 + t / 250);
-				e->position.x--;
-			}
+			//char x = 'sin';
+			//if (e->mov_type == x)
+			//{
+				//float t = SDL_GetTicks();
+				//e->position.y = 80 + 30 * sin(25 + t / 250);
+				//e->position.x--;
+			//}
 		}
 
 		if (tmp->data->alive)
@@ -89,6 +89,33 @@ update_status ModuleEnemy::Update()
 			e->collider->rect.y = e->position.y;
 
 			App->renderer->Blit(graphics, e->position.x, e->position.y, &(e->anim.GetCurrentFrame()));
+			
+			if (SDL_GetTicks() % 10 == 0.0f){
+			
+				if (e->position.y > App->player->position.y && e->position.x > App->player->position.x) 
+				{
+					App->particles->shot.speed.x = 2.5f;
+					App->particles->shot.speed.y = 2.5f;
+				}
+				if (e->position.y > App->player->position.y && e->position.x < App->player->position.x)
+				{
+					App->particles->shot.speed.x = -2.5f;
+					App->particles->shot.speed.y = 2.5f;
+				}
+				if (e->position.y < App->player->position.y && e->position.x > App->player->position.x)
+				{
+					App->particles->shot.speed.x = 2.5f;
+					App->particles->shot.speed.y = -2.5f;
+				}
+				if (e->position.y < App->player->position.y && e->position.x < App->player->position.x)
+				{
+					App->particles->shot.speed.x = -2.5f;
+					App->particles->shot.speed.y = -2.5f;
+				}
+		
+
+				App->particles->AddParticle(App->particles->shot, e->position.x, e->position.y, COLLIDER_ENEMY_SHOT);
+			}
 		}
 
 		tmp = tmp->next;

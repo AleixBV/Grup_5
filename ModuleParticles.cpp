@@ -59,6 +59,14 @@ bool ModuleParticles::Start()
 	enemy_death.anim.loop = false;
 	enemy_death.anim.speed = 0.2f;
 
+	//EnemyShot
+	shot.anim.frames.PushBack({ 259, 276, 14, 12 });
+	shot.anim.loop = false;
+	shot.anim.speed = 0.0f;
+	//shot.speed.x = -2.5f;
+	//shot.speed.y = 2.5f;
+	shot.life = 1000;
+
 
 	return true;
 }
