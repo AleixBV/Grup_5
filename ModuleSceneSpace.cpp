@@ -22,6 +22,7 @@ bool ModuleSceneSpace::Start()
 
 	App->collision->Enable(); // enable before player
 	App->player->Enable();
+	App->enemy->Enable();
 	App->audio->PlayMusic("rtype/stage1.ogg", 1.0f);
 
 	App->renderer->camera.x = App->renderer->camera.y = 0;
@@ -40,9 +41,7 @@ bool ModuleSceneSpace::Start()
 	App->collision->AddCollider({ 2000, 0, 640, 16 }, COLLIDER_WALL);//paret de dalt
 	App->collision->AddCollider({ 2704, 0, 1226, 16 }, COLLIDER_WALL);//paret de dalt
 
-	// TODO 1: Afegir colliders a les primeres columnes del nivell
-
-    App->enemy->AddEnemy(red, 600, 100);
+    App->enemy->AddEnemy(App->enemy->red, 600, 100);
 	return true;
 }
 
@@ -53,6 +52,7 @@ bool ModuleSceneSpace::CleanUp()
 
 	App->textures->Unload(background);
 	App->player->Disable();
+	App->enemy->Disable();
 	App->collision->Disable();
 	
 	return true;

@@ -17,6 +17,7 @@ bool ModuleEnemy::Start()
 	red.anim.frames.PushBack({ 5, 6, 21, 24 });
 	red.anim.loop = true;
 	red.anim.speed = 0.0f;
+	red.alive = true;
 
 	//Add all enemies
 	//AddEnemy(red, 600, 100); //al module stage
@@ -86,7 +87,7 @@ void ModuleEnemy::AddEnemy(const Enemy& enemy, int x, int y)
 	e->position.x = x;
 	e->position.y = y;
 	
-	e->collider = App->collision->AddCollider({ e->position.x, e->position.y, 0, 0 }, COLLIDER_ENEMY, this);
+	e->collider = App->collision->AddCollider({ e->position.x, e->position.y, 21, 24 }, COLLIDER_ENEMY, this);
 
 	EnemyList.add(e);
 }
