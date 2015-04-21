@@ -41,6 +41,7 @@ update_status ModuleEnemy::preUpdate()
 		{
 			EnemyList.del(tmp);
 		}
+		tmp = tmp->next;
 	}
 	return UPDATE_CONTINUE;
 }
@@ -56,6 +57,10 @@ update_status ModuleEnemy::Update()
 		{
 			App->renderer->Blit(graphics, e->position.x, e->position.y, &(e->anim.GetCurrentFrame()));
 		}
+
+		e->collider->rect.x = e->position.x;
+		e->collider->rect.y = e->position.y;
+
 		tmp = tmp->next;
 	}
 	return UPDATE_CONTINUE;
@@ -63,9 +68,7 @@ update_status ModuleEnemy::Update()
 
 void ModuleEnemy::OnCollision(Collider* c1, Collider* c2)
 {
-	/*p2List_item<Enemy*>* tmp = EnemyList.getFirst();
-
-	Enemy* e = tmp->data;
+	p2List_item<Enemy*>* tmp = EnemyList.getFirst();
 
    while (tmp != NULL)
 	{
@@ -73,12 +76,13 @@ void ModuleEnemy::OnCollision(Collider* c1, Collider* c2)
 		if (c1->type == COLLIDER_PLAYER_SHOT || c2->type == COLLIDER_PLAYER_SHOT)
     	{
 		e->alive = false;
+		e->collider->to_delete = true;
 		App->particles->AddParticle(App->particles->enemy_death, e->position.x, e->position.y);
     	}
 		tmp = tmp->next;
 	}
 	
-*/
+
 }
 
 void ModuleEnemy::AddEnemy(const Enemy& enemy, int x, int y)
