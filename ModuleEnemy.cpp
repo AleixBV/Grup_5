@@ -15,8 +15,15 @@ bool ModuleEnemy::Start()
 	graphics = App->textures->Load("rtype/RedEnemySprites.png");
 
 	red.anim.frames.PushBack({ 5, 6, 21, 24 });
+	red.anim.frames.PushBack({ 38, 6, 21, 24 });
+	red.anim.frames.PushBack({ 71, 6, 21, 24 });
+	red.anim.frames.PushBack({ 104, 6, 21, 24 });
+	red.anim.frames.PushBack({ 137, 6, 21, 24 });
+	red.anim.frames.PushBack({ 170, 6, 21, 24 });
+	red.anim.frames.PushBack({ 203, 6, 21, 24 });
+	red.anim.frames.PushBack({ 236, 6, 21, 24 });
 	red.anim.loop = true;
-	red.anim.speed = 0.0f;
+	red.anim.speed = 0.11f;
 	red.alive = true;
 
 	return true;
@@ -28,6 +35,7 @@ bool ModuleEnemy::CleanUp()
 	App->textures->Unload(graphics);
 
 	//TODO ClearAll
+	EnemyList.clear();
 
 	return true;
 }
@@ -40,7 +48,7 @@ update_status ModuleEnemy::PreUpdate()
 	{
 		tmp_next = tmp->next;
 
-		if (tmp->data->position.x < (App->renderer->camera.x / -3) + SCREEN_WIDTH - 32)
+		if (tmp->data->position.x < (App->renderer->camera.x / -3) + SCREEN_WIDTH)
 		{
 			tmp->data->on_screen = true;
 		}
@@ -70,7 +78,7 @@ update_status ModuleEnemy::Update()
 			if (e->mov_type == x)
 			{
 				float t = SDL_GetTicks();
-				e->position.y = 100 + 40 * sin(25 + t / 250);
+				e->position.y = 80 + 30 * sin(25 + t / 250);
 				e->position.x--;
 			}
 		}
