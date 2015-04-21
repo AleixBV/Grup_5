@@ -78,7 +78,8 @@ update_status ModuleEnemy::Update()
 			if (e->mov_type == x)
 			{
 				float t = SDL_GetTicks();
-				e->position.y = 80 + 30 * sin(25 + t / 250);
+				//e->position.y = 50 + 30 * sin((25 + t / 250) + e->fase);
+				e->position.y = 50 + 30 * sin((25 + t / 250) + e->fase);
 				e->position.x--;
 			}
 		}
@@ -90,7 +91,7 @@ update_status ModuleEnemy::Update()
 
 			App->renderer->Blit(graphics, e->position.x, e->position.y, &(e->anim.GetCurrentFrame()));
 			
-			if (SDL_GetTicks() % 30 == 0){
+			if (e->position.x == 550){
 			
 				if (e->position.y > App->player->position.y && e->position.x > App->player->position.x) 
 				{
@@ -132,12 +133,14 @@ void ModuleEnemy::OnCollision(Collider* c1, Collider* c2)
 		Enemy* e = tmp->data;
 		if (e->on_screen)
 		{
-			if (c1->type == COLLIDER_PLAYER_SHOT || c2->type == COLLIDER_PLAYER_SHOT)
+			if (c1 == e->collider || c2 == e->collider)
 			{
-				e->alive = false;
-				e->collider->to_delete = true;
-				App->particles->AddParticle(App->particles->enemy_death, e->position.x, e->position.y);
-				App->fade->FadeToBlack(App->scene_space, App->scene_end, 2.0f);
+				if (c1->type == COLLIDER_PLAYER_SHOT || c2->type == COLLIDER_PLAYER_SHOT)
+				{
+					e->alive = false;
+					e->collider->to_delete = true;
+					App->particles->AddParticle(App->particles->enemy_death, e->position.x, e->position.y);
+				}
 			}
 		}
 		tmp = tmp->next;
@@ -146,17 +149,20 @@ void ModuleEnemy::OnCollision(Collider* c1, Collider* c2)
 
 }
 
-void ModuleEnemy::AddEnemy(const Enemy& enemy, int x, int y, char mov)
+Enemy* ModuleEnemy::AddEnemy(const Enemy& enemy, int x, int y, char mov, float fase)
 {
 	Enemy* e = new Enemy(enemy);
 	e->position.x = x;
 	e->position.y = y;
+	e->fase = fase;
 
 	e->collider = App->collision->AddCollider({ e->position.x, e->position.y, 21, 24 }, COLLIDER_ENEMY, this);
 
 	e->mov_type = mov;
 
 	EnemyList.add(e);
+
+	return (e);
 }
 
 Enemy::Enemy() :collider(NULL), alive(true), on_screen(false)

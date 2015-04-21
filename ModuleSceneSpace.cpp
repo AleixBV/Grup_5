@@ -27,6 +27,8 @@ bool ModuleSceneSpace::Start()
 
 	App->renderer->camera.x = App->renderer->camera.y = 0;
 
+	//Add WALL COLLIDERS
+
 	App->collision->AddCollider({ 0, 224, 3930, 16 }, COLLIDER_WALL);
 	App->collision->AddCollider({ 142, 193, 64, 31 }, COLLIDER_WALL);
 	App->collision->AddCollider({ 206, 209, 64, 15 }, COLLIDER_WALL);
@@ -41,7 +43,18 @@ bool ModuleSceneSpace::Start()
 	App->collision->AddCollider({ 2000, 0, 640, 16 }, COLLIDER_WALL);//paret de dalt
 	App->collision->AddCollider({ 2704, 0, 1226, 16 }, COLLIDER_WALL);//paret de dalt
 
-	App->enemy->AddEnemy(App->enemy->red, 600, 100, 'sin');
+	//Add all enmies
+
+	App->enemy->AddEnemy(App->enemy->red, 600, 100, 'sin', 0);
+	App->enemy->AddEnemy(App->enemy->red, 630, 120, 'sin', (3.14 / 4));
+	App->enemy->AddEnemy(App->enemy->red, 660, 140, 'sin', (3.14 / 2));
+	App->enemy->AddEnemy(App->enemy->red, 690, 160, 'sin', (3.14));
+
+	App->enemy->AddEnemy(App->enemy->red, 1000, 230, 'sin', 0);
+	App->enemy->AddEnemy(App->enemy->red, 1030, 230, 'sin', (3.14 / 4));
+	App->enemy->AddEnemy(App->enemy->red, 1060, 230, 'sin', (3.14 / 2));
+	App->enemy->AddEnemy(App->enemy->red, 1080, 230, 'sin', (3.14));
+
 	return true;
 }
 
@@ -63,13 +76,15 @@ update_status ModuleSceneSpace::Update()
 {
 	// Move camera forward -----------------------------
 
-	if (App->renderer->camera.x >= (-3930 + SCREEN_WIDTH)*SCREEN_SIZE)
+	App->player->position.x += player_speed;
+	App->renderer->camera.x -= 3;
+
+	if (App->renderer->camera.x == (-1490 + SCREEN_WIDTH)*SCREEN_SIZE)
 	{
-		App->player->position.x += player_speed;
-		App->renderer->camera.x -= 3;
+		App->player->speed = 0.0f;
+		App->fade->FadeToBlack(App->scene_space, App->scene_end, 2.0f);
 	}
-	//else
-	//App->fade->FadeToBlack(this, App->scene_end, 2.0f);
+		
 
 	// Draw everything --------------------------------------
 	App->renderer->Blit(background, 0, 0, NULL);

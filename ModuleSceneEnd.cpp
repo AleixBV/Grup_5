@@ -40,7 +40,7 @@ bool ModuleSceneEnd::CleanUp()
 update_status ModuleSceneEnd::Update()
 {
 	// Draw everything --------------------------------------	
-	App->renderer->Blit(graphics, 0, -15, NULL);
+	App->renderer->Blit(graphics, 0, 0, NULL);
 
 	return UPDATE_CONTINUE;
 }

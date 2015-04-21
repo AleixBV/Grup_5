@@ -31,7 +31,7 @@ bool ModuleParticles::Start()
 	laser.fx = App->audio->LoadFx("rtype/slimeball.wav");
 	laser.anim.frames.PushBack({ 215, 85, 14, 12 });
 	laser.anim.frames.PushBack({ 233, 85, 14, 12 }); 
-	laser.anim.frames.PushBack({ 249, 85, 14, 12 }); 
+	laser.anim.frames.PushBack({ 249, 90, 13, 4 }); 
 	laser.anim.loop = false;
 	laser.speed.x = 7;
 	laser.life = 1000;
@@ -60,7 +60,7 @@ bool ModuleParticles::Start()
 	enemy_death.anim.speed = 0.2f;
 
 	//EnemyShot
-	shot.anim.frames.PushBack({ 259, 276, 14, 12 });
+	shot.anim.frames.PushBack({ 212, 279, 6, 6 });
 	shot.anim.loop = false;
 	shot.anim.speed = 0.0f;
 	shot.life = 1000;
@@ -113,7 +113,6 @@ update_status ModuleParticles::Update()
 // Always destroy particles that collide
 void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 {
-	// TODO 5: Fer que cada vegada que un laser collisini sorti una explosio
 	p2List_item<Particle*>* tmp = active.getFirst();
 
 	while (tmp != NULL)

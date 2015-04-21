@@ -18,6 +18,7 @@ struct Enemy
 	bool alive;
 	bool on_screen;
 	char mov_type;
+	float fase;
 
 	Enemy();
 	~Enemy();
@@ -36,7 +37,7 @@ public:
 	bool CleanUp();
 	void OnCollision(Collider*, Collider*);
 
-	void AddEnemy(const Enemy& enemy, int x, int y, char mov);
+	Enemy* AddEnemy(const Enemy& enemy, int x, int y, char mov, float fase);
 
 private:
 
