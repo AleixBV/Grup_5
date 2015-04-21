@@ -96,6 +96,16 @@ update_status ModuleParticles::Update()
 			}
 		}
 
+		/*if (p->collider->type == COLLIDER_PLAYER_SHOT)
+		{
+			if (p->position.x < (App->renderer->camera.x) / -3 || p->position.x >(App->renderer->camera.x / -3) + SCREEN_WIDTH - 32 / -3)
+			{
+				//p->life = 0;
+				delete p;
+				active.del(tmp);
+			}
+		}*/
+
 		tmp = tmp_next;
 	}
 
