@@ -26,6 +26,9 @@ bool ModuleEnemy::CleanUp()
 {
 	LOG("Unloading enemies");
 	App->textures->Unload(graphics);
+
+	//TODO ClearAll
+
 	return true;
 }
 
