@@ -26,6 +26,27 @@ bool ModuleEnemy::Start()
 	red.anim.speed = 0.15f;
 	red.alive = true;
 
+	worm.anim.frames.PushBack({ 141, 37, 26, 22});
+	worm.anim.frames.PushBack({ 171, 37, 26, 22 });
+	worm.anim.frames.PushBack({ 204, 37, 26, 22 });
+	worm.anim.frames.PushBack({ 238, 37, 26, 22 });
+	worm.anim.frames.PushBack({ 270, 37, 26, 22 });
+	worm.anim.frames.PushBack({ 238, 37, 26, 22 });
+	worm.anim.frames.PushBack({ 303, 37, 26, 22 });
+	worm.anim.frames.PushBack({ 337, 37, 26, 22 });
+	worm.anim.frames.PushBack({ 371, 37, 26, 22 });
+	worm.anim.frames.PushBack({ 141, 70, 26, 22 });
+	worm.anim.frames.PushBack({ 173, 70, 26, 22 });
+	worm.anim.frames.PushBack({ 205, 70, 26, 22 });
+	worm.anim.frames.PushBack({ 237, 70, 26, 22 });
+	worm.anim.frames.PushBack({ 270, 70, 26, 22 });
+	worm.anim.frames.PushBack({ 304, 70, 26, 22 });
+	worm.anim.frames.PushBack({ 336, 70, 26, 22 });
+	worm.anim.frames.PushBack({ 369, 70, 26, 22 });
+	worm.anim.loop = true;
+	worm.anim.speed = 0.15f;
+	worm.alive = true;
+
 	return true;
 }
 

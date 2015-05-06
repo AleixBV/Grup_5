@@ -48,5 +48,6 @@ private:
 public:
 
 	Enemy red;
+	Enemy worm;
 
 };
