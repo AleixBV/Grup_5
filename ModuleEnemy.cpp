@@ -2,6 +2,8 @@
 #include "Application.h"
 #include "ModuleEnemy.h"
 #include <math.h>
+#include <ctime>
+#include <stdio.h>
 
 ModuleEnemy::ModuleEnemy(Application* app, bool start_enabled) : Module(app, start_enabled), graphics(NULL)
 {}
@@ -118,7 +120,11 @@ update_status ModuleEnemy::Update()
 
 			App->renderer->Blit(graphics, e->position.x, e->position.y, &(e->anim.GetCurrentFrame()));
 			
-			if (e->position.x == 800){
+			srand(time(NULL));
+			int num = (rand() % 100) + 1;
+
+			if (num <= 10)
+			{
 			
 				if (e->position.y > App->player->position.y && e->position.x > App->player->position.x) 
 				{
@@ -148,6 +154,9 @@ update_status ModuleEnemy::Update()
 
 		tmp = tmp->next;
 	}
+
+	
+
 	return UPDATE_CONTINUE;
 }
 
