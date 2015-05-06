@@ -12,7 +12,7 @@ ModuleEnemy::~ModuleEnemy()
 bool ModuleEnemy::Start()
 {
 	LOG("Loading enemies");
-	graphics = App->textures->Load("rtype/RedEnemySprites.png");
+	graphics = App->textures->Load("rtype/Enemies_Sprites.png");
 
 	red.anim.frames.PushBack({ 5, 6, 21, 24 });
 	red.anim.frames.PushBack({ 38, 6, 21, 24 });

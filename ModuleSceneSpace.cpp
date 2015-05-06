@@ -44,7 +44,7 @@ bool ModuleSceneSpace::Start()
 	App->collision->AddCollider({ 2704, 0, 1226, 16 }, COLLIDER_WALL);//paret de dalt
 
 	//Add all enmies
-
+	//Red
 	App->enemy->AddEnemy(App->enemy->red, 600, 50, 'sin', 0);
 	App->enemy->AddEnemy(App->enemy->red, 630, 60, 'sin', (3.14 / 4));
 	App->enemy->AddEnemy(App->enemy->red, 660, 140, 'sin', (3.14 / 2));
