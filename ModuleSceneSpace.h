@@ -21,5 +21,5 @@ public:
 	SDL_Texture* background;
 	SDL_Texture* stars;
 
-	int player_speed;
+	float player_speed;
 };

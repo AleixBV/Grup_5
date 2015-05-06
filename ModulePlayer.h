@@ -50,7 +50,7 @@ public:
 	Animation down;
 	Animation downdown;
 	Animation explosion;
-	p2Point<int> position;
+	p2Point<float> position;
 
 	bool exploding;
 

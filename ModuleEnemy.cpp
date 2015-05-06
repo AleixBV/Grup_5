@@ -118,7 +118,7 @@ update_status ModuleEnemy::Update()
 
 			App->renderer->Blit(graphics, e->position.x, e->position.y, &(e->anim.GetCurrentFrame()));
 			
-			if (e->position.x == 550){
+			if (e->position.x == 800){
 			
 				if (e->position.y > App->player->position.y && e->position.x > App->player->position.x) 
 				{
