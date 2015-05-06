@@ -4,6 +4,25 @@
 #include "Globals.h"
 #include "p2Point.h"
 
+#define DELAY_TIME 200;
+
+enum player_states
+{
+	PLAYER_IDLE,
+	PLAYER_UP,
+	PLAYER_UPUP,
+	PLAYER_DOWN,
+	PLAYER_DOWNDOWN
+};
+
+enum player_inputs
+{
+	PLAYER_INPUT_IDLE,
+	PLAYER_INPUT_UP,
+	PLAYER_INPUT_DOWN,
+};
+
+
 class ModulePlayer : public Module
 {
 public:
@@ -13,8 +32,12 @@ public:
 	bool Start();
 	update_status Update();
 	bool CleanUp();
+	player_states player_state;
+	player_inputs player_input;
 
 	void OnCollision(Collider*, Collider*);
+	void Fsm();
+	Uint32 delay_time;
 
 public:
 
@@ -23,7 +46,9 @@ public:
 	Animation* current_animation;
 	Animation idle;
 	Animation up;
+	Animation upup;
 	Animation down;
+	Animation downdown;
 	Animation explosion;
 	p2Point<int> position;
 
