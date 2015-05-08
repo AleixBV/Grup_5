@@ -25,6 +25,8 @@ bool ModuleSceneIntro::Start()
 	fx = App->audio->LoadFx("rtype/starting.wav");
 	App->renderer->camera.x = App->renderer->camera.y = 0;
 
+	fade_out = false;
+
 	return ret;
 }
 
@@ -44,10 +46,11 @@ update_status ModuleSceneIntro::Update()
 	// Draw everything --------------------------------------	
 	App->renderer->Blit(graphics, 0, -15, NULL);
 
-	if(App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP)
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP && fade_out == false)
 	{
 		App->audio->PlayFx(fx);
 		App->fade->FadeToBlack(this, App->scene_space, 3.0f);
+		fade_out = true;
 	}
 
 	return UPDATE_CONTINUE;
