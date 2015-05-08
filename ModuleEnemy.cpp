@@ -57,13 +57,13 @@ bool ModuleEnemy::CleanUp()
 	LOG("Unloading enemies");
 	App->textures->Unload(graphics);
 
-	p2List_item<Enemy*>* item = EnemyList.getLast();
+	/*p2List_item<Enemy*>* item = EnemyList.getLast();
 
 	while (item != NULL)
 	{
 		delete item->data;
 		item = item->prev;
-	}
+	}*/
 
 	EnemyList.clear();
 
