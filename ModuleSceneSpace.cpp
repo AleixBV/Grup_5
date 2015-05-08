@@ -45,15 +45,15 @@ bool ModuleSceneSpace::Start()
 
 	//Add all enmies
 	//Red
-	App->enemy->AddEnemy(App->enemy->red, 440, 70, 'sin', 0);
-	App->enemy->AddEnemy(App->enemy->red, 455, 65, 'sin', (3.14 / 4));
-	App->enemy->AddEnemy(App->enemy->red, 470, 70, 'sin', (3.14 / 2));
-	App->enemy->AddEnemy(App->enemy->red, 485, 65, 'sin', (3.14));
+	App->enemy->AddEnemy(App->enemy->red, 440, 70, 'sin', 0.0f);
+	App->enemy->AddEnemy(App->enemy->red, 455, 65, 'sin', (3.14f / 4.0f));
+	App->enemy->AddEnemy(App->enemy->red, 470, 70, 'sin', (3.14f / 2.0f));
+	App->enemy->AddEnemy(App->enemy->red, 485, 65, 'sin', (3.14f));
 
-	App->enemy->AddEnemy(App->enemy->red, 550, 170, 'sin', 0);
-	App->enemy->AddEnemy(App->enemy->red, 567, 180, 'sin', (3.14 / 4));
-	App->enemy->AddEnemy(App->enemy->red, 584, 170, 'sin', (3.14 / 2));
-	App->enemy->AddEnemy(App->enemy->red, 600, 160, 'sin', (3.14));
+	App->enemy->AddEnemy(App->enemy->red, 550, 170, 'sin', 0.0f);
+	App->enemy->AddEnemy(App->enemy->red, 567, 180, 'sin', (3.14f / 4.0f));
+	App->enemy->AddEnemy(App->enemy->red, 584, 170, 'sin', (3.14f / 2.0f));
+	App->enemy->AddEnemy(App->enemy->red, 600, 160, 'sin', (3.14f));
 
 	return true;
 }
@@ -81,7 +81,7 @@ update_status ModuleSceneSpace::Update()
 
 	if (App->renderer->camera.x == (-3930 + SCREEN_WIDTH)*SCREEN_SIZE)
 	{
-		App->player->speed = 0.0f;
+		App->player->speed = 0;
 		App->fade->FadeToBlack(App->scene_space, App->scene_end, 2.0f);
 	}
 		
