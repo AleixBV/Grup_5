@@ -105,7 +105,7 @@ update_status ModulePlayer::Update()
 		}
 	}
 
-	if(App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP)
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP && exploding == false)
 	{
 		App->particles->AddParticle(App->particles->laser, position.x + 28, position.y, COLLIDER_PLAYER_SHOT);
 	}
