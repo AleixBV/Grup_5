@@ -13,6 +13,8 @@ ModuleEnemy::~ModuleEnemy()
 
 bool ModuleEnemy::Start()
 {
+	shooting = true;
+
 	LOG("Loading enemies");
 	graphics = App->textures->Load("rtype/Enemies_Sprites.png");
 
@@ -111,11 +113,8 @@ update_status ModuleEnemy::Update()
 			e->collider->rect.y = e->position.y;
 
 			App->renderer->Blit(graphics, e->position.x, e->position.y, &(e->anim.GetCurrentFrame()));
-			
-			/*srand(time(NULL));
-			int num = (rand() % 100) + 1;*/
 
-			if (e->position.x == 420)
+			if (e->position.x == 420 && shooting == true)
 			{
 			
 				if (e->position.y > App->player->position.y && e->position.x > App->player->position.x) 

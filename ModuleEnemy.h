@@ -37,6 +37,7 @@ public:
 	update_status Update();
 	bool CleanUp();
 	void OnCollision(Collider*, Collider*);
+	bool shooting;
 
 	Enemy* AddEnemy(const Enemy& enemy, int x, int y, char mov, float fase);
 

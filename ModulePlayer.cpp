@@ -137,6 +137,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		exploding = true;
 		speed = 0;
 		App->scene_space->player_speed = 0;
+		App->enemy->shooting = false;
 		CleanUp();
 		App->particles->AddParticle(App->particles->explosion, position.x, position.y);
 	}
