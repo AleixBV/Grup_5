@@ -112,10 +112,10 @@ update_status ModuleEnemy::Update()
 
 			App->renderer->Blit(graphics, e->position.x, e->position.y, &(e->anim.GetCurrentFrame()));
 			
-			srand(time(NULL));
-			int num = (rand() % 100) + 1;
+			/*srand(time(NULL));
+			int num = (rand() % 100) + 1;*/
 
-			if (num <= 10)
+			if (e->position.x == 420)
 			{
 			
 				if (e->position.y > App->player->position.y && e->position.x > App->player->position.x) 
