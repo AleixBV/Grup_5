@@ -137,6 +137,8 @@ bool ModuleSceneSpace::Start()
 	App->enemy->AddEnemy(App->enemy->red, 584, 170, 'sin', (3.14f / 2.0f));
 	App->enemy->AddEnemy(App->enemy->red, 600, 160, 'sin', (3.14f));
 
+	App->enemy->AddEnemy(App->enemy->worm, 550, 100, 'sin', (0.0f));
+
 	return true;
 }
 
@@ -161,7 +163,7 @@ update_status ModuleSceneSpace::Update()
 	App->player->position.x += player_speed;
 	App->renderer->camera.x -= 3;
 
-	if (App->renderer->camera.x == (-1490 + SCREEN_WIDTH)*SCREEN_SIZE)
+	if (App->renderer->camera.x == (-3930 + SCREEN_WIDTH)*SCREEN_SIZE)
 	{
 		App->player->speed = 0;
 		App->fade->FadeToBlack(App->scene_space, App->scene_end, 2.0f);
