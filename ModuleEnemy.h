@@ -50,5 +50,6 @@ public:
 
 	Enemy red;
 	Enemy worm;
+	Enemy tower;
 
 };

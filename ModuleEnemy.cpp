@@ -16,40 +16,42 @@ bool ModuleEnemy::Start()
 	shooting = true;
 
 	LOG("Loading enemies");
-	graphics = App->textures->Load("rtype/Enemies_Sprites.png");
+	graphics = App->textures->Load("rtype/AllEnemies.png");
 
-	red.anim.frames.PushBack({ 5, 6, 21, 24 });
-	red.anim.frames.PushBack({ 38, 6, 21, 24 });
-	red.anim.frames.PushBack({ 71, 6, 21, 24 });
-	red.anim.frames.PushBack({ 104, 6, 21, 24 });
-	red.anim.frames.PushBack({ 137, 6, 21, 24 });
-	red.anim.frames.PushBack({ 170, 6, 21, 24 });
-	red.anim.frames.PushBack({ 203, 6, 21, 24 });
-	red.anim.frames.PushBack({ 236, 6, 21, 24 });
+	red.anim.frames.PushBack({ 0, 0, 21, 24 });
+	red.anim.frames.PushBack({ 33, 0, 21, 24 });
+	red.anim.frames.PushBack({ 66, 0, 21, 24 });
+	red.anim.frames.PushBack({ 99, 0, 21, 24 });
+	red.anim.frames.PushBack({ 132, 0, 21, 24 });
+	red.anim.frames.PushBack({ 165, 0, 21, 24 });
+	red.anim.frames.PushBack({ 198, 0, 21, 24 });
+	red.anim.frames.PushBack({ 231, 0, 21, 24 });
 	red.anim.loop = true;
 	red.anim.speed = 0.15f;
 	red.alive = true;
 
-	worm.anim.frames.PushBack({ 141, 37, 26, 22});
-	worm.anim.frames.PushBack({ 171, 37, 26, 22 });
-	worm.anim.frames.PushBack({ 204, 37, 26, 22 });
-	worm.anim.frames.PushBack({ 238, 37, 26, 22 });
-	worm.anim.frames.PushBack({ 270, 37, 26, 22 });
-	worm.anim.frames.PushBack({ 238, 37, 26, 22 });
-	worm.anim.frames.PushBack({ 303, 37, 26, 22 });
-	worm.anim.frames.PushBack({ 337, 37, 26, 22 });
-	worm.anim.frames.PushBack({ 371, 37, 26, 22 });
-	worm.anim.frames.PushBack({ 141, 70, 26, 22 });
-	worm.anim.frames.PushBack({ 173, 70, 26, 22 });
-	worm.anim.frames.PushBack({ 205, 70, 26, 22 });
-	worm.anim.frames.PushBack({ 237, 70, 26, 22 });
-	worm.anim.frames.PushBack({ 270, 70, 26, 22 });
-	worm.anim.frames.PushBack({ 304, 70, 26, 22 });
-	worm.anim.frames.PushBack({ 336, 70, 26, 22 });
-	worm.anim.frames.PushBack({ 369, 70, 26, 22 });
+	worm.anim.frames.PushBack({ 136, 31, 26, 22});
+	worm.anim.frames.PushBack({ 166, 31, 26, 22 });
+	worm.anim.frames.PushBack({ 199, 31, 26, 22 });
+	worm.anim.frames.PushBack({ 233, 31, 26, 22 });
+	worm.anim.frames.PushBack({ 265, 31, 26, 22 });
+	worm.anim.frames.PushBack({ 233, 31, 26, 22 });
+	worm.anim.frames.PushBack({ 298, 31, 26, 22 });
+	worm.anim.frames.PushBack({ 332, 31, 26, 22 });
+	worm.anim.frames.PushBack({ 131, 64, 26, 22 });
+	worm.anim.frames.PushBack({ 136, 64, 26, 22 });
+	worm.anim.frames.PushBack({ 168, 64, 26, 22 });
+	worm.anim.frames.PushBack({ 200, 64, 26, 22 });
+	worm.anim.frames.PushBack({ 232, 64, 26, 22 });
+	worm.anim.frames.PushBack({ 265, 64, 26, 22 });
+	worm.anim.frames.PushBack({ 299, 64, 26, 22 });
+	worm.anim.frames.PushBack({ 331, 64, 26, 22 });
+	worm.anim.frames.PushBack({ 364, 64, 26, 22 });
 	worm.anim.loop = true;
 	worm.anim.speed = 0.15f;
 	worm.alive = true;
+
+	tower.anim.frames.PushBack({});
 
 	return true;
 }
