@@ -20,6 +20,8 @@ struct Enemy
 	char mov_type;
 	float fase;
 	int initial_height;
+	bool floor = false;
+	bool right = false;
 
 	Enemy();
 	~Enemy();
