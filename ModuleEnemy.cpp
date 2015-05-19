@@ -111,8 +111,18 @@ update_status ModuleEnemy::Update()
 			if (e->mov_type == y)
 			{
 				float t = SDL_GetTicks();
-				e->position.y = e->initial_height + 20 * sin((20 + t / 250) + e->fase);
+				e->position.y = e->initial_height + 30 * sin((20 + t / 1000) + e->fase);
 				e->position.x--;
+			}
+
+			char a = 'bot';
+			if (e->mov_type == a){
+				if (e->floor == false)
+					e->position.y++;
+				if (e->floor == true && e->right == true)
+					e->position.x++;
+				if (e->floor == true && e->right == false)
+					e->position.x--;
 			}
 
 		}
@@ -125,6 +135,7 @@ update_status ModuleEnemy::Update()
 			App->renderer->Blit(graphics, e->position.x, e->position.y, &(e->anim.GetCurrentFrame()));
 
 			unsigned int a = SDL_GetTicks();
+			if (shooting = true && a % 100 == 0)
 			{
 			
 				if (e->position.y > App->player->position.y && e->position.x > App->player->position.x) 
@@ -178,6 +189,24 @@ void ModuleEnemy::OnCollision(Collider* c1, Collider* c2)
 					e->collider->to_delete = true;
 					App->particles->AddParticle(App->particles->enemy_death, e->position.x, e->position.y);
 				}
+				if (c1->type == COLLIDER_WALL || c2->type == COLLIDER_WALL)
+				{
+					if (e->floor == false)
+					{
+						e->position.y--;
+						e->floor = true;
+					}
+					if (e->floor == true)
+					{
+						if (c1->rect.x > e->position.x || c2->rect.x > e->position.x)
+							e->right = false;
+						if (c1->rect.x < e->position.x || c2->rect.x < e->position.x)
+							e->right = true;
+					}
+
+				}
+
+
 			}
 		}
 		tmp = tmp->next;
