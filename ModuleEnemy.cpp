@@ -107,6 +107,14 @@ update_status ModuleEnemy::Update()
 				e->position.y = e->initial_height + 25 * sin((25 + t / 250) + e->fase);
 				e->position.x--;
 			}
+			char y = 'sin2';
+			if (e->mov_type == y)
+			{
+				float t = SDL_GetTicks();
+				e->position.y = e->initial_height + 20 * sin((20 + t / 250) + e->fase);
+				e->position.x--;
+			}
+
 		}
 
 		if (tmp->data->alive)
@@ -116,7 +124,7 @@ update_status ModuleEnemy::Update()
 
 			App->renderer->Blit(graphics, e->position.x, e->position.y, &(e->anim.GetCurrentFrame()));
 
-			if (e->position.x == 420 && shooting == true)
+			unsigned int a = SDL_GetTicks();
 			{
 			
 				if (e->position.y > App->player->position.y && e->position.x > App->player->position.x) 

@@ -189,7 +189,11 @@ bool ModuleSceneSpace::Start()
 	App->enemy->AddEnemy(App->enemy->red, 584, 170, 'sin', (3.14f / 2.0f));
 	App->enemy->AddEnemy(App->enemy->red, 600, 160, 'sin', (3.14f));
 
-	App->enemy->AddEnemy(App->enemy->worm, 550, 100, 'sin', (0.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 1000, 100, 'sin2', (0.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 1012, 100, 'sin2', (3.14f / 16.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 1024, 100, 'sin2', (3.14f / 8.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 1036, 100, 'sin2', (3.14f / 16.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 1048, 100, 'sin2', (0.0f));
 
 	return true;
 }
