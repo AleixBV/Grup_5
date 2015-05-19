@@ -125,8 +125,49 @@ bool ModuleSceneSpace::Start()
 
 	App->collision->AddCollider({ 2704, 0, 1226, 16 }, COLLIDER_WALL);//paret de dalt
 
-	App->collision->AddCollider({ 2854, 16, 168, 78 }, COLLIDER_WALL);
-	App->collision->AddCollider({ 2854, 144, 168, 78 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2854, 16, 134, 78 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2854, 146, 134, 78 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2833, 82, 21, 11 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2833, 147, 21, 11 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2836, 77, 18, 5 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2836, 158, 18, 5 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2841, 74, 13, 3 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2841, 163, 13, 3 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2849, 69, 5, 5 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2849, 166, 5, 5 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2844, 72, 5, 2 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2844, 166, 5, 2 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2834, 16, 20, 5 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2834, 219, 20, 5 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2836, 21, 3, 2 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2836, 217, 3, 2 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2839, 21, 15, 3 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2839, 216, 15, 3 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2844, 24, 10, 2 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2844, 214, 10, 2 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2849, 26, 5, 3 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2849, 211, 5, 3 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2852, 29, 2, 7 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2852, 204, 2, 7 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2988, 16, 18, 66 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2988, 158, 18, 66 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 3006, 16, 16, 48 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 3006, 176, 16, 48 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 3006, 64, 14, 4 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 3006, 172, 14, 4 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 3006, 68, 12, 4 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 3006, 168, 12, 4 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 3006, 72, 9, 4 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 3006, 164, 9, 4 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 3006, 76, 5, 3 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 3006, 161, 5, 3 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2988, 82, 11, 2 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2988, 156, 11, 2 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2949, 94, 11, 2 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 2949, 144, 11, 2 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 3022, 51, 2, 11 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 3022, 178, 2, 11 }, COLLIDER_WALL);
+
 
 	App->collision->AddCollider({ 3152, 209, 64, 15 }, COLLIDER_WALL);
 	App->collision->AddCollider({ 3152, 16, 64, 15 }, COLLIDER_WALL);
