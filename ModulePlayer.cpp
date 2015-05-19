@@ -107,7 +107,8 @@ update_status ModulePlayer::Update()
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP && exploding == false)
 	{
-		App->particles->AddParticle(App->particles->laser, position.x + 28, position.y, COLLIDER_PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->laser_anim, position.x + 32, position.y);
+		App->particles->AddParticle(App->particles->laser, position.x + 28, position.y + 5, COLLIDER_PLAYER_SHOT);
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_IDLE && App->input->GetKey(SDL_SCANCODE_W) == KEY_IDLE || App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)

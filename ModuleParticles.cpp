@@ -29,12 +29,16 @@ bool ModuleParticles::Start()
 
 	// Laser particle
 	laser.fx = App->audio->LoadFx("rtype/slimeball.wav");
-	laser.anim.frames.PushBack({ 215, 85, 14, 12 });
-	laser.anim.frames.PushBack({ 233, 85, 14, 12 }); 
-	laser.anim.frames.PushBack({ 249, 85, 13, 9 }); 
+	laser.anim.frames.PushBack({ 249, 90, 13, 4 }); 
 	laser.anim.loop = false;
 	laser.speed.x = 7;
 	laser.life = 1000;
+	laser.anim.speed = 0.7f;
+
+	// Laser anim
+	laser_anim.anim.frames.PushBack({ 215, 85, 14, 12 });
+	laser_anim.anim.frames.PushBack({ 233, 85, 14, 12 });
+	explosion.anim.loop = false;
 	laser.anim.speed = 0.7f;
 
 	//Explosion_Player
@@ -74,6 +78,9 @@ bool ModuleParticles::CleanUp()
 {
 	LOG("Unloading particles");
 	App->textures->Unload(graphics);
+
+	active.clear();
+
 	return true;
 }
 
