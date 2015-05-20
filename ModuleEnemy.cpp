@@ -119,9 +119,9 @@ update_status ModuleEnemy::Update()
 			if (e->mov_type == a){
 				if (e->floor == false)
 					e->position.y++;
-				if (e->floor == true && e->right == true)
+				if (e->right == true)
 					e->position.x++;
-				if (e->floor == true && e->right == false)
+				if (e->right == false)
 					e->position.x--;
 			}
 

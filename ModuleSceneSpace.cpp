@@ -18,7 +18,7 @@ bool ModuleSceneSpace::Start()
 
 	background = App->textures->Load("rtype/background.png");
 
-	player_speed = 0.5f;
+	player_speed = 1.0f / 3.0f;
 
 	App->collision->Enable(); // enable before player
 	App->player->Enable();
