@@ -254,11 +254,11 @@ bool ModuleSceneSpace::Start()
 	App->enemy->AddEnemy(App->enemy->worm, 1400, 130, 'sin', (0.0f));
 
 	//needed new type of mov
-	//App->enemy->AddEnemy(App->enemy->worm, 1965, 130, 'sin', (0.0f));
-	//App->enemy->AddEnemy(App->enemy->worm, 1965, 130, 'sin', (0.0f));
-	//App->enemy->AddEnemy(App->enemy->worm, 1965, 130, 'sin', (0.0f));
-	//App->enemy->AddEnemy(App->enemy->worm, 1965, 130, 'sin', (0.0f));
-	//App->enemy->AddEnemy(App->enemy->worm, 1965, 130, 'sin', (0.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 1965, 5, 'curv', NULL);
+	App->enemy->AddEnemy(App->enemy->worm, 1966, 5, 'curv', NULL);
+	App->enemy->AddEnemy(App->enemy->worm, 1967, 5, 'curv', NULL);
+	App->enemy->AddEnemy(App->enemy->worm, 1968, 5, 'curv', NULL);
+	App->enemy->AddEnemy(App->enemy->worm, 1969, 5, 'curv', NULL);
 
 	App->enemy->AddEnemy(App->enemy->red, 2400, 150, 'sin', (0.0f));
 	App->enemy->AddEnemy(App->enemy->red, 2410, 160, 'sin', (3.14f / 2.0f));
@@ -278,7 +278,7 @@ bool ModuleSceneSpace::Start()
 
 
 	//tryouts
-	App->enemy->AddEnemy(App->enemy->worm, 1610, 140, 'bot', (0.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 1610, 140, 'bot', NULL);
 
 
 	return true;

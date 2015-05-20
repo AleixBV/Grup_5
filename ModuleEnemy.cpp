@@ -125,6 +125,20 @@ update_status ModuleEnemy::Update()
 					e->position.x--;
 			}
 
+			char b = 'curv';
+			if (e->mov_type == b){
+				if (e->position.y < 80)
+					y++;
+				if (100 > e->position.y > 80) {
+					y++;
+					x--;
+				}
+				else
+					x--;
+
+			}
+
+
 		}
 
 		if (tmp->data->alive)
