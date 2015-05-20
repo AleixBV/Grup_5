@@ -191,15 +191,15 @@ bool ModuleSceneSpace::Start()
 	App->enemy->AddEnemy(App->enemy->red, 510, 160, 'sin', (3.14f));
 
 	// worm
-	App->enemy->AddEnemy(App->enemy->worm, 580, 100, 'sin2', (0.0f));
-	App->enemy->AddEnemy(App->enemy->worm, 585, 100, 'sin2', (3.14f / 32.0f));
-	App->enemy->AddEnemy(App->enemy->worm, 590, 100, 'sin2', (3.14f / 16.0f));
-	App->enemy->AddEnemy(App->enemy->worm, 595, 100, 'sin2', (3.14f / 32.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 580, 100, 'sin2', (3.14f / 4.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 585, 100, 'sin2', (3.14f / 8.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 590, 100, 'sin2', (3.14f / 12.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 595, 100, 'sin2', (3.14f / 16.0f));
 	App->enemy->AddEnemy(App->enemy->worm, 600, 100, 'sin2', (0.0f));
 
-	App->enemy->AddEnemy(App->enemy->worm, 650, 140, 'sin', (0.0f));
-	App->enemy->AddEnemy(App->enemy->worm, 655, 140, 'sin', (3.14f / 16.0f));
-	App->enemy->AddEnemy(App->enemy->worm, 660, 140, 'sin', (3.14f / 8.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 650, 140, 'sin', (3.14f / 4.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 655, 140, 'sin', (3.14f / 8.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 660, 140, 'sin', (3.14f / 12.0f));
 	App->enemy->AddEnemy(App->enemy->worm, 665, 140, 'sin', (3.14f / 16.0f));
 	App->enemy->AddEnemy(App->enemy->worm, 670, 140, 'sin', (0.0f));
 	
@@ -245,9 +245,9 @@ bool ModuleSceneSpace::Start()
 	App->enemy->AddEnemy(App->enemy->red, 1240, 60, 'sin', (3.14f / 2.0f));
 
 
-	App->enemy->AddEnemy(App->enemy->worm, 1300, 50, 'sin', (0.0f));
-	App->enemy->AddEnemy(App->enemy->worm, 1305, 50, 'sin', (3.14f / 16.0f));
-	App->enemy->AddEnemy(App->enemy->worm, 1310, 50, 'sin', (3.14f / 8.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 1300, 50, 'sin', (3.14f / 4.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 1305, 50, 'sin', (3.14f / 8.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 1310, 50, 'sin', (3.14f / 12.0f));
 	App->enemy->AddEnemy(App->enemy->worm, 1315, 50, 'sin', (3.14f / 16.0f));
 	App->enemy->AddEnemy(App->enemy->worm, 1320, 50, 'sin', (0.0f));
 
