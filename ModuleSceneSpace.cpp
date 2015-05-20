@@ -18,7 +18,7 @@ bool ModuleSceneSpace::Start()
 
 	background = App->textures->Load("rtype/background.png");
 
-	player_speed = 1;
+	player_speed = 0.5f;
 
 	App->collision->Enable(); // enable before player
 	App->player->Enable();
@@ -179,76 +179,77 @@ bool ModuleSceneSpace::Start()
 
 	//Add all enmies
 	//Red
+	
 	App->enemy->AddEnemy(App->enemy->red, 410, 70, 'sin', 0.0f);
-	App->enemy->AddEnemy(App->enemy->red, 425, 65, 'sin', (3.14f / 4.0f));
-	App->enemy->AddEnemy(App->enemy->red, 440, 70, 'sin', (3.14f / 2.0f));
-	App->enemy->AddEnemy(App->enemy->red, 455, 65, 'sin', (3.14f));
+	App->enemy->AddEnemy(App->enemy->red, 420, 65, 'sin', (3.14f / 4.0f));
+	App->enemy->AddEnemy(App->enemy->red, 430, 70, 'sin', (3.14f / 2.0f));
+	App->enemy->AddEnemy(App->enemy->red, 440, 65, 'sin', (3.14f));
 
-	App->enemy->AddEnemy(App->enemy->red, 490, 170, 'sin', 0.0f);
-	App->enemy->AddEnemy(App->enemy->red, 507, 180, 'sin', (3.14f / 4.0f));
-	App->enemy->AddEnemy(App->enemy->red, 524, 170, 'sin', (3.14f / 2.0f));
-	App->enemy->AddEnemy(App->enemy->red, 540, 160, 'sin', (3.14f));
+	App->enemy->AddEnemy(App->enemy->red, 480, 170, 'sin', 0.0f);
+	App->enemy->AddEnemy(App->enemy->red, 490, 180, 'sin', (3.14f / 4.0f));
+	App->enemy->AddEnemy(App->enemy->red, 500, 170, 'sin', (3.14f / 2.0f));
+	App->enemy->AddEnemy(App->enemy->red, 510, 160, 'sin', (3.14f));
 
 	// worm
-	App->enemy->AddEnemy(App->enemy->worm, 630, 100, 'sin2', (0.0f));
-	App->enemy->AddEnemy(App->enemy->worm, 642, 100, 'sin2', (3.14f / 32.0f));
-	App->enemy->AddEnemy(App->enemy->worm, 654, 100, 'sin2', (3.14f / 16.0f));
-	App->enemy->AddEnemy(App->enemy->worm, 666, 100, 'sin2', (3.14f / 32.0f));
-	App->enemy->AddEnemy(App->enemy->worm, 678, 100, 'sin2', (0.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 580, 100, 'sin2', (0.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 585, 100, 'sin2', (3.14f / 32.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 590, 100, 'sin2', (3.14f / 16.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 595, 100, 'sin2', (3.14f / 32.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 600, 100, 'sin2', (0.0f));
 
-	App->enemy->AddEnemy(App->enemy->worm, 700, 140, 'sin', (0.0f));
-	App->enemy->AddEnemy(App->enemy->worm, 712, 140, 'sin', (3.14f / 16.0f));
-	App->enemy->AddEnemy(App->enemy->worm, 724, 140, 'sin', (3.14f / 8.0f));
-	App->enemy->AddEnemy(App->enemy->worm, 736, 140, 'sin', (3.14f / 16.0f));
-	App->enemy->AddEnemy(App->enemy->worm, 748, 140, 'sin', (0.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 650, 140, 'sin', (0.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 655, 140, 'sin', (3.14f / 16.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 660, 140, 'sin', (3.14f / 8.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 665, 140, 'sin', (3.14f / 16.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 670, 140, 'sin', (0.0f));
 	
 	//red
-	App->enemy->AddEnemy(App->enemy->red, 800, 160, 'sin', 0.0f);
-	App->enemy->AddEnemy(App->enemy->red, 815, 170, 'sin', (3.14f / 4.0f));
-	App->enemy->AddEnemy(App->enemy->red, 830, 160, 'sin', (3.14f / 2.0f));
+	App->enemy->AddEnemy(App->enemy->red, 750, 160, 'sin', 0.0f);
+	App->enemy->AddEnemy(App->enemy->red, 760, 170, 'sin', (3.14f / 4.0f));
+	App->enemy->AddEnemy(App->enemy->red, 770, 160, 'sin', (3.14f / 2.0f));
 
 	App->enemy->AddEnemy(App->enemy->red, 840, 100, 'sin', 0.0f);
-	App->enemy->AddEnemy(App->enemy->red, 857, 90, 'sin', (3.14f / 4.0f));
+	App->enemy->AddEnemy(App->enemy->red, 850, 90, 'sin', (3.14f / 4.0f));
 
 	App->enemy->AddEnemy(App->enemy->red, 870, 65, 'sin', (3.14f / 2.0f));
-	App->enemy->AddEnemy(App->enemy->red, 885, 70, 'sin', 0.0f);
+	App->enemy->AddEnemy(App->enemy->red, 880, 70, 'sin', 0.0f);
 
 	App->enemy->AddEnemy(App->enemy->red, 900, 130, 'sin', (3.14f / 4.0f));
 
 	App->enemy->AddEnemy(App->enemy->red, 920, 65, 'sin', (3.14f / 2.0f));
-	App->enemy->AddEnemy(App->enemy->red, 935, 70, 'sin', 0.0f);
+	App->enemy->AddEnemy(App->enemy->red, 930, 70, 'sin', 0.0f);
 
-	App->enemy->AddEnemy(App->enemy->red, 955, 130, 'sin', (3.14f / 2.0f));
+	App->enemy->AddEnemy(App->enemy->red, 950, 130, 'sin', (3.14f / 2.0f));
 
 	App->enemy->AddEnemy(App->enemy->red, 970, 65, 'sin', (3.14f / 2.0f));
-	App->enemy->AddEnemy(App->enemy->red, 985, 65, 'sin', 0.0f);
+	App->enemy->AddEnemy(App->enemy->red, 980, 65, 'sin', 0.0f);
 
 	App->enemy->AddEnemy(App->enemy->red, 1000, 140, 'sin', (3.14f / 2.0f));
-	App->enemy->AddEnemy(App->enemy->red, 1015, 100, 'sin', (3.14f / 4.0f));
+	App->enemy->AddEnemy(App->enemy->red, 1010, 100, 'sin', (3.14f / 4.0f));
 
 	App->enemy->AddEnemy(App->enemy->red, 1030, 65, 'sin', (3.14f / 2.0f));
-	App->enemy->AddEnemy(App->enemy->red, 1045, 75, 'sin', (0.0f));
-	App->enemy->AddEnemy(App->enemy->red, 1060, 50, 'sin', (3.14f / 4.0f));
+	App->enemy->AddEnemy(App->enemy->red, 1040, 75, 'sin', (0.0f));
+	App->enemy->AddEnemy(App->enemy->red, 1050, 50, 'sin', (3.14f / 4.0f));
 
 	App->enemy->AddEnemy(App->enemy->red, 1080, 130, 'sin', (3.14f / 2.0f));
 
 	App->enemy->AddEnemy(App->enemy->red, 1100, 140, 'sin', (3.14f / 2.0f));
-	App->enemy->AddEnemy(App->enemy->red, 1115, 130, 'sin', (3.14f / 4.0f));
+	App->enemy->AddEnemy(App->enemy->red, 1110, 130, 'sin', (3.14f / 4.0f));
 
 	App->enemy->AddEnemy(App->enemy->red, 1140, 80, 'sin', (3.14f / 4.0f));
 
 	App->enemy->AddEnemy(App->enemy->red, 1170, 50, 'sin', (3.14f / 4.0f));
-	App->enemy->AddEnemy(App->enemy->red, 1200, 150, 'sin', (3.14f / 4.0f));
+	App->enemy->AddEnemy(App->enemy->red, 1190, 150, 'sin', (3.14f / 4.0f));
 
 	App->enemy->AddEnemy(App->enemy->red, 1230, 50, 'sin', (0.0f));
-	App->enemy->AddEnemy(App->enemy->red, 1247, 60, 'sin', (3.14f / 2.0f));
+	App->enemy->AddEnemy(App->enemy->red, 1240, 60, 'sin', (3.14f / 2.0f));
 
 
-	App->enemy->AddEnemy(App->enemy->worm, 1280, 50, 'sin', (0.0f));
-	App->enemy->AddEnemy(App->enemy->worm, 1292, 50, 'sin', (3.14f / 16.0f));
-	App->enemy->AddEnemy(App->enemy->worm, 1304, 50, 'sin', (3.14f / 8.0f));
-	App->enemy->AddEnemy(App->enemy->worm, 1316, 50, 'sin', (3.14f / 16.0f));
-	App->enemy->AddEnemy(App->enemy->worm, 1328, 50, 'sin', (0.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 1300, 50, 'sin', (0.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 1305, 50, 'sin', (3.14f / 16.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 1310, 50, 'sin', (3.14f / 8.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 1315, 50, 'sin', (3.14f / 16.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 1320, 50, 'sin', (0.0f));
 
 	App->enemy->AddEnemy(App->enemy->worm, 1400, 130, 'sin', (0.0f));
 
@@ -260,11 +261,12 @@ bool ModuleSceneSpace::Start()
 	//App->enemy->AddEnemy(App->enemy->worm, 1965, 130, 'sin', (0.0f));
 
 	App->enemy->AddEnemy(App->enemy->red, 2400, 150, 'sin', (0.0f));
-	App->enemy->AddEnemy(App->enemy->red, 2420, 160, 'sin', (3.14f / 2.0f));
+	App->enemy->AddEnemy(App->enemy->red, 2410, 160, 'sin', (3.14f / 2.0f));
 
 	App->enemy->AddEnemy(App->enemy->red, 2520, 60, 'sin', (0.0f));
 
 	App->enemy->AddEnemy(App->enemy->red, 2600, 120, 'sin', (0.0f));
+	
 
 	//needed new type of mov
 	//App->enemy->AddEnemy(App->enemy->worm, 2670, 130, 'sin', (0.0f));
@@ -276,7 +278,7 @@ bool ModuleSceneSpace::Start()
 
 
 	//tryouts
-	App->enemy->AddEnemy(App->enemy->worm, 1310, 140, 'bot', (0.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 1610, 140, 'bot', (0.0f));
 
 
 	return true;
@@ -301,7 +303,7 @@ update_status ModuleSceneSpace::Update()
 	// Move camera forward -----------------------------
 
 	App->player->position.x += player_speed;
-	App->renderer->camera.x -= 3;
+	App->renderer->camera.x -= 1;
 
 	if (App->renderer->camera.x == (-3930 + SCREEN_WIDTH)*SCREEN_SIZE)
 	{

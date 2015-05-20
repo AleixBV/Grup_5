@@ -135,9 +135,9 @@ update_status ModuleEnemy::Update()
 			App->renderer->Blit(graphics, e->position.x, e->position.y, &(e->anim.GetCurrentFrame()));
 
 			unsigned int a = SDL_GetTicks();
-			if (shooting = true && a % 100 == 0)
+			if (shooting == true && a % 1000 == 0)
 			{
-			
+				
 				if (e->position.y > App->player->position.y && e->position.x > App->player->position.x) 
 				{
 					App->particles->shot.speed.x = -2.5f;
