@@ -84,6 +84,13 @@ bool ModuleParticles::CleanUp()
 	return true;
 }
 
+bool ModuleParticles::CleanUpActiveParticles()
+{
+	active.clear();
+
+	return true;
+}
+
 // Update: draw background
 update_status ModuleParticles::Update()
 {

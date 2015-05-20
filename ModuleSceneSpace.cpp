@@ -291,6 +291,7 @@ bool ModuleSceneSpace::CleanUp()
 
 	App->textures->Unload(background);
 	App->player->Disable();
+	App->particles->CleanUpActiveParticles();
 	App->enemy->Disable();
 	App->collision->Disable();
 

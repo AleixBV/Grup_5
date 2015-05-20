@@ -79,10 +79,10 @@ update_status ModuleEnemy::PreUpdate()
 			tmp->data->on_screen = true;
 		}
 
-		/*if (tmp->data->alive == false)
+		if (tmp->data->alive == false)
 		{
 			EnemyList.del(tmp);
-		}*/
+		}
 
 
 		tmp = tmp_next;
