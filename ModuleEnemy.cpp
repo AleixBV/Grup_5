@@ -30,28 +30,39 @@ bool ModuleEnemy::Start()
 	red.anim.speed = 0.15f;
 	red.alive = true;
 
-	worm.anim.frames.PushBack({ 136, 31, 26, 22});
+	/*worm.anim.frames.PushBack({ 136, 31, 26, 22});
 	worm.anim.frames.PushBack({ 166, 31, 26, 22 });
 	worm.anim.frames.PushBack({ 199, 31, 26, 22 });
-	worm.anim.frames.PushBack({ 233, 31, 26, 22 });
-	worm.anim.frames.PushBack({ 265, 31, 26, 22 });
-	worm.anim.frames.PushBack({ 233, 31, 26, 22 });
-	worm.anim.frames.PushBack({ 298, 31, 26, 22 });
-	worm.anim.frames.PushBack({ 332, 31, 26, 22 });
-	worm.anim.frames.PushBack({ 131, 64, 26, 22 });
-	worm.anim.frames.PushBack({ 136, 64, 26, 22 });
+	worm.anim.frames.PushBack({ 233, 31, 26, 22 });*/
+
+	worm.anim.frames.PushBack({ 136, 64, 26, 22 }); // pla
 	worm.anim.frames.PushBack({ 168, 64, 26, 22 });
 	worm.anim.frames.PushBack({ 200, 64, 26, 22 });
 	worm.anim.frames.PushBack({ 232, 64, 26, 22 });
-	worm.anim.frames.PushBack({ 265, 64, 26, 22 });
+	worm.anim.frames.PushBack({ 265, 64, 26, 22 }); // amunt
+	worm.anim.frames.PushBack({ 232, 64, 26, 22 });
+	worm.anim.frames.PushBack({ 200, 64, 26, 22 });
+	worm.anim.frames.PushBack({ 168, 64, 26, 22 });
+	worm.anim.frames.PushBack({ 136, 64, 26, 22 }); // pla
+	worm.anim.frames.PushBack({ 364, 31, 26, 22 });
+	worm.anim.frames.PushBack({ 332, 31, 26, 22 });
+	worm.anim.frames.PushBack({ 298, 31, 26, 22 });
+	worm.anim.frames.PushBack({ 265, 31, 26, 22 }); // avall
+	worm.anim.frames.PushBack({ 298, 31, 26, 22 });
+	worm.anim.frames.PushBack({ 332, 31, 26, 22 });
+	worm.anim.frames.PushBack({ 364, 31, 26, 22 });
+
+	/*worm.anim.frames.PushBack({ 265, 64, 26, 22 });
 	worm.anim.frames.PushBack({ 299, 64, 26, 22 });
 	worm.anim.frames.PushBack({ 331, 64, 26, 22 });
-	worm.anim.frames.PushBack({ 364, 64, 26, 22 });
+	worm.anim.frames.PushBack({ 364, 64, 26, 22 });*/
 	worm.anim.loop = true;
-	worm.anim.speed = 0.15f;
+	worm.anim.speed = 0.06f;
 	worm.alive = true;
 
 	tower.anim.frames.PushBack({});
+
+	srand(time(NULL));
 
 	return true;
 }
@@ -148,40 +159,24 @@ update_status ModuleEnemy::Update()
 
 			App->renderer->Blit(graphics, e->position.x, e->position.y, &(e->anim.GetCurrentFrame()));
 
-			unsigned int a = SDL_GetTicks();
-			if (shooting == true && a % 1000 == 0)
-			{
-				
-				if (e->position.y > App->player->position.y && e->position.x > App->player->position.x) 
-				{
-					App->particles->shot.speed.x = -2.5f;
-					App->particles->shot.speed.y = -2.5f;
-				}
-				if (e->position.y > App->player->position.y && e->position.x < App->player->position.x)
-				{
-					App->particles->shot.speed.x = 2.5f;
-					App->particles->shot.speed.y = -2.5f;
-				}
-				if (e->position.y < App->player->position.y && e->position.x > App->player->position.x)
-				{
-					App->particles->shot.speed.x = -2.5f;
-					App->particles->shot.speed.y = 2.5f;
-				}
-				if (e->position.y < App->player->position.y && e->position.x < App->player->position.x)
-				{
-					App->particles->shot.speed.x = 2.5f;
-					App->particles->shot.speed.y = 2.5f;
-				}
-		
+			unsigned int a = rand() % 500 + 1;
 
+			if (shooting == true && a == 1 && e->on_screen == true)
+			{
+				float sx, sy;
+				
+				sx = (App->player->position.x - e->position.x);
+				sy = (App->player->position.y - e->position.y);
+
+				App->particles->shot.speed.x = sx / sqrt(sx * sx + sy * sy) * 3.0f;
+				App->particles->shot.speed.y = sy / sqrt(sx * sx + sy * sy) * 3.0f;
+								
 				App->particles->AddParticle(App->particles->shot, e->position.x, e->position.y, COLLIDER_ENEMY_SHOT);
 			}
 		}
 
 		tmp = tmp->next;
 	}
-
-	
 
 	return UPDATE_CONTINUE;
 }
