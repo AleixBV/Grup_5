@@ -253,12 +253,12 @@ bool ModuleSceneSpace::Start()
 
 	App->enemy->AddEnemy(App->enemy->worm, 1400, 130, 'sin', (0.0f));
 
-	//needed new type of mov
-	App->enemy->AddEnemy(App->enemy->worm, 1965, 5, 'curv', NULL);
-	App->enemy->AddEnemy(App->enemy->worm, 1966, 5, 'curv', NULL);
-	App->enemy->AddEnemy(App->enemy->worm, 1967, 5, 'curv', NULL);
-	App->enemy->AddEnemy(App->enemy->worm, 1968, 5, 'curv', NULL);
-	App->enemy->AddEnemy(App->enemy->worm, 1969, 5, 'curv', NULL);
+	
+	App->enemy->AddEnemy(App->enemy->worm, 1965, 0, 'curv', NULL);
+	App->enemy->AddEnemy(App->enemy->worm, 1966, 10, 'curv', NULL);
+	App->enemy->AddEnemy(App->enemy->worm, 1967, 20, 'curv', NULL);
+	App->enemy->AddEnemy(App->enemy->worm, 1968, 30, 'curv', NULL);
+	App->enemy->AddEnemy(App->enemy->worm, 1969, 40, 'curv', NULL);
 
 	App->enemy->AddEnemy(App->enemy->red, 2400, 150, 'sin', (0.0f));
 	App->enemy->AddEnemy(App->enemy->red, 2410, 160, 'sin', (3.14f / 2.0f));
@@ -268,12 +268,11 @@ bool ModuleSceneSpace::Start()
 	App->enemy->AddEnemy(App->enemy->red, 2600, 120, 'sin', (0.0f));
 	
 
-	//needed new type of mov
-	//App->enemy->AddEnemy(App->enemy->worm, 2670, 130, 'sin', (0.0f));
-	//App->enemy->AddEnemy(App->enemy->worm, 2670, 130, 'sin', (0.0f));
-	//App->enemy->AddEnemy(App->enemy->worm, 2670, 130, 'sin', (0.0f));
-	//App->enemy->AddEnemy(App->enemy->worm, 2670, 130, 'sin', (0.0f));
-	//App->enemy->AddEnemy(App->enemy->worm, 2670, 130, 'sin', (0.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 2670, 0, 'curv', NULL);
+	App->enemy->AddEnemy(App->enemy->worm, 2670, 10, 'curv', NULL);
+	App->enemy->AddEnemy(App->enemy->worm, 2670, 20, 'curv', NULL);
+	App->enemy->AddEnemy(App->enemy->worm, 2670, 30, 'curv', NULL);
+	App->enemy->AddEnemy(App->enemy->worm, 2670, 40, 'curv', NULL);
 
 
 

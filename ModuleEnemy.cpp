@@ -130,22 +130,22 @@ update_status ModuleEnemy::Update()
 			if (e->mov_type == a){
 				if (e->floor == false)
 					e->position.y++;
-				if (e->right == true)
+				if (e->floor == true && e->right == true)
 					e->position.x++;
-				if (e->right == false)
+				if (e->floor == true && e->right == false)
 					e->position.x--;
 			}
 
 			char b = 'curv';
 			if (e->mov_type == b){
-				if (e->position.y < 80)
-					y++;
-				if (100 > e->position.y > 80) {
-					y++;
-					x--;
+				if (e->position.y < 100)
+					e->position.y++;
+				else if (120 > e->position.y > 100) {
+					e->position.y++;
+					e->position.x--;
 				}
 				else
-					x--;
+					e->position.x--;
 
 			}
 
