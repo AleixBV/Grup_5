@@ -16,7 +16,7 @@ bool ModuleSceneSpace::Start()
 {
 	LOG("Loading space scene");
 
-	background = App->textures->Load("rtype/background.png");
+	background = App->textures->Load("rtype/RTYPE-background.png");
 
 	player_speed = 1.0f / 3.0f;
 
