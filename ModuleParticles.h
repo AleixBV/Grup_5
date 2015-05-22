@@ -50,5 +50,6 @@ public:
 	Particle laser;
 	Particle laser_anim;
 	Particle shot;
+	Particle power_up;
 
 };

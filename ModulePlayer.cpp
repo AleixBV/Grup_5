@@ -132,7 +132,11 @@ update_status ModulePlayer::Update()
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-	if (exploding == false)
+	if (c1->type == COLLIDER_POWER_UP || c2->type == COLLIDER_POWER_UP)
+	{
+
+	}
+	else if (exploding == false)
 	{
 		App->fade->FadeToBlack(App->scene_space, App->scene_intro);
 		exploding = true;
