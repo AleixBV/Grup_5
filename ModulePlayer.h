@@ -56,4 +56,5 @@ public:
 
 	int speed = 1;
 	int power_up;
+	bool god_mode;
 };

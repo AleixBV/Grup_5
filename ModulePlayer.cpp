@@ -56,6 +56,8 @@ bool ModulePlayer::Start()
 	// TODO 2: Afegir collider al jugador
 	collider = App->collision->AddCollider({ position.x, position.y, 32, 12 }, COLLIDER_PLAYER, this);
 
+	god_mode = false;
+
 	return true;
 }
 
@@ -126,6 +128,10 @@ update_status ModulePlayer::Update()
 		player_input = PLAYER_INPUT_IDLE;
 	}
 
+	//God Mode
+	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
+		god_mode = !god_mode;
+
 	collider->rect.x = position.x;
 	collider->rect.y = position.y;
 
@@ -146,7 +152,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	{
 		power_up = 1;
 	}
-	else if (exploding == false)
+	else if (exploding == false && god_mode == false)
 	{
 		App->fade->FadeToBlack(App->scene_space, App->scene_intro);
 		exploding = true;
