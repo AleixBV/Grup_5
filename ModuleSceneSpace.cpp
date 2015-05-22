@@ -280,7 +280,7 @@ bool ModuleSceneSpace::Start()
 	//App->enemy->AddEnemy(App->enemy->worm, 1610, 140, 'bot', NULL);
 
 
-	App->particles->AddParticle(App->particles->power_up, 300, 100, COLLIDER_POWER_UP);
+	App->particles->AddParticle(App->particles->power_up, 740, 178, COLLIDER_POWER_UP);
 
 	return true;
 }
