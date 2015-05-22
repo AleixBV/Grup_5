@@ -111,7 +111,7 @@ update_status ModulePlayer::Update()
 		if (power_up == 1)
 		{
 			
-			App->particles->AddParticle(App->particles->laser_powerup, position.x + 32, position.y);
+			App->particles->AddParticle(App->particles->laser_powerup, position.x + 32, position.y - 9, COLLIDER_PLAYER_SHOT);
 			
 		}
 		else
