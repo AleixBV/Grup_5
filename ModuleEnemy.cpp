@@ -36,7 +36,7 @@ bool ModuleEnemy::Start()
 	worm.anim.frames.PushBack({ 233, 31, 26, 22 });*/
 
 	worm.anim.frames.PushBack({ 136, 64, 26, 22 }); // pla
-	worm.anim.frames.PushBack({ 168, 64, 26, 22 });
+	/*worm.anim.frames.PushBack({ 168, 64, 26, 22 });
 	worm.anim.frames.PushBack({ 200, 64, 26, 22 });
 	worm.anim.frames.PushBack({ 232, 64, 26, 22 });
 	worm.anim.frames.PushBack({ 265, 64, 26, 22 }); // amunt
@@ -50,7 +50,7 @@ bool ModuleEnemy::Start()
 	worm.anim.frames.PushBack({ 265, 31, 26, 22 }); // avall
 	worm.anim.frames.PushBack({ 298, 31, 26, 22 });
 	worm.anim.frames.PushBack({ 332, 31, 26, 22 });
-	worm.anim.frames.PushBack({ 364, 31, 26, 22 });
+	worm.anim.frames.PushBack({ 364, 31, 26, 22 });*/
 
 	/*worm.anim.frames.PushBack({ 265, 64, 26, 22 });
 	worm.anim.frames.PushBack({ 299, 64, 26, 22 });
