@@ -110,12 +110,9 @@ update_status ModulePlayer::Update()
 	{
 		if (power_up == 1)
 		{
-			App->particles->AddParticle(App->particles->laser_anim, position.x + 32, position.y);
-			App->particles->AddParticle(App->particles->laser, position.x + 28, position.y + 5, COLLIDER_PLAYER_SHOT);
-
-			App->particles->AddParticle(App->particles->laser, position.x + 28, position.y + 15, COLLIDER_PLAYER_SHOT);
-
-			App->particles->AddParticle(App->particles->laser, position.x + 28, position.y + -5, COLLIDER_PLAYER_SHOT);
+			
+			App->particles->AddParticle(App->particles->laser_powerup, position.x + 32, position.y);
+			
 		}
 		else
 		{

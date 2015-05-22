@@ -41,6 +41,16 @@ bool ModuleParticles::Start()
 	explosion.anim.loop = false;
 	laser.anim.speed = 0.7f;
 
+	//Laser power
+	laser_powerup.anim.frames.PushBack({ 33, 556, 64, 32 });
+	laser_powerup.anim.frames.PushBack({ 99, 556, 64, 32 });
+	laser_powerup.anim.frames.PushBack({ 165, 556, 64, 32 });
+	laser_powerup.anim.frames.PushBack({ 233, 556, 64, 32 });
+	laser_powerup.anim.loop = true;
+	laser_powerup.anim.speed = 0.7f;
+	laser_powerup.speed.x = 7;
+	laser_powerup.life = 1000;
+
 	//Explosion_Player
 	explosion.anim.frames.PushBack({ 1, 343, 32, 28 });
 	explosion.anim.frames.PushBack({ 35, 343, 32, 28 });
