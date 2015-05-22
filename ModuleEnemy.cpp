@@ -85,9 +85,14 @@ update_status ModuleEnemy::PreUpdate()
 	{
 		tmp_next = tmp->next;
 
-		if (tmp->data->position.x < (App->renderer->camera.x / -3) + SCREEN_WIDTH)
+		if (tmp->data->position.x < (App->renderer->camera.x / -3) + SCREEN_WIDTH && tmp->data->position.x > (App->renderer->camera.x / -3))
 		{
 			tmp->data->on_screen = true;
+		}
+		
+		else if (tmp->data->position.x < (App->renderer->camera.x / -3) - 250)
+		{
+			tmp->data->on_screen = false;
 		}
 
 		if (tmp->data->alive == false)
