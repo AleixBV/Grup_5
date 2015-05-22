@@ -49,6 +49,7 @@ bool ModulePlayer::Start()
 	position.y = 100;
 
 	speed = 1;
+	power_up = 0;
 	player_state = PLAYER_IDLE;
 	Uint32 delay_time = 0;
 
@@ -107,8 +108,20 @@ update_status ModulePlayer::Update()
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP && exploding == false)
 	{
-		App->particles->AddParticle(App->particles->laser_anim, position.x + 32, position.y);
-		App->particles->AddParticle(App->particles->laser, position.x + 28, position.y + 5, COLLIDER_PLAYER_SHOT);
+		if (power_up == 1)
+		{
+			App->particles->AddParticle(App->particles->laser_anim, position.x + 32, position.y);
+			App->particles->AddParticle(App->particles->laser, position.x + 28, position.y + 5, COLLIDER_PLAYER_SHOT);
+
+			App->particles->AddParticle(App->particles->laser, position.x + 28, position.y + 15, COLLIDER_PLAYER_SHOT);
+
+			App->particles->AddParticle(App->particles->laser, position.x + 28, position.y + -5, COLLIDER_PLAYER_SHOT);
+		}
+		else
+		{
+			App->particles->AddParticle(App->particles->laser_anim, position.x + 32, position.y);
+			App->particles->AddParticle(App->particles->laser, position.x + 28, position.y + 5, COLLIDER_PLAYER_SHOT);
+		}
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_IDLE && App->input->GetKey(SDL_SCANCODE_W) == KEY_IDLE || App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
@@ -134,7 +147,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c1->type == COLLIDER_POWER_UP || c2->type == COLLIDER_POWER_UP)
 	{
-
+		power_up = 1;
 	}
 	else if (exploding == false)
 	{

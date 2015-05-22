@@ -55,4 +55,5 @@ public:
 	bool exploding;
 
 	int speed = 1;
+	int power_up;
 };
