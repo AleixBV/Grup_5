@@ -70,7 +70,9 @@ bool ModuleParticles::Start()
 	shot.life = 5000;
 
 	//Power up
-	power_up.anim.frames.PushBack({0, 558, 65, 65 });
+	power_up.anim.frames.PushBack({ 0, 558, 65, 65 });
+	power_up.anim.loop = false;
+	power_up.anim.speed = 0.0f;
 
 	return true;
 }
