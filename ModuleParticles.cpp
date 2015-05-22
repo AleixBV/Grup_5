@@ -67,7 +67,7 @@ bool ModuleParticles::Start()
 	shot.anim.frames.PushBack({ 212, 279, 6, 6 });
 	shot.anim.loop = false;
 	shot.anim.speed = 0.0f;
-	shot.life = 3000;
+	shot.life = 5000;
 
 
 	return true;
