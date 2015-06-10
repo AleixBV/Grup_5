@@ -58,7 +58,7 @@ bool ModuleParticles::Start()
 	laser_powerup.anim.frames.PushBack({ 165, 556, 64, 32 });
 	laser_powerup.anim.frames.PushBack({ 233, 556, 64, 32 });
 	laser_powerup.anim.loop = true;
-	laser_powerup.anim.speed = 0.7f;
+	laser_powerup.anim.speed = 0.2f;
 	laser_powerup.speed.x = 7;
 	laser_powerup.life = 1000;
 
@@ -158,13 +158,40 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 	{
 		if (tmp->data->collider == c1)
 		{
-			delete tmp->data;
-			active.del(tmp);
-			if (c1->type == COLLIDER_PLAYER_SHOT && c2->type == COLLIDER_WALL && App->player->power_up == 0)
+			if (App->player->power_up == 0)
 			{
-				App->particles->AddParticle(App->particles->laser_explosion, c1->rect.x - 5, c1->rect.y - 5);
+				if (c1->type == COLLIDER_PLAYER_SHOT && c2->type == COLLIDER_WALL)
+				{
+					App->particles->AddParticle(App->particles->laser_explosion, c1->rect.x - 5, c1->rect.y - 5);
+				}
+				delete tmp->data;
+				active.del(tmp);
+				break;
 			}
-			break;
+			else if (App->player->power_up == 1)
+			{
+				if (c1->type == COLLIDER_PLAYER_SHOT)
+				{
+					if (c2->type == COLLIDER_WALL && (c1->rect.y + 10 < c2->rect.y && c2->rect.y < c1->rect.y + 22 || c1->rect.y +10 < c2->rect.y + c2->rect.h && c2->rect.y + c2->rect.h < c1->rect.y + 22))
+					{
+						delete tmp->data;
+						active.del(tmp);
+						break;
+					}
+					else
+					{
+
+
+					}
+				}
+
+				else
+				{
+					delete tmp->data;
+					active.del(tmp);
+					break;
+				}
+			}
 		}
 
 		tmp = tmp->next;
