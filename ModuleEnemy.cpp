@@ -63,6 +63,13 @@ bool ModuleEnemy::Start()
 	tower.anim.frames.PushBack({});
 
 	srand(time(NULL));
+	robot.anim.frames.PushBack({ 297, 162, 32, 32 });
+	robot.anim.frames.PushBack({ 297, 195, 32, 32 });
+	robot.anim.frames.PushBack({ 297, 230, 32, 32 });
+	robot.anim.loop = true;
+	robot.anim.speed = 0.1f;
+	robot.alive = true;
+	
 
 	return true;
 }
@@ -145,7 +152,7 @@ update_status ModuleEnemy::Update()
 			if (e->mov_type == b){
 				if (e->position.y < 100)
 					e->position.y++;
-				else if (120 > e->position.y > 100) {
+				else if (120 > e->position.y && e->position.y > 100) {
 					e->position.y++;
 					e->position.x--;
 				}
