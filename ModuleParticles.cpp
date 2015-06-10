@@ -38,10 +38,21 @@ bool ModuleParticles::Start()
 	// Laser anim
 	laser_anim.anim.frames.PushBack({ 215, 85, 14, 12 });
 	laser_anim.anim.frames.PushBack({ 233, 85, 14, 12 });
-	explosion.anim.loop = false;
-	laser.anim.speed = 0.7f;
+	laser_anim.anim.loop = true;
+	laser_anim.anim.speed = 0.7f;
 
-	//Laser power
+	//laser explosion
+	laser_explosion.anim.frames.PushBack({ 287, 85, 14, 12 });
+	laser_explosion.anim.frames.PushBack({ 300, 85, 14, 12 });
+	laser_explosion.anim.loop = false;
+	laser_explosion.anim.speed = 0.7f;
+
+	//Laser powerup anim
+	laser_powerup_anim.anim.frames.PushBack({ 233, 556, 64, 32 });
+	laser_powerup_anim.anim.loop = false;
+	laser_powerup_anim.anim.speed = 0.7f;
+
+	//Laser powerup
 	laser_powerup.anim.frames.PushBack({ 33, 556, 64, 32 });
 	laser_powerup.anim.frames.PushBack({ 99, 556, 64, 32 });
 	laser_powerup.anim.frames.PushBack({ 165, 556, 64, 32 });
@@ -149,6 +160,10 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		{
 			delete tmp->data;
 			active.del(tmp);
+			if (c1->type == COLLIDER_PLAYER_SHOT && c2->type == COLLIDER_WALL && App->player->power_up == 0)
+			{
+				App->particles->AddParticle(App->particles->laser_explosion, c1->rect.x - 5, c1->rect.y - 5);
+			}
 			break;
 		}
 

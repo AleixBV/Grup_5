@@ -49,8 +49,10 @@ public:
 	Particle enemy_death;
 	Particle laser;
 	Particle laser_anim;
+	Particle laser_explosion;
 	Particle shot;
 	Particle power_up;
 	Particle laser_powerup;
+	Particle laser_powerup_anim;
 
 };
