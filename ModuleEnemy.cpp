@@ -6,7 +6,12 @@
 #include <stdio.h>
 
 ModuleEnemy::ModuleEnemy(Application* app, bool start_enabled) : Module(app, start_enabled), graphics(NULL)
-{}
+{
+	red.type = _RED;
+	worm.type = _WORM;
+	tower.type = _TOWER;
+	robot.type = _ROBOT;
+}
 
 ModuleEnemy::~ModuleEnemy()
 {}
@@ -35,10 +40,6 @@ bool ModuleEnemy::Start()
 	worm.anim.frames.PushBack({ 199, 31, 26, 22 });
 	worm.anim.frames.PushBack({ 233, 31, 26, 22 });*/
 
-	worm.anim.frames.PushBack({ 136, 64, 26, 22 }); // pla
-	/*worm.anim.frames.PushBack({ 168, 64, 26, 22 });
-	worm.anim.frames.PushBack({ 200, 64, 26, 22 });
-	worm.anim.frames.PushBack({ 232, 64, 26, 22 });
 	worm.anim.frames.PushBack({ 265, 64, 26, 22 }); // amunt
 	worm.anim.frames.PushBack({ 232, 64, 26, 22 });
 	worm.anim.frames.PushBack({ 200, 64, 26, 22 });
@@ -50,14 +51,19 @@ bool ModuleEnemy::Start()
 	worm.anim.frames.PushBack({ 265, 31, 26, 22 }); // avall
 	worm.anim.frames.PushBack({ 298, 31, 26, 22 });
 	worm.anim.frames.PushBack({ 332, 31, 26, 22 });
-	worm.anim.frames.PushBack({ 364, 31, 26, 22 });*/
+	worm.anim.frames.PushBack({ 364, 31, 26, 22 });
+	worm.anim.frames.PushBack({ 136, 64, 26, 22 }); // pla
+	worm.anim.frames.PushBack({ 168, 64, 26, 22 });
+	worm.anim.frames.PushBack({ 200, 64, 26, 22 });
+	worm.anim.frames.PushBack({ 232, 64, 26, 22 });
+	worm.anim.frames.PushBack({ 265, 64, 26, 22 }); // amunt
 
 	/*worm.anim.frames.PushBack({ 265, 64, 26, 22 });
 	worm.anim.frames.PushBack({ 299, 64, 26, 22 });
 	worm.anim.frames.PushBack({ 331, 64, 26, 22 });
 	worm.anim.frames.PushBack({ 364, 64, 26, 22 });*/
 	worm.anim.loop = true;
-	worm.anim.speed = 0.06f;
+	worm.anim.speed = 0.0f;
 	worm.alive = true;
 
 	tower.anim.frames.PushBack({});
@@ -120,56 +126,160 @@ update_status ModuleEnemy::Update()
 	while (tmp != NULL)
 	{
 		Enemy* e = tmp->data;
+		SDL_Rect * frame = & e->anim.GetCurrentFrame();
 
 		if (e->on_screen)
 		{
-			char x = 'sin';
-			if (e->mov_type == x)
+			switch (e->mov_type)
 			{
-				float t = SDL_GetTicks();
-				e->position.y = e->initial_height + 25 * sin((25 + t / 250) + e->fase);
-				e->position.x--;
-			}
-			char y = 'sin2';
-			if (e->mov_type == y)
-			{
-				float t = SDL_GetTicks();
-				e->position.y = e->initial_height + 30 * sin((20 + t / 1000) + e->fase);
-				e->position.x--;
-			}
-
-			char a = 'bot';
-			if (e->mov_type == a){
-				if (e->floor == false)
-					e->position.y++;
-				if (e->floor == true && e->right == true)
-					e->position.x++;
-				if (e->floor == true && e->right == false)
+				case eSin:
+				{
+					float t = SDL_GetTicks();
+					e->position.y = e->initial_height + 25 * sin(t / 250 + e->fase);
 					e->position.x--;
-			}
 
-			char b = 'curv';
-			if (e->mov_type == b){
-				if (e->position.y < 100)
-					e->position.y++;
-				else if (120 > e->position.y && e->position.y > 100) {
-					e->position.y++;
-					e->position.x--;
+					switch(e->type)
+					{
+						case _RED:
+						{
+							break;
+						}
+
+						case _WORM:
+						{
+							unsigned int frame_num;
+							frame_num = (int)(e->fase * 3.82f + t / 104.72f + 7.5f) % 15;
+							frame = &e->anim.frames[frame_num];
+							break;
+						}
+
+						case _TOWER:
+						{
+							break;
+						}
+
+						case _ROBOT:
+						{
+							break;
+						}
+			
+					}
+					break;
 				}
-				else
+
+				case eSin2:
+				{
+					float t = SDL_GetTicks();
+					e->position.y = e->initial_height + 30 * sin(t / 1000 + e->fase);
 					e->position.x--;
+					
+					switch (e->type)
+					{
 
+					case _RED:
+					{
+						break;
+					}
+
+					case _WORM:
+					{
+						unsigned int frame_num = 0;
+						frame_num = (int)(e->fase * 3.82f + t / 418.9f + 7.5f) % 15;
+						frame = &e->anim.frames[frame_num];
+						break;
+					}
+
+					case _TOWER:
+					{
+						break;
+					}
+
+					case _ROBOT:
+					{
+						break;
+					}
+
+					}
+
+					break;
+				}
+
+				case eBot:
+				{
+					if (e->floor == false)
+						e->position.y++;
+
+					if (e->floor == true && e->right == true)
+						e->position.x++;
+
+					if (e->floor == true && e->right == false)
+						e->position.x--;
+
+					break;
+					
+				}
+
+				case eCurv:
+				{
+					if (e->position.y < 100)
+						e->position.y++;
+
+					else if (130 > e->position.y && e->position.y >= 100) {
+						e->position.y++;
+						e->position.x--;
+					}
+					else
+						e->position.x--;
+
+					switch (e->type)
+					{
+					case _RED:
+					{
+						break;
+					}
+
+					case _WORM:
+					{
+						
+
+						if (e->position.y < 100)
+							frame = &e->anim.frames[8];
+
+						else if (130 > e->position.y && e->position.y >= 100)
+						{
+							unsigned int frame_num = (e->position.y - 100) / 10 ;
+							frame = &e->anim.frames[7 - frame_num];
+						}
+
+						else
+							frame = &e->anim.frames[4];
+
+						break;
+					}
+
+					case _TOWER:
+					{
+						break;
+					}
+
+					case _ROBOT:
+					{
+						break;
+					}
+
+					}
+
+					break;
+				}
 			}
-
-
 		}
-
+		
 		if (tmp->data->alive)
 		{
 			e->collider->rect.x = e->position.x;
 			e->collider->rect.y = e->position.y;
 
-			App->renderer->Blit(graphics, e->position.x, e->position.y, &(e->anim.GetCurrentFrame()));
+			App->renderer->Blit(graphics, e->position.x, e->position.y, frame);
 
 			unsigned int a = rand() % 500 + 1;
 
@@ -236,7 +346,7 @@ void ModuleEnemy::OnCollision(Collider* c1, Collider* c2)
 
 }
 
-Enemy* ModuleEnemy::AddEnemy(const Enemy& enemy, int x, int y, char mov, float fase)
+Enemy* ModuleEnemy::AddEnemy(const Enemy& enemy, int x, int y, eMov_Type mov, float fase)
 {
 	Enemy* e = new Enemy(enemy);
 	e->position.x = x;

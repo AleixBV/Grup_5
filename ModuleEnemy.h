@@ -7,6 +7,19 @@
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
 
+#define _RED 0
+#define _WORM 1
+#define _TOWER 2
+#define _ROBOT 3
+
+enum eMov_Type
+{
+	eSin,
+	eSin2,
+	eCurv,
+	eBot
+};
+
 struct Enemy
 {
 	Animation anim;
@@ -17,11 +30,12 @@ struct Enemy
 	Particle shoot;
 	bool alive;
 	bool on_screen;
-	char mov_type;
+	eMov_Type mov_type;
 	float fase;
 	int initial_height;
 	bool floor = false;
 	bool right = false;
+	unsigned int type;
 
 	Enemy();
 	~Enemy();
@@ -41,7 +55,7 @@ public:
 	void OnCollision(Collider*, Collider*);
 	bool shooting;
 
-	Enemy* AddEnemy(const Enemy& enemy, int x, int y, char mov, float fase);
+	Enemy* AddEnemy(const Enemy& enemy, int x, int y, eMov_Type mov, float fase);
 
 private:
 
