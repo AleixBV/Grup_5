@@ -541,7 +541,7 @@ Enemy* ModuleEnemy::AddEnemy(const Enemy& enemy, int x, int y, eMov_Type mov, fl
 	if (e->type == _ROBOT)
 		e->collider = App->collision->AddCollider({ e->position.x, e->position.y, 32, 32 }, COLLIDER_ENEMY, this);
 
-	if (e->type == _TOWER && e->type == _TOWER2)
+	if (e->type == _TOWER || e->type == _TOWER2)
 		e->collider = App->collision->AddCollider({ e->position.x, e->position.y, 16, 16 }, COLLIDER_ENEMY, this);
 
 	e->mov_type = mov;
