@@ -110,16 +110,15 @@ update_status ModulePlayer::Update()
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP && exploding == false)
 	{
+		App->particles->AddParticle(App->particles->laser_anim, position.x + 32, position.y);
+		App->particles->AddParticle(App->particles->laser, position.x + 28, position.y + 5, COLLIDER_PLAYER_SHOT);
+
 		if (power_up == 1)
 		{
 			
-			App->particles->AddParticle(App->particles->laser_powerup, position.x + 32, position.y - 9, COLLIDER_PLAYER_SHOT);
+			App->particles->AddParticle(App->particles->laser_powerup, position.x + 16, position.y - 15, COLLIDER_PLAYER_SHOT);
+			App->particles->AddParticle(App->particles->laser_powerup_anim, position.x + 25, position.y - 9, COLLIDER_PLAYER_SHOT);
 			
-		}
-		else
-		{
-			App->particles->AddParticle(App->particles->laser_anim, position.x + 32, position.y);
-			App->particles->AddParticle(App->particles->laser, position.x + 28, position.y + 5, COLLIDER_PLAYER_SHOT);
 		}
 	}
 
