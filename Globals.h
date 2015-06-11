@@ -25,3 +25,14 @@ enum update_status
 #define WIN_FULLSCREEN_DESKTOP false
 #define VSYNC true
 #define TITLE "R-Type"
+
+//Enemy types
+
+#define _RED 0
+#define _WORM 1
+#define _TOWER 2
+#define _ROBOT 3
+
+//Boss position
+
+#define _BOSS_POSITION -3546 * SCREEN_SIZE

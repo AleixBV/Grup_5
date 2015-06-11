@@ -17,6 +17,7 @@
 #include "ModuleCollision.h"
 #include "ModuleEnemy.h"
 #include "ModuleSceneEnd.h"
+#include "ModuleBoss.h"
 
 class Application
 {
@@ -34,6 +35,7 @@ public:
 	ModuleParticles* particles;
 	ModuleCollision* collision;
 	ModuleEnemy* enemy;
+	ModuleBoss* boss;
 
 private:
 

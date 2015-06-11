@@ -7,10 +7,7 @@
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
 
-#define _RED 0
-#define _WORM 1
-#define _TOWER 2
-#define _ROBOT 3
+
 
 enum eMov_Type
 {
@@ -68,6 +65,4 @@ public:
 	Enemy worm;
 	Enemy tower;
 	Enemy robot;
-
-
 };
