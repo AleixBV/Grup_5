@@ -63,5 +63,8 @@ public:
 	Particle power_up;
 	Particle laser_powerup;
 	Particle laser_powerup_anim;
+	Particle laser_blue;
+	Particle laser_blue2;
+	Particle laser_blue3;
 
 };

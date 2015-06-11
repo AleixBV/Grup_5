@@ -169,6 +169,12 @@ update_status ModulePlayer::Update()
 		{
 			App->particles->AddParticle(App->particles->laser_powerup, position.x + 16, position.y - 15, COLLIDER_PLAYER_SHOT_POWERUP);
 		}
+		if (power_up == 2)
+		{
+			App->particles->AddParticle(App->particles->laser_blue, position.x + 32, position.y + 6, COLLIDER_PLAYER_SHOT);
+			App->particles->AddParticle(App->particles->laser_blue2, position.x + 32, position.y + 6, COLLIDER_PLAYER_SHOT);
+			App->particles->AddParticle(App->particles->laser_blue3, position.x + 32, position.y + 6, COLLIDER_PLAYER_SHOT);
+		}
 		charging = false;
 		charging_animation = false;
 	}
@@ -200,7 +206,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c1->type == COLLIDER_POWER_UP || c2->type == COLLIDER_POWER_UP)
 	{
-		power_up = 1;
+		power_up++;
 	}
 	else if (exploding == false && god_mode == false)
 	{
