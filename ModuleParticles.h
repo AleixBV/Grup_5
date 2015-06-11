@@ -16,6 +16,7 @@ struct Particle
 	Uint32 life;
 	bool fx_played;
 	bool follow_player;
+	unsigned int lifes;
 	Collider* collider;
 
 	Particle();

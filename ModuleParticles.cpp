@@ -56,6 +56,7 @@ bool ModuleParticles::Start()
 	laser_charged1.anim.loop = true;
 	laser_charged1.speed.x = 7;
 	laser_charged1.life = 1000;
+	laser_charged1.lifes = 2;
 	laser_charged1.anim.speed = 0.7f;
 
 	// Laser charged
@@ -65,6 +66,7 @@ bool ModuleParticles::Start()
 	laser_charged2.anim.loop = true;
 	laser_charged2.speed.x = 7;
 	laser_charged2.life = 1000;
+	laser_charged2.lifes = 2;
 	laser_charged2.anim.speed = 0.7f;
 
 	// Laser charged
@@ -74,6 +76,7 @@ bool ModuleParticles::Start()
 	laser_charged3.anim.loop = true;
 	laser_charged3.speed.x = 7;
 	laser_charged3.life = 1000;
+	laser_charged3.lifes = 3;
 	laser_charged3.anim.speed = 0.7f;
 
 	// Laser charged
@@ -83,6 +86,7 @@ bool ModuleParticles::Start()
 	laser_charged4.anim.loop = true;
 	laser_charged4.speed.x = 7;
 	laser_charged4.life = 1000;
+	laser_charged4.lifes = 4;
 	laser_charged4.anim.speed = 0.7f;
 
 	// Laser charged
@@ -92,6 +96,7 @@ bool ModuleParticles::Start()
 	laser_charged5.anim.loop = true;
 	laser_charged5.speed.x = 7;
 	laser_charged5.life = 1000;
+	laser_charged5.lifes = 5;
 	laser_charged5.anim.speed = 0.7f;
 
 	// Laser charged anim
@@ -304,6 +309,18 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 					active.del(tmp);
 					break;
 				}
+
+				else if (c2->type == COLLIDER_ENEMY)
+				{
+					tmp->data->lifes--;
+					if (tmp->data->lifes == 0)
+					{
+						App->particles->AddParticle(App->particles->laser_charged_explosion, c2->rect.x - 28, c1->rect.y + c1->rect.h / 2 - 24);
+						delete tmp->data;
+						active.del(tmp);
+						break;
+					}
+				}
 			}
 
 			else if (c1->type == COLLIDER_PLAYER_SHOT_POWERUP)
@@ -350,7 +367,7 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 // -------------------------------------------------------------
 // -------------------------------------------------------------
 
-Particle::Particle() : fx(0), born(0), life(0), fx_played(false), follow_player(false), collider(NULL)
+Particle::Particle() : fx(0), born(0), life(0), fx_played(false), follow_player(false), lifes(0), collider(NULL)
 {
 	position.SetToZero();
 	speed.SetToZero();
@@ -362,6 +379,7 @@ Particle::Particle(const Particle& p) : anim(p.anim), position(p.position), spee
 	born = p.born;
 	life = p.life;
 	follow_player = p.follow_player;
+	lifes = p.lifes;
 }
 
 Particle::~Particle()
