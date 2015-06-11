@@ -391,24 +391,24 @@ update_status ModuleEnemy::Update()
 							sx = (App->player->position.x - e->position.x);
 							sy = (App->player->position.y - e->position.y);
 
-							if (sx < 0 && sy > -10){
+							if (sx < 0 && sy < 10){
 								frame = &e->anim.frames[0];
 							}
-							if (sx < - 10 && sy > -10){
+							else if (sx <= -10 && sy >= 10){
 								frame = &e->anim.frames[1];
 							}
-							if (sx > -10 && sx < 0 && sy < 0){
+							else if (sx > -10 && sx < 0 && sy >= 0){
 								frame = &e->anim.frames[2];
 							}
 							//---------------------------------
-							if (sx > 0 && sy > -10){
-								frame = &e->anim.frames[5];
+							else if (sx < 10 && sx > 0 && sy >= 0){
+								frame = &e->anim.frames[3];
 							}
-							if (sx > -10 && sy > -10){
+							else if (sx >= 10 && sy >= 10){
 								frame = &e->anim.frames[4];
 							}
-							if (sx < -10 && sx > 0 && sy < 0){
-								frame = &e->anim.frames[3];
+							else if (sx > 0 && sy < 10){
+								frame = &e->anim.frames[5];
 							}
 							
 
@@ -423,25 +423,27 @@ update_status ModuleEnemy::Update()
 							sx = (App->player->position.x - e->position.x);
 							sy = (App->player->position.y - e->position.y);
 
-							if (sx < 0 && sy < -10){
+							if (sx < 0 && sy > -10){
 								frame = &e->anim.frames[0];
 							}
-							if (sx < -10 && sy < -10){
+							else if (sx <= -10 && sy <= -10){
 								frame = &e->anim.frames[1];
 							}
-							if (sx > -10 && sx < 0 && sy > 0){
+							else if (sx > -10 && sx < 0 && sy <= 0){
 								frame = &e->anim.frames[2];
 							}
 							//---------------------------------
-							if (sx > 0 && sy < -10){
-								frame = &e->anim.frames[5];
-							}
-							if (sx > -10 && sy < -10){
-								frame = &e->anim.frames[4];
-							}
-							if (sx < -10 && sx > 0 && sy > 0){
+							else if (sx < 10 && sx > 0 && sy <= 0){
 								frame = &e->anim.frames[3];
 							}
+							else if (sx >= 10 && sy <= -10){
+								frame = &e->anim.frames[4];
+							}
+							else if (sx > 0 && sy > -10){
+								frame = &e->anim.frames[5];
+							}
+							
+							
 							break;
 						}
 
