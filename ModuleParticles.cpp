@@ -36,16 +36,88 @@ bool ModuleParticles::Start()
 	laser.anim.speed = 0.7f;
 
 	// Laser anim
+	//laser_anim.fx = App->audio->LoadFx("rtype/slimeball.wav");
 	laser_anim.anim.frames.PushBack({ 215, 85, 14, 12 });
 	laser_anim.anim.frames.PushBack({ 233, 85, 14, 12 });
-	laser_anim.anim.loop = true;
+	laser_anim.anim.loop = false;
 	laser_anim.anim.speed = 0.7f;
 
 	//laser explosion
+	laser_explosion.fx = App->audio->LoadFx("rtype/slimeball.wav");
 	laser_explosion.anim.frames.PushBack({ 287, 85, 14, 12 });
 	laser_explosion.anim.frames.PushBack({ 300, 85, 14, 12 });
 	laser_explosion.anim.loop = false;
 	laser_explosion.anim.speed = 0.7f;
+
+	// Laser charged
+	laser_charged1.fx = App->audio->LoadFx("rtype/slimeball.wav");
+	laser_charged1.anim.frames.PushBack({ 232, 103, 16, 12 });
+	laser_charged1.anim.frames.PushBack({ 249, 103, 14, 12 });
+	laser_charged1.anim.loop = true;
+	laser_charged1.speed.x = 7;
+	laser_charged1.life = 1000;
+	laser_charged1.anim.speed = 0.7f;
+
+	// Laser charged
+	laser_charged2.fx = App->audio->LoadFx("rtype/slimeball.wav");
+	laser_charged2.anim.frames.PushBack({ 200, 120, 32, 12 });
+	laser_charged2.anim.frames.PushBack({ 233, 120, 14, 12 });
+	laser_charged2.anim.loop = true;
+	laser_charged2.speed.x = 7;
+	laser_charged2.life = 1000;
+	laser_charged2.anim.speed = 0.7f;
+
+	// Laser charged
+	laser_charged3.fx = App->audio->LoadFx("rtype/slimeball.wav");
+	laser_charged3.anim.frames.PushBack({ 168, 136, 48, 14 });
+	laser_charged3.anim.frames.PushBack({ 217, 136, 48, 14 });
+	laser_charged3.anim.loop = true;
+	laser_charged3.speed.x = 7;
+	laser_charged3.life = 1000;
+	laser_charged3.anim.speed = 0.7f;
+
+	// Laser charged
+	laser_charged4.fx = App->audio->LoadFx("rtype/slimeball.wav");
+	laser_charged4.anim.frames.PushBack({ 136, 154, 64, 14 });
+	laser_charged4.anim.frames.PushBack({ 201, 154, 64, 14 });
+	laser_charged4.anim.loop = true;
+	laser_charged4.speed.x = 7;
+	laser_charged4.life = 1000;
+	laser_charged4.anim.speed = 0.7f;
+
+	// Laser charged
+	laser_charged5.fx = App->audio->LoadFx("rtype/slimeball.wav");
+	laser_charged5.anim.frames.PushBack({ 104, 170, 80, 16 });
+	laser_charged5.anim.frames.PushBack({ 185, 170, 80, 16 });
+	laser_charged5.anim.loop = true;
+	laser_charged5.speed.x = 7;
+	laser_charged5.life = 1000;
+	laser_charged5.anim.speed = 0.7f;
+
+	// Laser charged anim
+	//laser_charged_anim.fx = App->audio->LoadFx("rtype/slimeball.wav");
+	laser_charged_anim.anim.frames.PushBack({ 1, 51, 32, 32 });
+	laser_charged_anim.anim.frames.PushBack({ 34, 51, 29, 32 });
+	laser_charged_anim.anim.frames.PushBack({ 67, 51, 30, 32 });
+	laser_charged_anim.anim.frames.PushBack({ 102, 51, 27, 32 });
+	laser_charged_anim.anim.frames.PushBack({ 134, 51, 30, 32 });
+	laser_charged_anim.anim.frames.PushBack({ 167, 51, 27, 32 });
+	laser_charged_anim.anim.frames.PushBack({ 199, 51, 24, 32 });
+	laser_charged_anim.anim.frames.PushBack({ 232, 51, 21, 32 });
+	laser_charged_anim.anim.loop = true;
+	laser_charged_anim.life = 9999999999;
+	laser_charged_anim.anim.speed = 0.1f;
+	laser_charged_anim.follow_player = true;
+
+	// Laser explosion charged
+	//laser_charged_explosion.fx = App->audio->LoadFx("rtype/slimeball.wav");
+	laser_charged_explosion.anim.frames.PushBack({ 0, 191, 56, 48 });
+	laser_charged_explosion.anim.frames.PushBack({ 56, 191, 56, 48 });
+	laser_charged_explosion.anim.frames.PushBack({ 112, 191, 56, 48 });
+	laser_charged_explosion.anim.frames.PushBack({ 168, 191, 56, 48 });
+	laser_charged_explosion.anim.frames.PushBack({ 224, 191, 56, 48 });
+	laser_charged_explosion.anim.loop = false;
+	laser_charged_explosion.anim.speed = 0.2f;
 
 	//Laser powerup
 	laser_powerup.anim.frames.PushBack({ 31, 829, 12, 36 });
@@ -155,6 +227,17 @@ update_status ModuleParticles::Update()
 			}
 		}
 
+		if (p->follow_player == true)
+		{
+			p->position.x = App->player->position.x + 32;
+			p->position.y = App->player->position.y - 9;
+			if (App->player->charging == false)
+			{
+				delete p;
+				active.del(tmp);
+			}
+		}
+
 		tmp = tmp_next;
 	}
 
@@ -170,39 +253,51 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 	{
 		if (tmp->data->collider == c1)
 		{
-			if (App->player->power_up == 0)
+			if (c1->type == COLLIDER_PLAYER_SHOT)
 			{
-				if (c1->type == COLLIDER_PLAYER_SHOT && c2->type == COLLIDER_WALL)
+				if (c2->type == COLLIDER_WALL)
 				{
-					App->particles->AddParticle(App->particles->laser_explosion, c1->rect.x - 5, c1->rect.y - 5);
+					App->particles->AddParticle(App->particles->laser_explosion, c2->rect.x - 14, c1->rect.y - 5);
 				}
 				delete tmp->data;
 				active.del(tmp);
 				break;
 			}
-			else if (App->player->power_up == 1)
+
+			else if (c1->type == COLLIDER_PLAYER_SHOT_CHARGED)
 			{
-				if (c1->type == COLLIDER_PLAYER_SHOT)
+				if (c2->type == COLLIDER_WALL && c2->rect.y > (c1->rect.y + (c1->rect.h / 2) + 2) || (c1->rect.y + (c1->rect.h / 2) - 2) > c2->rect.y + c2->rect.h)
 				{
-					if (c2->type == COLLIDER_WALL && (c1->rect.y + 10 < c2->rect.y && c2->rect.y < c1->rect.y + 22 || c1->rect.y +10 < c2->rect.y + c2->rect.h && c2->rect.y + c2->rect.h < c1->rect.y + 22))
-					{
-						delete tmp->data;
-						active.del(tmp);
-						break;
-					}
-					else
-					{
-
-
-					}
+					
 				}
+				else if (c2->type == COLLIDER_WALL)
+				{
+					App->particles->AddParticle(App->particles->laser_charged_explosion, c2->rect.x - 28, c1->rect.y + c1->rect.h / 2 - 24);
+					delete tmp->data;
+					active.del(tmp);
+					break;
+				}
+			}
 
-				else
+			else if (c1->type == COLLIDER_PLAYER_SHOT_POWERUP)
+			{
+				if (c2->type == COLLIDER_WALL && c2->rect.y > c1->rect.y + 22 || c1->rect.y + 10 > c2->rect.y + c2->rect.h)
+				{
+					
+				}
+				else if (c2->type == COLLIDER_WALL)
 				{
 					delete tmp->data;
 					active.del(tmp);
 					break;
 				}
+			}
+
+			else
+			{
+				delete tmp->data;
+				active.del(tmp);
+				break;
 			}
 		}
 
@@ -228,7 +323,7 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 // -------------------------------------------------------------
 // -------------------------------------------------------------
 
-Particle::Particle() : fx(0), born(0), life(0), fx_played(false), collider(NULL)
+Particle::Particle() : fx(0), born(0), life(0), fx_played(false), follow_player(false), collider(NULL)
 {
 	position.SetToZero();
 	speed.SetToZero();
@@ -239,6 +334,7 @@ Particle::Particle(const Particle& p) : anim(p.anim), position(p.position), spee
 	fx = p.fx;
 	born = p.born;
 	life = p.life;
+	follow_player = p.follow_player;
 }
 
 Particle::~Particle()

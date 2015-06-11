@@ -56,5 +56,8 @@ public:
 
 	int speed = 1;
 	int power_up;
+	unsigned int charge;
+	bool charging;
+	bool charging_animation;
 	bool god_mode;
 };

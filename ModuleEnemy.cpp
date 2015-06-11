@@ -314,7 +314,7 @@ void ModuleEnemy::OnCollision(Collider* c1, Collider* c2)
 		{
 			if (c1 == e->collider || c2 == e->collider)
 			{
-				if (c1->type == COLLIDER_PLAYER_SHOT || c2->type == COLLIDER_PLAYER_SHOT)
+				if (c1->type == COLLIDER_PLAYER_SHOT || c2->type == COLLIDER_PLAYER_SHOT || c1->type == COLLIDER_PLAYER_SHOT_CHARGED || c2->type == COLLIDER_PLAYER_SHOT_CHARGED || c1->type == COLLIDER_PLAYER_SHOT_POWERUP || c2->type == COLLIDER_PLAYER_SHOT_POWERUP)
 				{
 					e->alive = false;
 					e->collider->to_delete = true;
