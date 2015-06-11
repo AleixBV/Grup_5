@@ -48,7 +48,7 @@ bool ModulePlayer::Start()
 	position.x = 120;
 	position.y = 100;
 
-	speed = 1;
+	speed = 1.0f;
 	power_up = 0;
 	player_state = PLAYER_IDLE;
 	Uint32 delay_time = 0;
@@ -75,24 +75,25 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update()
 {
 	player_input = PLAYER_INPUT_IDLE;
+	position.x += speed;
 
 	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 	{
 		if (position.x > (App->renderer->camera.x) / -3)
-			position.x -= 1.2*speed;
+			position.x -= 1.5*speed;
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 	{
 		if (position.x < (App->renderer->camera.x / -3) + SCREEN_WIDTH - 32)
-			position.x += speed;
+			position.x += 1.25*speed;
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
 	{
 		if (position.y < SCREEN_HEIGHT - 16)
 		{
-			position.y += speed;
+			position.y += 1.5*speed;
 
 			player_input = PLAYER_INPUT_DOWN;
 		}
@@ -102,7 +103,7 @@ update_status ModulePlayer::Update()
 	{
 		if (position.y > 0)
 		{
-			position.y -= speed;
+			position.y -= 1.5*speed;
 
 			player_input = PLAYER_INPUT_UP;
 		}

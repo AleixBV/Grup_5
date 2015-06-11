@@ -54,7 +54,7 @@ public:
 
 	bool exploding;
 
-	int speed = 1;
+	float speed;
 	int power_up;
 	bool god_mode;
 };

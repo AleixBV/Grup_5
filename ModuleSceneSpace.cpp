@@ -18,7 +18,7 @@ bool ModuleSceneSpace::Start()
 
 	background = App->textures->Load("rtype/RTYPE-background.png");
 
-	player_speed = 1.0f / 3.0f;
+	//player_speed = 0.33f;
 
 	App->collision->Enable(); // enable before player
 	App->player->Enable();
@@ -193,17 +193,17 @@ bool ModuleSceneSpace::Start()
 	// worm
 	float desfase = 3.14f / 11.0f;
 	App->enemy->AddEnemy(App->enemy->worm, 580, 100, eSin2, (4.0f * desfase));
-	App->enemy->AddEnemy(App->enemy->worm, 585, 100, eSin2, (3.0f * desfase));
-	App->enemy->AddEnemy(App->enemy->worm, 590, 100, eSin2, (2.0f * desfase));
-	App->enemy->AddEnemy(App->enemy->worm, 595, 100, eSin2, (desfase));
-	App->enemy->AddEnemy(App->enemy->worm, 600, 100, eSin2, (0.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 590, 100, eSin2, (3.0f * desfase));
+	App->enemy->AddEnemy(App->enemy->worm, 600, 100, eSin2, (2.0f * desfase));
+	App->enemy->AddEnemy(App->enemy->worm, 610, 100, eSin2, (desfase));
+	App->enemy->AddEnemy(App->enemy->worm, 620, 100, eSin2, (0.0f));
 
 	desfase = 3.14f / 12.0f;
-	App->enemy->AddEnemy(App->enemy->worm, 650, 140, eSin, (4.0f * desfase));
-	App->enemy->AddEnemy(App->enemy->worm, 655, 140, eSin, (3.0f * desfase));
-	App->enemy->AddEnemy(App->enemy->worm, 660, 140, eSin, (2.0f * desfase));
-	App->enemy->AddEnemy(App->enemy->worm, 665, 140, eSin, (1.0f * desfase));
-	App->enemy->AddEnemy(App->enemy->worm, 670, 140, eSin, (0.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 660, 140, eSin, (4.0f * desfase));
+	App->enemy->AddEnemy(App->enemy->worm, 670, 140, eSin, (3.0f * desfase));
+	App->enemy->AddEnemy(App->enemy->worm, 680, 140, eSin, (2.0f * desfase));
+	App->enemy->AddEnemy(App->enemy->worm, 690, 140, eSin, (1.0f * desfase));
+	App->enemy->AddEnemy(App->enemy->worm, 700, 140, eSin, (0.0f));
 	
 	//red
 	App->enemy->AddEnemy(App->enemy->red, 750, 130, eSin, 0.0f);
@@ -248,18 +248,18 @@ bool ModuleSceneSpace::Start()
 
 
 	App->enemy->AddEnemy(App->enemy->worm, 1300, 50, eSin, (3.14f / 4.0f));
-	App->enemy->AddEnemy(App->enemy->worm, 1305, 50, eSin, (3.14f / 8.0f));
-	App->enemy->AddEnemy(App->enemy->worm, 1310, 50, eSin, (3.14f / 12.0f));
-	App->enemy->AddEnemy(App->enemy->worm, 1315, 50, eSin, (3.14f / 16.0f));
-	App->enemy->AddEnemy(App->enemy->worm, 1320, 50, eSin, (0.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 1310, 50, eSin, (3.14f / 8.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 1320, 50, eSin, (3.14f / 12.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 1330, 50, eSin, (3.14f / 16.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 1340, 50, eSin, (0.0f));
 
 	App->enemy->AddEnemy(App->enemy->worm, 1370, 115, eSin, (2.0f));
 
 	App->enemy->AddEnemy(App->enemy->worm, 1965, 0, eCurv, NULL);
-	App->enemy->AddEnemy(App->enemy->worm, 1966, 25, eCurv, NULL);
-	App->enemy->AddEnemy(App->enemy->worm, 1967, 50, eCurv, NULL);
-	App->enemy->AddEnemy(App->enemy->worm, 1968, 75, eCurv, NULL);
-	App->enemy->AddEnemy(App->enemy->worm, 1969, 100, eCurv, NULL);
+	App->enemy->AddEnemy(App->enemy->worm, 1966, 20, eCurv, NULL);
+	App->enemy->AddEnemy(App->enemy->worm, 1967, 40, eCurv, NULL);
+	App->enemy->AddEnemy(App->enemy->worm, 1968, 60, eCurv, NULL);
+	App->enemy->AddEnemy(App->enemy->worm, 1969, 80, eCurv, NULL);
 
 	App->enemy->AddEnemy(App->enemy->red, 2400, 140, eSin, (0.0f));
 	App->enemy->AddEnemy(App->enemy->red, 2410, 150, eSin, (3.14f / 4.0f));
@@ -270,10 +270,10 @@ bool ModuleSceneSpace::Start()
 	
 
 	App->enemy->AddEnemy(App->enemy->worm, 2670, 0, eCurv, NULL);
-	App->enemy->AddEnemy(App->enemy->worm, 2670, 25, eCurv, NULL);
-	App->enemy->AddEnemy(App->enemy->worm, 2670, 50, eCurv, NULL);
-	App->enemy->AddEnemy(App->enemy->worm, 2670, 75, eCurv, NULL);
-	App->enemy->AddEnemy(App->enemy->worm, 2670, 100, eCurv, NULL);
+	App->enemy->AddEnemy(App->enemy->worm, 2670, 20, eCurv, NULL);
+	App->enemy->AddEnemy(App->enemy->worm, 2670, 40, eCurv, NULL);
+	App->enemy->AddEnemy(App->enemy->worm, 2670, 60, eCurv, NULL);
+	App->enemy->AddEnemy(App->enemy->worm, 2670, 80, eCurv, NULL);
 
 
 
@@ -305,8 +305,9 @@ update_status ModuleSceneSpace::Update()
 {
 	// Move camera forward -----------------------------
 
-	App->player->position.x += player_speed;
-	App->renderer->camera.x -= 1;
+	//App->player->position.x += player_speed;
+	//int camera = 2;
+	App->renderer->camera.x -= 3;
 
 	if (App->renderer->camera.x == (-3930 + SCREEN_WIDTH)*SCREEN_SIZE)
 	{
