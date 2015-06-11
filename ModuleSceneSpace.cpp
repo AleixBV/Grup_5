@@ -290,9 +290,9 @@ bool ModuleSceneSpace::Start()
 	App->enemy->AddEnemy(App->enemy->robot, 2425, 155, eBot, NULL);
 	App->enemy->AddEnemy(App->enemy->robot, 2715, 50, eBot, NULL);
 
-	App->enemy->AddEnemy(App->enemy->worm, 500, 0, eBot, NULL);
+	//App->enemy->AddEnemy(App->enemy->worm, 500, 0, eBot, NULL);
 
-
+	App->enemy->AddEnemy(App->enemy->tower, 1690, 30, eT, NULL);
 
 
 

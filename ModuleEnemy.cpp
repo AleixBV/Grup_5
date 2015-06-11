@@ -66,7 +66,23 @@ bool ModuleEnemy::Start()
 	worm.anim.speed = 0.0f;
 	worm.alive = true;
 
-	tower.anim.frames.PushBack({});
+	tower.anim.frames.PushBack({ 210, 90, 16, 16}); //left top
+	tower.anim.frames.PushBack({ 228, 90, 16, 16 }); //left/top top
+	tower.anim.frames.PushBack({ 245, 90, 16, 16 }); // top top l
+	tower.anim.frames.PushBack({ 262, 90, 16, 16 }); // top top r
+	tower.anim.frames.PushBack({ 279, 90, 16, 16 }); //right/top top
+	tower.anim.frames.PushBack({ 296, 90, 16, 16 }); //right top
+
+	tower.anim.frames.PushBack({ 210, 107, 16, 16 }); //left bot
+	tower.anim.frames.PushBack({ 228, 107, 16, 16 }); //left/bot bot
+	tower.anim.frames.PushBack({ 245, 107, 16, 16 }); // bot bot l
+	tower.anim.frames.PushBack({ 262, 107, 16, 16 }); // bot bot r
+	tower.anim.frames.PushBack({ 279, 107, 16, 16 }); //right/bot bot
+	tower.anim.frames.PushBack({ 296, 107, 16, 16 }); //right bot
+	tower.anim.loop = false;
+	tower.anim.speed = 0.0f;
+	tower.alive = true;
+
 
 	robot.anim.frames.PushBack({ 162, 297, 32, 32 });//RW //0
 	robot.anim.frames.PushBack({ 195, 297, 32, 32 }); // 1
@@ -82,7 +98,7 @@ bool ModuleEnemy::Start()
 	robot.anim.frames.PushBack({ 195, 330, 32, 32 }); // 10
 	robot.anim.frames.PushBack({ 230, 330, 32, 32 }); // 11
 	robot.anim.loop = true;
-	robot.anim.speed = 0.5f;
+	robot.anim.speed = 0.0f;
 	robot.alive = true;
 	
 
@@ -218,10 +234,10 @@ update_status ModuleEnemy::Update()
 					if (e->floor == false) 
 						e->position.y++;
 
-					if (e->floor == true && e->right == true) 
+					else if (e->floor == true && e->right == true) 
 						e->position.x++;
 
-					if (e->floor == true && e->right == false) 
+					else if (e->floor == true && e->right == false) 
 						e->position.x--;
 
 										
@@ -333,6 +349,82 @@ update_status ModuleEnemy::Update()
 
 					break;
 				}
+
+				case eT: 
+				{
+					switch (e->type)
+					{
+						case _RED:
+						{
+							break;
+						}
+
+						case _WORM:
+						{
+							break;
+						}
+
+						case _TOWER:
+						{
+							float sx, sy;
+							sx = (App->player->position.x - e->position.x);
+							sy = (App->player->position.y - e->position.y);
+
+							if (sx < 0 && sy < 10){
+								frame = &e->anim.frames[0];
+							}
+							if (sx > 10 && sy < 0){
+								frame = &e->anim.frames[1];
+							}
+							if (sx < 10 && sy < 0){
+								frame = &e->anim.frames[2];
+							}
+							//---------------------------------
+							if (sx > 10 && sy < 0){
+								frame = &e->anim.frames[3];
+							}
+							if (sx < 10 && sy < 0){
+								frame = &e->anim.frames[4];
+							}
+							if (sx > 0 && sy < 10){
+								frame = &e->anim.frames[5];
+							}
+							//---------------------------------
+							//---------------------------------
+							if (sx < 0 && sy > 10){
+								frame = &e->anim.frames[6];
+							}
+							if (sx > 10 && sy > 0){
+								frame = &e->anim.frames[7];
+							}
+							if (sx < 10 && sy > 0){
+								frame = &e->anim.frames[8];
+							}
+							//---------------------------------
+							if (sx > 10 && sy > 0){
+								frame = &e->anim.frames[9];
+							}
+							if (sx < 10 && sy > 0){
+								frame = &e->anim.frames[10];
+							}
+							if (sx > 0 && sy > 10){
+								frame = &e->anim.frames[11];
+							}
+
+
+
+							break;
+						}
+
+						case _ROBOT:
+						{
+							break;
+						}
+
+					}
+
+					break;
+				}
 			}
 		}
 		
@@ -388,13 +480,15 @@ void ModuleEnemy::OnCollision(Collider* c1, Collider* c2)
 					{
 						e->position.y--;
 						e->floor = true;
+						e->right = false;
 					}
 					if (e->floor == true)
 					{
-						if (c1->rect.x > e->position.x || c2->rect.x > e->position.x)
-							e->right = false;
 						if (c1->rect.x < e->position.x || c2->rect.x < e->position.x)
 							e->right = true;
+						if (c1->rect.x > e->position.x || c2->rect.x > e->position.x)
+							e->right = false;
+						
 					}
 
 				}
@@ -419,7 +513,10 @@ Enemy* ModuleEnemy::AddEnemy(const Enemy& enemy, int x, int y, eMov_Type mov, fl
 	e->collider = App->collision->AddCollider({ e->position.x, e->position.y, 21, 24 }, COLLIDER_ENEMY, this);
 
 	if (e->type == _ROBOT)
-	e->collider = App->collision->AddCollider({ e->position.x, e->position.y, 32, 32 }, COLLIDER_ENEMY, this);
+		e->collider = App->collision->AddCollider({ e->position.x, e->position.y, 32, 32 }, COLLIDER_ENEMY, this);
+
+	if (e->type == _TOWER)
+		e->collider = App->collision->AddCollider({ e->position.x, e->position.y, 16, 16 }, COLLIDER_ENEMY, this);
 
 	e->mov_type = mov;
 
