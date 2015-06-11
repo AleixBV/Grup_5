@@ -130,11 +130,38 @@ bool ModuleParticles::Start()
 	laser_powerup.anim.frames.PushBack({ 82, 885, 64, 56 });
 	laser_powerup.anim.frames.PushBack({ 149, 885, 60, 56 });
 	laser_powerup.anim.frames.PushBack({ 212, 885, 64, 56 });
+
+	laser_powerup.anim.frames.PushBack({ 147, 1077, 64, 32 });
+	laser_powerup.anim.frames.PushBack({ 217, 1077, 58, 32 });
+	laser_powerup.anim.frames.PushBack({ 152, 1110, 58, 32 });
+	laser_powerup.anim.frames.PushBack({ 212, 1110, 64, 32 });
+	laser_powerup.anim.frames.PushBack({ 343, 1077, 64, 32 });
+	laser_powerup.anim.frames.PushBack({ 22, 1077, 59, 32 });
+	laser_powerup.anim.frames.PushBack({ 147, 1077, 64, 32 });
+	laser_powerup.anim.frames.PushBack({ 217, 1077, 58, 32 });
+	laser_powerup.anim.frames.PushBack({ 152, 1110, 58, 32 });
+	laser_powerup.anim.frames.PushBack({ 212, 1110, 64, 32 });
+	laser_powerup.anim.frames.PushBack({ 343, 1077, 64, 32 });
+	laser_powerup.anim.frames.PushBack({ 22, 1077, 59, 32 });
+	laser_powerup.anim.frames.PushBack({ 147, 1077, 64, 32 });
+	laser_powerup.anim.frames.PushBack({ 217, 1077, 58, 32 });
+	laser_powerup.anim.frames.PushBack({ 152, 1110, 58, 32 });
+	laser_powerup.anim.frames.PushBack({ 212, 1110, 64, 32 });
+	laser_powerup.anim.frames.PushBack({ 343, 1077, 64, 32 });
+	laser_powerup.anim.frames.PushBack({ 22, 1077, 59, 32 });
+	laser_powerup.anim.frames.PushBack({ 147, 1077, 64, 32 });
+	laser_powerup.anim.frames.PushBack({ 217, 1077, 58, 32 });
+	laser_powerup.anim.frames.PushBack({ 152, 1110, 58, 32 });
+	laser_powerup.anim.frames.PushBack({ 212, 1110, 64, 32 });
+	laser_powerup.anim.frames.PushBack({ 343, 1077, 64, 32 });
+	laser_powerup.anim.frames.PushBack({ 22, 1077, 59, 32 });
+
 	laser_powerup.anim.loop = false;
-	laser_powerup.anim.speed = 0.3f;
+	laser_powerup.anim.speed = 0.5f;
+	laser_powerup.speed.x = 5;
 	laser_powerup_anim.speed.x = 5;
 
-	//Laser powerup_anim
+	/*//Laser powerup_anim
 	laser_powerup_anim.anim.frames.PushBack({ 147, 1077, 64, 32 });
 	laser_powerup_anim.anim.frames.PushBack({ 217, 1077, 58, 32 });
 	laser_powerup_anim.anim.frames.PushBack({ 152, 1110, 58, 32 });
@@ -144,7 +171,7 @@ bool ModuleParticles::Start()
 	laser_powerup_anim.anim.loop = true;
 	laser_powerup_anim.anim.speed = 0.3f;
 	laser_powerup_anim.speed.x = 5;
-	laser_powerup_anim.life = 1000;
+	laser_powerup_anim.life = 1000;*/
 
 	//Explosion_Player
 	explosion.anim.frames.PushBack({ 1, 343, 32, 28 });

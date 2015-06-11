@@ -48,7 +48,7 @@ bool ModulePlayer::Start()
 	position.x = 120;
 	position.y = 100;
 
-	speed = 1;
+	speed = 1.0f;
 	power_up = 0;
 	charge = 0;
 	charging = false;
@@ -78,24 +78,25 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update()
 {
 	player_input = PLAYER_INPUT_IDLE;
+	position.x += speed;
 
 	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 	{
 		if (position.x > (App->renderer->camera.x) / -3)
-			position.x -= 1.2*speed;
+			position.x -= 1.5*speed;
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 	{
 		if (position.x < (App->renderer->camera.x / -3) + SCREEN_WIDTH - 32)
-			position.x += speed;
+			position.x += 1.25*speed;
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
 	{
 		if (position.y < SCREEN_HEIGHT - 16)
 		{
-			position.y += speed;
+			position.y += 1.5*speed;
 
 			player_input = PLAYER_INPUT_DOWN;
 		}
@@ -105,7 +106,7 @@ update_status ModulePlayer::Update()
 	{
 		if (position.y > 0)
 		{
-			position.y -= speed;
+			position.y -= 1.5*speed;
 
 			player_input = PLAYER_INPUT_UP;
 		}
@@ -166,10 +167,7 @@ update_status ModulePlayer::Update()
 
 		if (power_up == 1)
 		{
-			
 			App->particles->AddParticle(App->particles->laser_powerup, position.x + 16, position.y - 15, COLLIDER_PLAYER_SHOT_POWERUP);
-			App->particles->AddParticle(App->particles->laser_powerup_anim, position.x + 25, position.y - 9, COLLIDER_PLAYER_SHOT_POWERUP);
-			
 		}
 		charging = false;
 		charging_animation = false;
