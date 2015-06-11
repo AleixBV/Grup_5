@@ -73,6 +73,9 @@ bool ModuleEnemy::Start()
 	tower2.anim.frames.PushBack({ 262, 90, 16, 16 }); // top top r
 	tower2.anim.frames.PushBack({ 279, 90, 16, 16 }); //right/top top
 	tower2.anim.frames.PushBack({ 296, 90, 16, 16 }); //right top
+	tower2.anim.loop = false;
+	tower2.anim.speed = 0.0f;
+	tower2.alive = true;
 
 	tower.anim.frames.PushBack({ 210, 107, 16, 16 }); //left bot
 	tower.anim.frames.PushBack({ 228, 107, 16, 16 }); //left/bot bot
@@ -421,23 +424,23 @@ update_status ModuleEnemy::Update()
 							sy = (App->player->position.y - e->position.y);
 
 							if (sx < 0 && sy < -10){
-								frame = &e->anim.frames[6];
+								frame = &e->anim.frames[0];
 							}
 							if (sx < -10 && sy < -10){
-								frame = &e->anim.frames[7];
+								frame = &e->anim.frames[1];
 							}
 							if (sx > -10 && sx < 0 && sy > 0){
-								frame = &e->anim.frames[8];
+								frame = &e->anim.frames[2];
 							}
 							//---------------------------------
 							if (sx > 0 && sy < -10){
-								frame = &e->anim.frames[11];
+								frame = &e->anim.frames[5];
 							}
 							if (sx > -10 && sy < -10){
-								frame = &e->anim.frames[10];
+								frame = &e->anim.frames[4];
 							}
 							if (sx < -10 && sx > 0 && sy > 0){
-								frame = &e->anim.frames[9];
+								frame = &e->anim.frames[3];
 							}
 							break;
 						}
