@@ -10,6 +10,7 @@ ModuleEnemy::ModuleEnemy(Application* app, bool start_enabled) : Module(app, sta
 	red.type = _RED;
 	worm.type = _WORM;
 	tower.type = _TOWER;
+	tower2.type = _TOWER2;
 	robot.type = _ROBOT;
 }
 
@@ -66,12 +67,12 @@ bool ModuleEnemy::Start()
 	worm.anim.speed = 0.0f;
 	worm.alive = true;
 
-	tower.anim.frames.PushBack({ 210, 90, 16, 16}); //left top
-	tower.anim.frames.PushBack({ 228, 90, 16, 16 }); //left/top top
-	tower.anim.frames.PushBack({ 245, 90, 16, 16 }); // top top l
-	tower.anim.frames.PushBack({ 262, 90, 16, 16 }); // top top r
-	tower.anim.frames.PushBack({ 279, 90, 16, 16 }); //right/top top
-	tower.anim.frames.PushBack({ 296, 90, 16, 16 }); //right top
+	tower2.anim.frames.PushBack({ 210, 90, 16, 16}); //left top
+	tower2.anim.frames.PushBack({ 228, 90, 16, 16 }); //left/top top
+	tower2.anim.frames.PushBack({ 245, 90, 16, 16 }); // top top l
+	tower2.anim.frames.PushBack({ 262, 90, 16, 16 }); // top top r
+	tower2.anim.frames.PushBack({ 279, 90, 16, 16 }); //right/top top
+	tower2.anim.frames.PushBack({ 296, 90, 16, 16 }); //right top
 
 	tower.anim.frames.PushBack({ 210, 107, 16, 16 }); //left bot
 	tower.anim.frames.PushBack({ 228, 107, 16, 16 }); //left/bot bot
@@ -79,6 +80,7 @@ bool ModuleEnemy::Start()
 	tower.anim.frames.PushBack({ 262, 107, 16, 16 }); // bot bot r
 	tower.anim.frames.PushBack({ 279, 107, 16, 16 }); //right/bot bot
 	tower.anim.frames.PushBack({ 296, 107, 16, 16 }); //right bot
+
 	tower.anim.loop = false;
 	tower.anim.speed = 0.0f;
 	tower.alive = true;
@@ -182,6 +184,10 @@ update_status ModuleEnemy::Update()
 						{
 							break;
 						}
+						case _TOWER2:
+						{
+							break;
+						}
 
 						case _ROBOT:
 						{
@@ -215,6 +221,10 @@ update_status ModuleEnemy::Update()
 					}
 
 					case _TOWER:
+					{
+						break;
+					}
+					case _TOWER2:
 					{
 						break;
 					}
@@ -254,6 +264,10 @@ update_status ModuleEnemy::Update()
 						}
 
 						case _TOWER:
+						{
+							break;
+						}
+						case _TOWER2:
 						{
 							break;
 						}
@@ -339,6 +353,10 @@ update_status ModuleEnemy::Update()
 					{
 						break;
 					}
+					case _TOWER2:
+					{
+						break;
+					}
 
 					case _ROBOT:
 					{
@@ -370,49 +388,57 @@ update_status ModuleEnemy::Update()
 							sx = (App->player->position.x - e->position.x);
 							sy = (App->player->position.y - e->position.y);
 
-							if (sx < 0 && sy < 10){
+							if (sx < 0 && sy > -10){
 								frame = &e->anim.frames[0];
 							}
-							if (sx > 10 && sy < 0){
+							if (sx < - 10 && sy > -10){
 								frame = &e->anim.frames[1];
 							}
-							if (sx < 10 && sy < 0){
+							if (sx > -10 && sx < 0 && sy < 0){
 								frame = &e->anim.frames[2];
 							}
 							//---------------------------------
-							if (sx > 10 && sy < 0){
-								frame = &e->anim.frames[3];
-							}
-							if (sx < 10 && sy < 0){
-								frame = &e->anim.frames[4];
-							}
-							if (sx > 0 && sy < 10){
+							if (sx > 0 && sy > -10){
 								frame = &e->anim.frames[5];
 							}
-							//---------------------------------
-							//---------------------------------
-							if (sx < 0 && sy > 10){
+							if (sx > -10 && sy > -10){
+								frame = &e->anim.frames[4];
+							}
+							if (sx < -10 && sx > 0 && sy < 0){
+								frame = &e->anim.frames[3];
+							}
+							
+
+
+
+
+							break;
+						}
+						case _TOWER2:
+						{
+							float sx, sy;
+							sx = (App->player->position.x - e->position.x);
+							sy = (App->player->position.y - e->position.y);
+
+							if (sx < 0 && sy < -10){
 								frame = &e->anim.frames[6];
 							}
-							if (sx > 10 && sy > 0){
+							if (sx < -10 && sy < -10){
 								frame = &e->anim.frames[7];
 							}
-							if (sx < 10 && sy > 0){
+							if (sx > -10 && sx < 0 && sy > 0){
 								frame = &e->anim.frames[8];
 							}
 							//---------------------------------
-							if (sx > 10 && sy > 0){
-								frame = &e->anim.frames[9];
-							}
-							if (sx < 10 && sy > 0){
-								frame = &e->anim.frames[10];
-							}
-							if (sx > 0 && sy > 10){
+							if (sx > 0 && sy < -10){
 								frame = &e->anim.frames[11];
 							}
-
-
-
+							if (sx > -10 && sy < -10){
+								frame = &e->anim.frames[10];
+							}
+							if (sx < -10 && sx > 0 && sy > 0){
+								frame = &e->anim.frames[9];
+							}
 							break;
 						}
 
@@ -515,7 +541,7 @@ Enemy* ModuleEnemy::AddEnemy(const Enemy& enemy, int x, int y, eMov_Type mov, fl
 	if (e->type == _ROBOT)
 		e->collider = App->collision->AddCollider({ e->position.x, e->position.y, 32, 32 }, COLLIDER_ENEMY, this);
 
-	if (e->type == _TOWER)
+	if (e->type == _TOWER && e->type == _TOWER2)
 		e->collider = App->collision->AddCollider({ e->position.x, e->position.y, 16, 16 }, COLLIDER_ENEMY, this);
 
 	e->mov_type = mov;

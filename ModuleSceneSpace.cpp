@@ -292,34 +292,34 @@ bool ModuleSceneSpace::Start()
 
 	//App->enemy->AddEnemy(App->enemy->worm, 500, 0, eBot, NULL);
 
-	App->enemy->AddEnemy(App->enemy->tower, 1690, 30, eT, NULL);
-	App->enemy->AddEnemy(App->enemy->tower, 1722, 30, eT, NULL);
-	App->enemy->AddEnemy(App->enemy->tower, 1756, 46, eT, NULL);
-	App->enemy->AddEnemy(App->enemy->tower, 1787, 46, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower2, 1690, 30, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower2, 1722, 30, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower2, 1756, 46, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower2, 1787, 46, eT, NULL);
 	App->enemy->AddEnemy(App->enemy->tower, 1690, 194, eT, NULL);
 	App->enemy->AddEnemy(App->enemy->tower, 1722, 194, eT, NULL);
 	App->enemy->AddEnemy(App->enemy->tower, 1756, 178, eT, NULL);
 	App->enemy->AddEnemy(App->enemy->tower, 1787, 178, eT, NULL);
-	App->enemy->AddEnemy(App->enemy->tower, 2009, 14, eT, NULL);
-	App->enemy->AddEnemy(App->enemy->tower, 2044, 14, eT, NULL);
-	App->enemy->AddEnemy(App->enemy->tower, 2394, 31, eT, NULL);
-	App->enemy->AddEnemy(App->enemy->tower, 2427, 31, eT, NULL);
-	App->enemy->AddEnemy(App->enemy->tower, 2458, 14, eT, NULL);
-	App->enemy->AddEnemy(App->enemy->tower, 2489, 14, eT, NULL);
-	App->enemy->AddEnemy(App->enemy->tower, 2521, 14, eT, NULL);
-	App->enemy->AddEnemy(App->enemy->tower, 2553, 14, eT, NULL);
-	App->enemy->AddEnemy(App->enemy->tower, 2587, 14, eT, NULL);
-	App->enemy->AddEnemy(App->enemy->tower, 2619, 14, eT, NULL);
-	App->enemy->AddEnemy(App->enemy->tower, 2713, 48, eT, NULL);
-	App->enemy->AddEnemy(App->enemy->tower, 2747, 48, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower2, 2009, 14, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower2, 2044, 14, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower2, 2394, 31, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower2, 2427, 31, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower2, 2458, 14, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower2, 2489, 14, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower2, 2521, 14, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower2, 2553, 14, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower2, 2587, 14, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower2, 2619, 14, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower2, 2713, 48, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower2, 2747, 48, eT, NULL);
 	App->enemy->AddEnemy(App->enemy->tower, 2713, 178, eT, NULL);
 	App->enemy->AddEnemy(App->enemy->tower, 2747, 178, eT, NULL);
-	App->enemy->AddEnemy(App->enemy->tower, 3033, 14, eT, NULL);
-	App->enemy->AddEnemy(App->enemy->tower, 3065, 14, eT, NULL);
-	App->enemy->AddEnemy(App->enemy->tower, 3099, 14, eT, NULL);
-	App->enemy->AddEnemy(App->enemy->tower, 3129, 14, eT, NULL);
-	App->enemy->AddEnemy(App->enemy->tower, 3168, 30, eT, NULL);
-	App->enemy->AddEnemy(App->enemy->tower, 3193, 30, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower2, 3033, 14, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower2, 3065, 14, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower2, 3099, 14, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower2, 3129, 14, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower2, 3168, 30, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower2, 3193, 30, eT, NULL);
 
 
 

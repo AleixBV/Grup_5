@@ -11,6 +11,7 @@
 #define _WORM 1
 #define _TOWER 2
 #define _ROBOT 3
+#define _TOWER2 4
 
 enum eMov_Type
 {
@@ -68,6 +69,7 @@ public:
 	Enemy red;
 	Enemy worm;
 	Enemy tower;
+	Enemy tower2;
 	Enemy robot;
 
 
