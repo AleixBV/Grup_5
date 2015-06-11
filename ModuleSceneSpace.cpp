@@ -278,7 +278,23 @@ bool ModuleSceneSpace::Start()
 
 
 	//tryouts
-	//App->enemy->AddEnemy(App->enemy->worm, 1610, 140, eBot, NULL);
+	App->enemy->AddEnemy(App->enemy->robot, 558, 188, eBot, NULL);
+	App->enemy->AddEnemy(App->enemy->robot, 970, 188, eBot, NULL);
+	App->enemy->AddEnemy(App->enemy->robot, 1100, 188, eBot, NULL);
+	App->enemy->AddEnemy(App->enemy->robot, 1150, 188, eBot, NULL);
+	App->enemy->AddEnemy(App->enemy->robot, 1200, 188, eBot, NULL);
+	App->enemy->AddEnemy(App->enemy->robot, 1270, 160, eBot, NULL);
+	App->enemy->AddEnemy(App->enemy->robot, 1340, 0, eBot, NULL);
+	App->enemy->AddEnemy(App->enemy->robot, 1645, 188, eBot, NULL);
+	App->enemy->AddEnemy(App->enemy->robot, 1785, 155, eBot, NULL);
+	App->enemy->AddEnemy(App->enemy->robot, 2425, 155, eBot, NULL);
+	App->enemy->AddEnemy(App->enemy->robot, 2715, 50, eBot, NULL);
+
+	App->enemy->AddEnemy(App->enemy->worm, 500, 0, eBot, NULL);
+
+
+
+
 
 
 	App->particles->AddParticle(App->particles->power_up, 740, 178, COLLIDER_POWER_UP);

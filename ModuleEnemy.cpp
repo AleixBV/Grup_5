@@ -68,12 +68,21 @@ bool ModuleEnemy::Start()
 
 	tower.anim.frames.PushBack({});
 
-	srand(time(NULL));
-	robot.anim.frames.PushBack({ 297, 162, 32, 32 });
-	robot.anim.frames.PushBack({ 297, 195, 32, 32 });
-	robot.anim.frames.PushBack({ 297, 230, 32, 32 });
+	robot.anim.frames.PushBack({ 162, 297, 32, 32 });//RW //0
+	robot.anim.frames.PushBack({ 195, 297, 32, 32 }); // 1
+	robot.anim.frames.PushBack({ 230, 297, 32, 32 }); // 2
+	robot.anim.frames.PushBack({ 164, 330, 32, 32 });//RF // 3
+	robot.anim.frames.PushBack({ 195, 330, 32, 32 }); // 4
+	robot.anim.frames.PushBack({ 228, 330, 32, 32 }); // 5
+
+	robot.anim.frames.PushBack({ 264, 297, 32, 32 });//LW // 6
+	robot.anim.frames.PushBack({ 295, 297, 32, 32 }); // 7
+	robot.anim.frames.PushBack({ 328, 297, 32, 32 }); // 8
+	robot.anim.frames.PushBack({ 262, 330, 32, 32 });//LF // 9
+	robot.anim.frames.PushBack({ 195, 330, 32, 32 }); // 10
+	robot.anim.frames.PushBack({ 230, 330, 32, 32 }); // 11
 	robot.anim.loop = true;
-	robot.anim.speed = 0.1f;
+	robot.anim.speed = 0.5f;
 	robot.alive = true;
 	
 
@@ -206,17 +215,70 @@ update_status ModuleEnemy::Update()
 
 				case eBot:
 				{
-					if (e->floor == false)
+					if (e->floor == false) 
 						e->position.y++;
 
-					if (e->floor == true && e->right == true)
+					if (e->floor == true && e->right == true) 
 						e->position.x++;
 
-					if (e->floor == true && e->right == false)
+					if (e->floor == true && e->right == false) 
 						e->position.x--;
 
+										
+					switch (e->type)
+					{
+						case _RED:
+						{
+							break;
+						}
+	
+						case _WORM:
+						{
+							break;
+						}
+
+						case _TOWER:
+						{
+							break;
+						}
+
+						case _ROBOT:
+						{
+							if (e->floor == false) 
+							{
+								frame = &e->anim.frames[3];
+							}
+	
+							else if (e->floor == true && e->right == true) 
+							{
+								unsigned int frame_num = 6;
+								if (frame_num != 8)
+									frame_num++;
+
+								if (frame_num == 8)
+									frame_num = 6;
+
+								frame = &e->anim.frames[frame_num];
+							}
+
+							else if (e->floor == true && e->right == false)
+							{
+								unsigned int frame_num = (10 - 10);
+								if (frame_num != (12 - 10))
+									frame_num++;
+
+								if (frame_num == (12 - 10))
+									frame_num = (10 - 10);
+
+								frame = &e->anim.frames[frame_num];
+							}
+
+							break;
+						}
+
+					}
 					break;
-					
+						
 				}
 
 				case eCurv:
@@ -353,8 +415,11 @@ Enemy* ModuleEnemy::AddEnemy(const Enemy& enemy, int x, int y, eMov_Type mov, fl
 	e->position.y = y;
 	e->fase = fase;
 	e->initial_height = y;
-
+	if (e->type == _RED || e->type == _WORM)
 	e->collider = App->collision->AddCollider({ e->position.x, e->position.y, 21, 24 }, COLLIDER_ENEMY, this);
+
+	if (e->type == _ROBOT)
+	e->collider = App->collision->AddCollider({ e->position.x, e->position.y, 32, 32 }, COLLIDER_ENEMY, this);
 
 	e->mov_type = mov;
 
