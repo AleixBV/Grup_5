@@ -85,8 +85,6 @@ bool ModuleBoss::Start()
 	shot.loop = false;
 	shot.speed = 0.1f;
 
-	//explosion.frames.PushBack({ 576, 2064, 22, 19 });
-
 
 	collider_skin_head = App->collision->AddCollider({ 3930-165, 17, 105, 84 }, COLLIDER_WALL, this);
 	collider_skin_neck = App->collision->AddCollider({ 3930 - 81, 102, 21, 11}, COLLIDER_WALL, this);
@@ -163,6 +161,15 @@ update_status ModuleBoss::Update()
 	case 0:
 		frame = eye[2].GetCurrentFrame();
 		App->renderer->Blit(graphics, 3930 - 198 + 191 - frame.w, 141, &eye[2].GetCurrentFrame());
+
+		App->particles->AddParticle(App->particles->boss_ex, 3830, 25);
+		App->particles->AddParticle(App->particles->boss_ex, 3900, 75);
+		App->particles->AddParticle(App->particles->boss_ex, 3850, 100);
+		App->particles->AddParticle(App->particles->boss_ex, 3870, 125);
+		App->particles->AddParticle(App->particles->boss_ex, 3890, 150);
+		App->particles->AddParticle(App->particles->enemy_death, 3840, 30);
+		App->particles->AddParticle(App->particles->enemy_death, 3840, 90);
+		App->particles->AddParticle(App->particles->enemy_death, 3840, 150);
 
 		break;
 	}

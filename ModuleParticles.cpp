@@ -250,6 +250,20 @@ bool ModuleParticles::Start()
 	laser_blue3.speed.y = 7;
 	laser_blue3.life = 10000;
 
+
+	boss_ex.anim.frames.PushBack({ 64, 415, 64, 64 });
+	boss_ex.anim.frames.PushBack({ 129, 415, 64, 64 });
+	boss_ex.anim.frames.PushBack({ 195, 415, 64, 64 });
+	boss_ex.anim.frames.PushBack({ 260, 415, 64, 64 });
+	boss_ex.anim.frames.PushBack({ 0, 481, 64, 64 });
+	boss_ex.anim.frames.PushBack({ 64, 481, 64, 64 });
+	boss_ex.anim.frames.PushBack({ 129, 481, 64, 64 });
+	boss_ex.anim.frames.PushBack({ 194, 481, 64, 64 });
+	boss_ex.anim.frames.PushBack({ 259, 481, 64, 64 });
+	boss_ex.anim.loop = false;
+	boss_ex.anim.speed = 0.2f;
+
+
 	return true;
 }
 
