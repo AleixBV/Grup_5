@@ -54,7 +54,7 @@ public:
 
 	bool exploding;
 
-	float speed;
+	float speed = 1.0f;
 	int power_up;
 	unsigned int charge;
 	bool charging;
