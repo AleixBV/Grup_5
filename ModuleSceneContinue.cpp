@@ -20,13 +20,16 @@ bool ModuleSceneContinue::Start()
 	App->player->exploding = false;
 
 	graphics = App->textures->Load("rtype/continue.png");
-	fx_continue = App->audio->LoadFx("rtype/continue.ogg");
+	//fx_continue = App->audio->LoadFx("rtype/continue.ogg");
+	fx_continue = App->audio->LoadFx("rtype/continue.wav");
 	App->audio->PlayMusic("rtype/Nothing.ogg", 0.0f);
 	App->renderer->camera.x = App->renderer->camera.y = 0;
 
 	time = SDL_GetTicks();
 
 	App->audio->PlayFx(fx_continue);
+
+	App->particles->AddParticle(App->particles->numbers, SCREEN_WIDTH / 2 - 24, SCREEN_HEIGHT / 2 - 35);
 
 	return ret;
 }
@@ -53,53 +56,9 @@ update_status ModuleSceneContinue::Update()
 		fade_out = true;
 	}
 
-	if (SDL_GetTicks() - time < 1000)//10
+	if (SDL_GetTicks() - time < 12000)
 	{
-
-	}
-	else if (SDL_GetTicks() - time < 2000)//9
-	{
-
-	}
-	else if (SDL_GetTicks() - time < 3000)//8
-	{
-
-	}
-	else if (SDL_GetTicks() - time < 4000)//7
-	{
-
-	}
-	else if (SDL_GetTicks() - time < 5000)//6
-	{
-
-	}
-	else if (SDL_GetTicks() - time < 6000)//5
-	{
-
-	}
-	else if (SDL_GetTicks() - time < 7000)//4
-	{
-
-	}
-	else if (SDL_GetTicks() - time < 8000)//3
-	{
-
-	}
-	else if (SDL_GetTicks() - time < 9000)//2
-	{
-
-	}
-	else if (SDL_GetTicks() - time < 10000)//1
-	{
-
-	}
-	else if (SDL_GetTicks() - time < 11000)//0
-	{
-
-	}
-	else if (SDL_GetTicks() - time < 12000)
-	{
-		App->fade->FadeToBlack(App->scene_continue, App->scene_intro);
+		App->fade->FadeToBlack(App->scene_continue, App->scene_intro, 1.0f);
 	}
 
 	return UPDATE_CONTINUE;

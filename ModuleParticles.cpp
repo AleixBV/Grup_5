@@ -263,6 +263,20 @@ bool ModuleParticles::Start()
 	boss_ex.anim.loop = false;
 	boss_ex.anim.speed = 0.2f;
 
+	//numbers
+	numbers.anim.frames.PushBack({ 8, 1376, 48, 71 });
+	numbers.anim.frames.PushBack({ 75, 1376, 48, 71 });
+	numbers.anim.frames.PushBack({ 142, 1376, 48, 71 });
+	numbers.anim.frames.PushBack({ 209, 1376, 48, 71 });
+	numbers.anim.frames.PushBack({ 276, 1376, 48, 71 });
+	numbers.anim.frames.PushBack({ 340, 1376, 48, 71 });
+	numbers.anim.frames.PushBack({ 411, 1376, 48, 71 });
+	numbers.anim.frames.PushBack({ 477, 1376, 48, 71 });
+	numbers.anim.frames.PushBack({ 538, 1376, 48, 71 });
+	numbers.anim.frames.PushBack({ 608, 1376, 48, 71 });
+	numbers.anim.frames.PushBack({ 608, 1376, 48, 71 });
+	numbers.anim.loop = false;
+	numbers.anim.speed = 0.015f;
 
 	//UI
 	// lifes

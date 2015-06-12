@@ -102,7 +102,7 @@ bool ModuleBoss::Start()
 bool ModuleBoss::CleanUp()
 {
 	LOG("Unloading Boss");
-	delete[] tail;
+	//delete[] tail;
 	App->textures->Unload(graphics);
 
 	return true;

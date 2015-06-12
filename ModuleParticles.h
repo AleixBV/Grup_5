@@ -73,6 +73,7 @@ public:
 	Particle laser_blue;
 	Particle laser_blue2;
 	Particle laser_blue3;
+	Particle numbers;
 	Particle boss_ex;
 
 	//UI
