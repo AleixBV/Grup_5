@@ -337,10 +337,10 @@ update_status ModuleEnemy::Update()
 					{
 						
 
-						if (e->position.y < 100)
+						if (e->position.y < 90)
 							frame = &e->anim.frames[8];
 
-						else if (110 > e->position.y && e->position.y >= 100)
+						else if (100 > e->position.y && e->position.y >= 110)
 						{
 							unsigned int frame_num = (e->position.y - 100) / 10 ;
 							frame = &e->anim.frames[7 - frame_num];

@@ -42,7 +42,6 @@ public:
 	void Arrival();
 	void Shooting();
 	void Die();
-	bool shooting;
 
 private:
 
@@ -59,11 +58,14 @@ private:
 	Collider* collider_skin_bottom;
 	Collider* collider_baby;
 	Particle shoot;
-	bool alive;
+
 	bool ship_is_here;
 	bool can_shoot;
 	int num_hits;
 	BossTail* tail;
 
 	SDL_Texture* graphics;
+
+public:
+	bool alive;
 };

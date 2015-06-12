@@ -305,6 +305,14 @@ bool ModuleParticles::Start()
 	bar.anim.speed = 0.0f;
 	bar.bar = true;
 
+	//Boss boss_sh.anim
+	boss_sh.anim.frames.PushBack({ 576, 2064, 22, 19 });
+	boss_sh.anim.frames.PushBack({ 601, 2064, 22, 19 });
+	boss_sh.anim.frames.PushBack({ 626, 2064, 22, 19 });
+	boss_sh.anim.frames.PushBack({ 652, 2064, 22, 19 });
+	boss_sh.anim.loop = false;
+	boss_sh.anim.speed = 0.1f;
+
 	bar_move = 0;
 
 	return true;

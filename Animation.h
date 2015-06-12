@@ -45,4 +45,17 @@ public:
 	{
 		current_frame = 0;
 	}
+
+	bool IsOver()
+	{
+		if (frames.At((int)current_frame + 1) == NULL && loop == false)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+
+	}
 };

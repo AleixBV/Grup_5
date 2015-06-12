@@ -13,8 +13,6 @@ ModuleBoss::~ModuleBoss()
 
 bool ModuleBoss::Start()
 {
-	shooting = false;
-	alive = true;
 	ship_is_here = false;
 	can_shoot = false;
 
@@ -81,13 +79,6 @@ bool ModuleBoss::Start()
 	baby_shot_after.loop = false;
 	baby_shot_after.speed = 0.1f;
 
-	shot.frames.PushBack({ 576, 2064, 22, 19 });
-	shot.frames.PushBack({ 601, 2064, 22, 19 });
-	shot.frames.PushBack({ 626, 2064, 22, 19 });
-	shot.frames.PushBack({ 652, 2064, 22, 19 });
-	shot.loop = false;
-	shot.speed = 0.1f;
-
 
 	collider_skin_head = App->collision->AddCollider({ 3930-165, 17, 105, 84 }, COLLIDER_WALL, this);
 	collider_skin_neck = App->collision->AddCollider({ 3930 - 81, 102, 21, 11}, COLLIDER_WALL, this);
@@ -120,81 +111,67 @@ update_status ModuleBoss::Update()
 	if (alive)
 	{
 		App->renderer->Blit(graphics, 3930 - 165, 17, &body.GetCurrentFrame());
-		if (num_hits == 0)
+
+		if (ship_is_here)
 		{
-			alive = false;
+			App->renderer->Blit(graphics, 3930 - 93, 111, &baby.GetCurrentFrame());
+
+			if (baby.IsOver())
+			{
+				can_shoot = true;
+				Shooting();
+			}
+
 		}
-	}
-	
-  
-	if (ship_is_here)
-	{
-		App->renderer->Blit(graphics, 3930 - 93, 111, &baby.GetCurrentFrame());
-		
-		
-	}
 
-	if (shooting)
-	{
-		App->renderer->Blit(graphics, 3930 - 93, 111, &shot.GetCurrentFrame());
-		can_shoot = false;
 
-		if (&shot.PeekCurrentFrame() == &shot.frames[4])
+		SDL_Rect frame;
+
+		switch (num_hits)
 		{
-			shooting = false;
-			Sleep(1000);
-			can_shoot = true;
-		}
-	}
+		case 3:
+			App->renderer->Blit(graphics, 3930 - 198, 17, &eye[0].frames[0]);
+			App->renderer->Blit(graphics, 3930 - 109, 70, &eye[1].frames[0]);
+			App->renderer->Blit(graphics, 3930 - 198, 141, &eye[2].frames[0]);
+			break;
 
-	SDL_Rect frame;
-	
-	switch (num_hits)
-	{
-	case 3:
-		App->renderer->Blit(graphics, 3930 - 198, 17, &eye[0].frames[0]);
-		App->renderer->Blit(graphics, 3930 - 109, 70, &eye[1].frames[0]);
-		App->renderer->Blit(graphics, 3930 - 198, 141, &eye[2].frames[0]);
-		break;
+		case 2:
+			frame = eye[0].GetCurrentFrame();
+			App->renderer->Blit(graphics, 3930 - 198 + 193 - frame.w, 17, &frame);
+			App->renderer->Blit(graphics, 3930 - 109, 70, &eye[1].frames[0]);
+			App->renderer->Blit(graphics, 3930 - 198, 141, &eye[2].frames[0]);
+			break;
 
-	case 2:
-		frame = eye[0].GetCurrentFrame();
-		App->renderer->Blit(graphics, 3930 - 198 + 193 - frame.w, 17, &frame);
-		App->renderer->Blit(graphics, 3930 - 109, 70, &eye[1].frames[0]);
-		App->renderer->Blit(graphics, 3930 - 198, 141, &eye[2].frames[0]);
-		break;
+		case 1:
+			frame = eye[1].GetCurrentFrame();
+			App->renderer->Blit(graphics, 3930 - 109 + 104 - frame.w, 70, &eye[1].GetCurrentFrame());
+			App->renderer->Blit(graphics, 3930 - 198, 141, &eye[2].frames[0]);
+			break;
 
-	case 1:
-		frame = eye[1].GetCurrentFrame();
-		App->renderer->Blit(graphics, 3930 - 109 + 104 - frame.w, 70, &eye[1].GetCurrentFrame());
-		App->renderer->Blit(graphics, 3930 - 198, 141, &eye[2].frames[0]);
-		break;
+		case 0:
+			frame = eye[2].GetCurrentFrame();
+			App->renderer->Blit(graphics, 3930 - 198 + 191 - frame.w, 141, &eye[2].GetCurrentFrame());
 
-	case 0:
-		frame = eye[2].GetCurrentFrame();
-		App->renderer->Blit(graphics, 3930 - 198 + 191 - frame.w, 141, &eye[2].GetCurrentFrame());
+			if (eye[2].IsOver())
+			{
 
-		App->particles->AddParticle(App->particles->boss_ex, 3830, 25);
-		App->particles->AddParticle(App->particles->boss_ex, 3900, 75);
-		App->particles->AddParticle(App->particles->boss_ex, 3850, 100);
-		App->particles->AddParticle(App->particles->boss_ex, 3870, 125);
-		App->particles->AddParticle(App->particles->boss_ex, 3890, 150);
-		App->particles->AddParticle(App->particles->enemy_death, 3840, 30);
-		App->particles->AddParticle(App->particles->enemy_death, 3840, 90);
-		App->particles->AddParticle(App->particles->enemy_death, 3840, 150);
+			App->particles->AddParticle(App->particles->boss_ex, 3830, 25);
+			App->particles->AddParticle(App->particles->boss_ex, 3900, 75);
+			App->particles->AddParticle(App->particles->boss_ex, 3850, 100);
+			App->particles->AddParticle(App->particles->boss_ex, 3870, 125);
+			App->particles->AddParticle(App->particles->boss_ex, 3890, 150);
+			App->particles->AddParticle(App->particles->enemy_death, 3840, 30);
+			App->particles->AddParticle(App->particles->enemy_death, 3840, 90);
+			App->particles->AddParticle(App->particles->enemy_death, 3840, 150);
 
-		if (alive)
-		{
 			Die();
+
+			break;
+			}
+			
 		}
-		
-
-		break;
+		return tail->Update();
 	}
-
-
-
-	return tail->Update();
 }
 
 void ModuleBoss::OnCollision(Collider* c1, Collider* c2)
@@ -217,20 +194,28 @@ void ModuleBoss::Arrival()
 
 void ModuleBoss::Shooting()
 {
-
-	if (shooting == true && can_shoot == true)
+	if (ship_is_here == true && can_shoot == true)
 	{
-		shooting = true;
+		App->renderer->Blit(graphics, 3930 - 93, 111, &baby_shot_before.GetCurrentFrame());
 
-		float sx, sy;
+		if (baby_shot_before.IsOver())
+		{
+			float sx, sy;
+			
+			App->particles->AddParticle(App->particles->boss_sh, position.x, position.y, COLLIDER_ENEMY_SHOT);
+			
+			sx = (App->player->position.x - position.x);
+			sy = (App->player->position.y - position.y);
+			
+			App->particles->boss_sh.speed.x = sx / sqrt(sx * sx + sy * sy) * 3.0f;
+			App->particles->boss_sh.speed.y = sy / sqrt(sx * sx + sy * sy) * 3.0f;
+
+			can_shoot = true;
+			
+			App->renderer->Blit(graphics, 3930 - 93, 111, &baby_shot_after.GetCurrentFrame());
+		}
+
 		
-		sx = (App->player->position.x - position.x);
-		sy = (App->player->position.y - position.y);
-
-		App->particles->shot.speed.x = sx / sqrt(sx * sx + sy * sy) * 3.0f;
-		App->particles->shot.speed.y = sy / sqrt(sx * sx + sy * sy) * 3.0f;
-
-		App->particles->AddParticle(App->particles->shot, position.x, position.y, COLLIDER_ENEMY_SHOT);
 	}
 }
 /**/
@@ -340,24 +325,32 @@ update_status BossTail::Update()
 	for (int i = 0; i < 19; i++)
 	{
 		//moure cua
-
-		//actualitzar collider
-		piece_collider[i]->rect.x = position[i].x;
-		piece_collider[i]->rect.y = position[i].y;
-
-		//pintar cua
-		if (i == 18)
+		if (App->boss->alive)
 		{
-			App->renderer->Blit(graphics, position[i].x, position[i].y, &end.GetCurrentFrame());
+			//actualitzar collider
+			piece_collider[i]->rect.x = position[i].x;
+			piece_collider[i]->rect.y = position[i].y;
+
+			//pintar cua
+			if (i == 18)
+			{
+				App->renderer->Blit(graphics, position[i].x, position[i].y, &end.GetCurrentFrame());
+			}
+
+			else
+			{
+				App->renderer->Blit(graphics, position[i].x, position[i].y, &piece_frame[i]);
+			}
 		}
 
 		else
 		{
-			App->renderer->Blit(graphics, position[i].x, position[i].y, &piece_frame[i]);
+			for (int i = 19; i >= 0; i--)
+			{
+				piece_collider[i]->to_delete = true;
+			}
 		}
-		
 	}
-
 	return UPDATE_CONTINUE;
 }
 

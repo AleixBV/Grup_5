@@ -76,6 +76,7 @@ public:
 	Particle numbers;
 	Particle number10;
 	Particle boss_ex;
+	Particle boss_sh;
 
 	//UI
 	Particle lifes;
