@@ -45,7 +45,7 @@ bool ModulePlayer::Start()
 
 	graphics = App->textures->Load("rtype/ship.png");
 
-	position.x = 3000;
+	position.x = 120;
 	position.y = 100;
 
 	speed = 1.0f;
