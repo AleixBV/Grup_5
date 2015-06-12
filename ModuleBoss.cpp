@@ -115,6 +115,7 @@ update_status ModuleBoss::PreUpdate()
 
 update_status ModuleBoss::Update()
 {
+	int frame_num = 0;
 	
 	//Moure cares
 	if (alive)
@@ -134,6 +135,7 @@ update_status ModuleBoss::Update()
 		if (&baby.PeekCurrentFrame() == &baby.frames[10])
 		{
 			can_shoot = true;
+			Shooting();
 		}
 	}
 
@@ -186,6 +188,12 @@ update_status ModuleBoss::Update()
 		App->particles->AddParticle(App->particles->enemy_death, 3840, 90);
 		App->particles->AddParticle(App->particles->enemy_death, 3840, 150);
 
+		if (alive)
+		{
+			Die();
+		}
+		
+
 		break;
 	}
 
@@ -202,10 +210,6 @@ void ModuleBoss::OnCollision(Collider* c1, Collider* c2)
 		if (c1->type == COLLIDER_PLAYER_SHOT || c2->type == COLLIDER_PLAYER_SHOT)
 		{
 			num_hits--;
-			if (num_hits == 0)
-			{
-				alive = false;
-			}
 		}
 	}
 	tail->OnCollision(c1, c2);
@@ -221,6 +225,7 @@ void ModuleBoss::Shooting()
 
 	if (shooting == true && can_shoot == true)
 	{
+		shooting = true;
 
 		float sx, sy;
 		
@@ -242,6 +247,8 @@ void ModuleBoss::Die()
 	collider_skin_neck->to_delete = true;
 	collider_skin_bottom->to_delete = true;
 	collider_baby->to_delete = true;
+
+	alive = false;
 }
 
 BossTail::BossTail(Application* app, SDL_Texture* texture) : App(app), graphics (texture)
