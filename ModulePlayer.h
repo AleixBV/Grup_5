@@ -60,4 +60,5 @@ public:
 	bool charging;
 	bool charging_animation;
 	bool god_mode;
+	bool laser_tri;
 };

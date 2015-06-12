@@ -1,6 +1,7 @@
 #include <math.h>
 #include "Globals.h"
 #include "Application.h"
+
 #include "ModuleParticles.h"
 
 ModuleParticles::ModuleParticles(Application* app, bool start_enabled) : Module(app, start_enabled), graphics(NULL)
@@ -219,9 +220,9 @@ bool ModuleParticles::Start()
 	laser_blue.life = 10000;
 
 	//Laser blue2
+	laser_blue2.anim.frames.PushBack({ 168, 599, 16, 18 });//Diagonal baix esquerra
 	laser_blue2.anim.frames.PushBack({ 147, 632, 8, 18 });//Separació
 	laser_blue2.anim.frames.PushBack({ 168, 665, 16, 18 });//Diagonal baix dreta
-	laser_blue2.anim.frames.PushBack({ 168, 599, 16, 18 });//Diagonal baix esquerra
 	laser_blue2.anim.frames.PushBack({ 185, 575, 16, 9 });//Rebot superior
 	laser_blue2.anim.frames.PushBack({ 185, 698, 16, 9 });//Rebot inferior
 	laser_blue2.anim.frames.PushBack({ 226, 632, 8, 18 });//Rebot dreta
@@ -232,8 +233,8 @@ bool ModuleParticles::Start()
 	laser_blue2.life = 10000;
 
 	//Laser blue3
-	laser_blue3.anim.frames.PushBack({ 147, 632, 8, 18 });//Separació
 	laser_blue3.anim.frames.PushBack({ 168, 665, 16, 18 });//Diagonal baix dreta
+	laser_blue3.anim.frames.PushBack({ 147, 632, 8, 18 });//Separacio
 	laser_blue3.anim.frames.PushBack({ 168, 599, 16, 18 });//Diagonal baix esquerra
 	laser_blue3.anim.frames.PushBack({ 185, 575, 16, 9 });//Rebot superior
 	laser_blue3.anim.frames.PushBack({ 185, 698, 16, 9 });//Rebot inferior
@@ -283,7 +284,66 @@ update_status ModuleParticles::Update()
 		}
 		else if (SDL_GetTicks() >= p->born)
 		{
-			App->renderer->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
+			if (p == &laser_blue2 || p == &laser_blue3) {
+
+				if (laser_blue2.speed.x > 0 && laser_blue2.speed.y < 0 || laser_blue3.speed.x > 0 && laser_blue3.speed.y < 0){
+					if (p->bounceT == false && p->bounceR == false)
+						App->renderer->Blit(graphics, p->position.x, p->position.y, &p->anim.frames[0]);
+					if (p->bounceT == true) {
+						App->renderer->Blit(graphics, p->position.x, p->position.y, &p->anim.frames[3]);
+						laser_blue2.speed.y *= -1;
+					}
+					else if (p->bounceR == true){
+						App->renderer->Blit(graphics, p->position.x, p->position.y, &p->anim.frames[5]);
+						laser_blue2.speed.x *= -1;
+					}
+				}
+				if (laser_blue2.speed.x > 0 && laser_blue2.speed.y > 0 || laser_blue3.speed.x > 0 && laser_blue3.speed.y > 0){
+					if (p->bounceB == false && p->bounceR == false)
+						App->renderer->Blit(graphics, p->position.x, p->position.y, &p->anim.frames[0]);
+					if (p->bounceB == true) {
+						App->renderer->Blit(graphics, p->position.x, p->position.y, &p->anim.frames[4]);
+						laser_blue2.speed.y *= -1;
+					}
+					else if (p->bounceR == true){
+						App->renderer->Blit(graphics, p->position.x, p->position.y, &p->anim.frames[5]);
+						laser_blue2.speed.x *= -1;
+					}
+				}
+
+				if (laser_blue2.speed.x < 0 && laser_blue2.speed.y > 0 || laser_blue3.speed.x < 0 && laser_blue3.speed.y > 0){
+					if (p->bounceB == false && p->bounceL == false)
+						App->renderer->Blit(graphics, p->position.x, p->position.y, &p->anim.frames[0]);
+					if (p->bounceB == true) {
+						App->renderer->Blit(graphics, p->position.x, p->position.y, &p->anim.frames[4]);
+						laser_blue2.speed.y *= -1;
+					}
+					else if (p->bounceL == true){
+						App->renderer->Blit(graphics, p->position.x, p->position.y, &p->anim.frames[1]);
+						laser_blue2.speed.x *= -1;
+					}
+				}
+				if (laser_blue2.speed.x < 0 && laser_blue2.speed.y < 0 || laser_blue3.speed.x < 0 && laser_blue3.speed.y < 0){
+					if (p->bounceT == false && p->bounceL == false)
+						App->renderer->Blit(graphics, p->position.x, p->position.y, &p->anim.frames[0]);
+					if (p->bounceT == true) {
+						App->renderer->Blit(graphics, p->position.x, p->position.y, &p->anim.frames[3]);
+						laser_blue2.speed.y *= -1;
+					}
+					else if (p->bounceL == true){
+						App->renderer->Blit(graphics, p->position.x, p->position.y, &p->anim.frames[1]);
+						laser_blue2.speed.x *= -1;
+					}
+				}
+
+
+
+
+			}
+			else
+				App->renderer->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
+
+			
 
 			if (p->fx_played == false)
 			{
@@ -327,6 +387,22 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 				delete tmp->data;
 				active.del(tmp);
 				break;
+			}
+
+			else if (c1->type == COLLIDER_PLAYER_SHOT2){
+
+				if (c2->type == COLLIDER_WALL){
+					if (c2->rect.x < c1->rect.x)
+						tmp->data->bounceL = true;
+					if (c2->rect.x > c1->rect.x)
+						tmp->data->bounceR = true;
+					if (c2->rect.y < c1->rect.y)
+						tmp->data->bounceT = true;
+					if (c2->rect.y > c1->rect.y)
+						tmp->data->bounceB = true;
+				}
+					
+
 			}
 
 			else if (c1->type == COLLIDER_PLAYER_SHOT_CHARGED)

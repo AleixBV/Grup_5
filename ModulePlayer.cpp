@@ -53,6 +53,7 @@ bool ModulePlayer::Start()
 	charge = 0;
 	charging = false;
 	charging_animation = false;
+	laser_tri = false;
 	player_state = PLAYER_IDLE;
 	Uint32 delay_time = 0;
 
@@ -79,6 +80,7 @@ update_status ModulePlayer::Update()
 {
 	player_input = PLAYER_INPUT_IDLE;
 	position.x += speed;
+
 
 	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 	{
@@ -172,8 +174,9 @@ update_status ModulePlayer::Update()
 		if (power_up == 2)
 		{
 			App->particles->AddParticle(App->particles->laser_blue, position.x + 32, position.y + 6, COLLIDER_PLAYER_SHOT);
-			App->particles->AddParticle(App->particles->laser_blue2, position.x + 32, position.y + 6, COLLIDER_PLAYER_SHOT);
-			App->particles->AddParticle(App->particles->laser_blue3, position.x + 32, position.y + 6, COLLIDER_PLAYER_SHOT);
+			App->particles->AddParticle(App->particles->laser_blue2, position.x + 32, position.y + 6, COLLIDER_PLAYER_SHOT2);
+			App->particles->AddParticle(App->particles->laser_blue3, position.x + 32, position.y + 6, COLLIDER_PLAYER_SHOT2);
+			laser_tri = true;
 		}
 		charging = false;
 		charging_animation = false;
