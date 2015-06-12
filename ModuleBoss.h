@@ -47,7 +47,9 @@ private:
 	Animation body;
 	Animation eye[3];
 	Animation baby;
-	Animation baby_shot;
+	Animation baby_shot_before;
+	Animation baby_shot_after;
+	Animation shot;
 	Animation death;
 	p2Point<int> position;
 	Collider* collider_skin_head;
