@@ -18,11 +18,11 @@ bool ModuleSceneSpace::Start()
 
 	background = App->textures->Load("rtype/RTYPE-background.png");
 
-	camera_speed = 1.0f;
+	camera_speed = 3;
 
 	boss_alive = true;
 
-	player_speed = 1.0f / 3.0f;
+	player_speed = 1.0f;
 
 
 	App->collision->Enable(); // enable before player
@@ -285,15 +285,15 @@ bool ModuleSceneSpace::Start()
 	//tryouts
 	App->enemy->AddEnemy(App->enemy->robot, 558, 188, eBot, NULL);
 	App->enemy->AddEnemy(App->enemy->robot, 970, 188, eBot, NULL);
+	App->enemy->AddEnemy(App->enemy->robot, 1000, 188, eBot, NULL);
 	App->enemy->AddEnemy(App->enemy->robot, 1100, 188, eBot, NULL);
-	App->enemy->AddEnemy(App->enemy->robot, 1150, 188, eBot, NULL);
 	App->enemy->AddEnemy(App->enemy->robot, 1200, 188, eBot, NULL);
-	App->enemy->AddEnemy(App->enemy->robot, 1270, 160, eBot, NULL);
+	//App->enemy->AddEnemy(App->enemy->robot, 1270, 160, eBot, NULL);
 	App->enemy->AddEnemy(App->enemy->robot, 1340, 0, eBot, NULL);
 	App->enemy->AddEnemy(App->enemy->robot, 1645, 188, eBot, NULL);
-	App->enemy->AddEnemy(App->enemy->robot, 1785, 155, eBot, NULL);
-	App->enemy->AddEnemy(App->enemy->robot, 2425, 155, eBot, NULL);
-	App->enemy->AddEnemy(App->enemy->robot, 2715, 50, eBot, NULL);
+	App->enemy->AddEnemy(App->enemy->robot, 1840, 155, eBot, NULL);
+	App->enemy->AddEnemy(App->enemy->robot, 2323, 155, eBot, NULL);
+	App->enemy->AddEnemy(App->enemy->robot, 2780, 50, eBot, NULL);
 
 	//App->enemy->AddEnemy(App->enemy->worm, 500, 0, eBot, NULL);
 
