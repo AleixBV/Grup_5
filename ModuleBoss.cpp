@@ -66,13 +66,26 @@ bool ModuleBoss::Start()
 	baby.loop = false;
 	baby.speed = 0.1f;
 
-	baby_shot.frames.PushBack({ 636, 1964, 32, 32 });
-	baby_shot.frames.PushBack({ 603, 1964, 32, 32 });
-	baby_shot.frames.PushBack({ 570, 1964, 32, 32 });//
-	baby_shot.frames.PushBack({ 603, 1964, 32, 32 });
-	baby_shot.frames.PushBack({ 636, 1964, 32, 32 });
-	baby_shot.loop = false;
-	baby_shot.speed = 0.1f;
+	baby_shot_before.frames.PushBack({ 636, 1964, 32, 32 });
+	baby_shot_before.frames.PushBack({ 603, 1964, 32, 32 });
+	baby_shot_before.frames.PushBack({ 570, 1964, 32, 32 });//
+	baby_shot_before.loop = false;
+	baby_shot_before.speed = 0.1f;
+
+	baby_shot_after.frames.PushBack({ 570, 1964, 32, 32 });//
+	baby_shot_after.frames.PushBack({ 603, 1964, 32, 32 });
+	baby_shot_after.frames.PushBack({ 636, 1964, 32, 32 });
+	baby_shot_after.loop = false;
+	baby_shot_after.speed = 0.1f;
+
+	shot.frames.PushBack({ 576, 2064, 22, 19 });
+	shot.frames.PushBack({ 601, 2064, 22, 19 });
+	shot.frames.PushBack({ 626, 2064, 22, 19 });
+	shot.frames.PushBack({ 652, 2064, 22, 19 });
+	shot.loop = false;
+	shot.speed = 0.1f;
+
+	//explosion.frames.PushBack({ 576, 2064, 22, 19 });
 
 
 	collider_skin_head = App->collision->AddCollider({ 3930-165, 17, 105, 84 }, COLLIDER_WALL, this);
@@ -103,11 +116,20 @@ update_status ModuleBoss::Update()
 {
 	
 	//Moure cares
-	App->renderer->Blit(graphics, 3930 - 165, 17, &body.GetCurrentFrame());
+	if (alive)
+	{
+		App->renderer->Blit(graphics, 3930 - 165, 17, &body.GetCurrentFrame());
+		if (num_hits == 0)
+		{
+			alive = false;
+		}
+	}
+	
   
 	if (ship_is_here)
 	{
 		App->renderer->Blit(graphics, 3930 - 93, 111, &baby.GetCurrentFrame());
+
 		if (&baby.PeekCurrentFrame() == &baby.frames[10])
 		{
 			can_shoot = true;
@@ -172,6 +194,19 @@ void ModuleBoss::Arrival()
 	ship_is_here = true;
 }
 
+
+/*if (shooting == true && a == 1 && e->on_screen == true)
+{
+	float sx, sy;
+
+	sx = (App->player->position.x - e->position.x);
+	sy = (App->player->position.y - e->position.y);
+
+	App->particles->shot.speed.x = sx / sqrt(sx * sx + sy * sy) * 3.0f;
+	App->particles->shot.speed.y = sy / sqrt(sx * sx + sy * sy) * 3.0f;
+
+	App->particles->AddParticle(App->particles->shot, e->position.x, e->position.y, COLLIDER_ENEMY_SHOT);
+}*/
 //tail
 
 
