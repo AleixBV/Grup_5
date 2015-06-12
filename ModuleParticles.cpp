@@ -58,17 +58,17 @@ bool ModuleParticles::Start()
 	laser_charged1.speed.x = 7;
 	laser_charged1.life = 1000;
 	laser_charged1.lifes = 2;
-	laser_charged1.anim.speed = 0.7f;
+	laser_charged1.anim.speed = 0.2f;
 
 	// Laser charged
 	laser_charged2.fx = App->audio->LoadFx("rtype/slimeball.wav");
 	laser_charged2.anim.frames.PushBack({ 200, 120, 32, 12 });
-	laser_charged2.anim.frames.PushBack({ 233, 120, 14, 12 });
+	laser_charged2.anim.frames.PushBack({ 233, 120, 32, 12 });
 	laser_charged2.anim.loop = true;
 	laser_charged2.speed.x = 7;
 	laser_charged2.life = 1000;
 	laser_charged2.lifes = 2;
-	laser_charged2.anim.speed = 0.7f;
+	laser_charged2.anim.speed = 0.2f;
 
 	// Laser charged
 	laser_charged3.fx = App->audio->LoadFx("rtype/slimeball.wav");
@@ -78,7 +78,7 @@ bool ModuleParticles::Start()
 	laser_charged3.speed.x = 7;
 	laser_charged3.life = 1000;
 	laser_charged3.lifes = 3;
-	laser_charged3.anim.speed = 0.7f;
+	laser_charged3.anim.speed = 0.2f;
 
 	// Laser charged
 	laser_charged4.fx = App->audio->LoadFx("rtype/slimeball.wav");
@@ -88,7 +88,7 @@ bool ModuleParticles::Start()
 	laser_charged4.speed.x = 7;
 	laser_charged4.life = 1000;
 	laser_charged4.lifes = 4;
-	laser_charged4.anim.speed = 0.7f;
+	laser_charged4.anim.speed = 0.2f;
 
 	// Laser charged
 	laser_charged5.fx = App->audio->LoadFx("rtype/slimeball.wav");
@@ -98,7 +98,7 @@ bool ModuleParticles::Start()
 	laser_charged5.speed.x = 7;
 	laser_charged5.life = 1000;
 	laser_charged5.lifes = 5;
-	laser_charged5.anim.speed = 0.7f;
+	laser_charged5.anim.speed = 0.2f;
 
 	// Laser charged anim
 	//laser_charged_anim.fx = App->audio->LoadFx("rtype/slimeball.wav");
