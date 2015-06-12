@@ -10,6 +10,7 @@
 #include "ModuleInput.h"
 #include "ModuleAudio.h"
 #include "ModuleSceneSpace.h"
+#include "ModuleSceneContinue.h"
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneIntro.h"
@@ -27,6 +28,7 @@ public:
 	ModuleInput* input;
 	ModuleAudio* audio;
 	ModuleSceneSpace* scene_space;
+	ModuleSceneContinue* scene_continue;
 	ModulePlayer* player;
 	ModuleFadeToBlack* fade;
 	ModuleSceneIntro* scene_intro;

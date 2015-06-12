@@ -51,6 +51,7 @@ bool ModulePlayer::Start()
 	speed = 1.0f;
 	power_up = 0;
 	charge = 0;
+	exploding = false;
 	charging = false;
 	charging_animation = false;
 	player_state = PLAYER_IDLE;
@@ -60,6 +61,26 @@ bool ModulePlayer::Start()
 	collider = App->collision->AddCollider({ position.x, position.y, 32, 12 }, COLLIDER_PLAYER, this);
 
 	god_mode = false;
+
+	App->particles->AddParticle(App->particles->black, 0, SCREEN_HEIGHT);
+
+	App->particles->AddParticle(App->particles->bar, SCREEN_WIDTH / 2 - 262, SCREEN_HEIGHT + 5);
+
+
+	App->particles->AddParticle(App->particles->beam, SCREEN_WIDTH / 2 - 140 - 98, SCREEN_HEIGHT);
+
+	if (lifes > 0)
+	{
+		App->particles->AddParticle(App->particles->lifes, 3, SCREEN_HEIGHT + 3);
+	}
+	if (lifes > 1)
+	{
+		App->particles->AddParticle(App->particles->lifes, 19, SCREEN_HEIGHT + 3);
+	}
+	if (lifes > 2)
+	{
+		App->particles->AddParticle(App->particles->lifes, 35, SCREEN_HEIGHT + 3);
+	}
 
 	return true;
 }
@@ -94,7 +115,7 @@ update_status ModulePlayer::Update()
 
 	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
 	{
-		if (position.y < SCREEN_HEIGHT - 16)
+		if (position.y < (SCREEN_HEIGHT - 16))
 		{
 			position.y += 1.5*speed;
 
@@ -204,7 +225,15 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	}
 	else if (exploding == false && god_mode == false)
 	{
-		App->fade->FadeToBlack(App->scene_space, App->scene_intro);
+		lifes--;
+		if (lifes > 0)
+		{
+			App->fade->FadeToBlack(App->scene_space, App->scene_continue, 3.0f);
+		}
+		else
+		{
+			App->fade->FadeToBlack(App->scene_space, App->scene_intro);
+		}
 		exploding = true;
 		speed = 0;
 		App->scene_space->player_speed = 0;

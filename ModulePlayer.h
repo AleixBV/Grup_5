@@ -59,5 +59,6 @@ public:
 	unsigned int charge;
 	bool charging;
 	bool charging_animation;
+	int lifes;
 	bool god_mode;
 };

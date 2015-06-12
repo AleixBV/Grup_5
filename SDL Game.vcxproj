@@ -73,6 +73,7 @@
     <ClInclude Include="Globals.h" />
     <ClInclude Include="ModuleCollision.h" />
     <ClInclude Include="ModuleEnemy.h" />
+    <ClInclude Include="ModuleSceneContinue.h" />
     <ClInclude Include="ModuleSceneEnd.h" />
     <ClInclude Include="p2List.h" />
     <ClInclude Include="Module.h" />
@@ -97,6 +98,7 @@
     <ClCompile Include="ModuleCollision.cpp" />
     <ClCompile Include="ModuleEnemy.cpp" />
     <ClCompile Include="ModuleParticles.cpp" />
+    <ClCompile Include="ModuleSceneContinue.cpp" />
     <ClCompile Include="ModuleSceneEnd.cpp" />
     <ClCompile Include="ModuleSceneSpace.cpp" />
     <ClCompile Include="ModuleFadeToBlack.cpp" />

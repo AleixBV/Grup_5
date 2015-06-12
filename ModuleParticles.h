@@ -16,6 +16,7 @@ struct Particle
 	Uint32 life;
 	bool fx_played;
 	bool follow_player;
+	bool bar;
 	unsigned int lifes;
 	Collider* collider;
 
@@ -64,4 +65,10 @@ public:
 	Particle laser_powerup;
 	Particle laser_powerup_anim;
 
+	//UI
+	Particle lifes;
+	Particle black;
+	Particle beam;
+	Particle bar;
+	int bar_move;
 };

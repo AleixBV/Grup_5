@@ -355,6 +355,7 @@ update_status ModuleSceneSpace::Update()
 
 	if (App->renderer->camera.x == (-3930 + SCREEN_WIDTH)*SCREEN_SIZE)
 	{
+		 
 		App->player->speed = 0;
 		App->fade->FadeToBlack(App->scene_space, App->scene_end, 2.0f);
 	}

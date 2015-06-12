@@ -211,6 +211,35 @@ bool ModuleParticles::Start()
 	power_up.anim.loop = false;
 	power_up.anim.speed = 0.0f;
 
+
+	//UI
+	// lifes
+	lifes.anim.frames.PushBack({ 31, 560, 13, 14 });
+	lifes.anim.loop = false;
+	lifes.speed.x = 1;
+	lifes.anim.speed = 0.0f;
+
+	// black
+	black.anim.frames.PushBack({ 511, 626, 286, 16 });
+	black.anim.loop = false;
+	black.speed.x = 1;
+	black.anim.speed = 0.0f; 
+
+	// beam
+	beam.anim.frames.PushBack({ 485, 557, 384, 16 });
+	beam.anim.loop = false;
+	beam.speed.x = 1;
+	beam.anim.speed = 0.0f;
+
+	// bar
+	bar.anim.frames.PushBack({ 405, 585, 201, 8 });
+	bar.anim.loop = false;
+	bar.speed.x = 1;
+	bar.anim.speed = 0.0f;
+	bar.bar = true;
+
+	bar_move = 0;
+
 	return true;
 }
 
@@ -267,6 +296,29 @@ update_status ModuleParticles::Update()
 			{
 				delete p;
 				active.del(tmp);
+			}
+		}
+
+		if (p->bar == true)
+		{
+			
+			if (App->player->charging == true)
+			{
+				p->position.x -= bar_move;
+
+				if ((SDL_GetTicks() - App->player->charge) / 5 < 200)
+				{
+					bar_move = ((SDL_GetTicks() - App->player->charge) / 5);
+				}
+				else if ((SDL_GetTicks() - App->player->charge) / 5 > 200)
+					bar_move = 201;
+
+				p->position.x += bar_move;
+			}
+			else if (bar_move != 0)
+			{
+				p->position.x -= bar_move;
+				bar_move = 0;
 			}
 		}
 
@@ -367,7 +419,7 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 // -------------------------------------------------------------
 // -------------------------------------------------------------
 
-Particle::Particle() : fx(0), born(0), life(0), fx_played(false), follow_player(false), lifes(0), collider(NULL)
+Particle::Particle() : fx(0), born(0), life(0), fx_played(false), follow_player(false), bar(false), lifes(0), collider(NULL)
 {
 	position.SetToZero();
 	speed.SetToZero();
@@ -380,6 +432,7 @@ Particle::Particle(const Particle& p) : anim(p.anim), position(p.position), spee
 	life = p.life;
 	follow_player = p.follow_player;
 	lifes = p.lifes;
+	bar = p.bar;
 }
 
 Particle::~Particle()

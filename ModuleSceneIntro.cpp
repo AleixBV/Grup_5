@@ -27,6 +27,8 @@ bool ModuleSceneIntro::Start()
 
 	fade_out = false;
 
+	App->player->lifes = 3;
+
 	return ret;
 }
 

@@ -11,7 +11,7 @@ fading_in(true),
 mod_on(NULL),
 mod_off(NULL)
 {
-	screen = {0, 0, SCREEN_WIDTH * SCREEN_SIZE, SCREEN_HEIGHT * SCREEN_SIZE};
+	screen = {0, 0, SCREEN_WIDTH * SCREEN_SIZE, (SCREEN_HEIGHT + 16) * SCREEN_SIZE};
 }
 
 ModuleFadeToBlack::~ModuleFadeToBlack()
