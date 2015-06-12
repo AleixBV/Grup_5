@@ -18,11 +18,11 @@ bool ModuleSceneSpace::Start()
 
 	background = App->textures->Load("rtype/RTYPE-background.png");
 
-	camera_speed = 60.0f;
+	camera_speed = 2.0f;
 
 	boss_alive = true;
 
-	player_speed = 20.0f; // 3.0f;
+	player_speed = 2.0f / 3.0f;
 
 
 	App->collision->Enable(); // enable before player
@@ -185,7 +185,7 @@ bool ModuleSceneSpace::Start()
 
 	//Add all enmies
 	//Red
-	/*
+	
 	App->enemy->AddEnemy(App->enemy->red, 410, 60, eSin, 0.0f);
 	App->enemy->AddEnemy(App->enemy->red, 420, 55, eSin, (3.14f / 4.0f));
 	App->enemy->AddEnemy(App->enemy->red, 430, 60, eSin, (3.14f / 2.0f));
@@ -326,7 +326,7 @@ bool ModuleSceneSpace::Start()
 	App->enemy->AddEnemy(App->enemy->tower, 3168, 30, eT, NULL);
 	App->enemy->AddEnemy(App->enemy->tower, 3193, 30, eT, NULL);
 
-	*/
+	
 
 
 

@@ -88,7 +88,7 @@ bool ModuleBoss::Start()
 bool ModuleBoss::CleanUp()
 {
 	LOG("Unloading Boss");
-	delete tail;
+	delete[] tail;
 	App->textures->Unload(graphics);
 
 	return true;
@@ -153,7 +153,7 @@ update_status ModuleBoss::Update()
 void ModuleBoss::OnCollision(Collider* c1, Collider* c2)
 {
 //colliders boss
-	if (c1->type == COLLIDER_ENEMY || c2->type == COLLIDER_ENEMY)
+	/*if (c1->type == COLLIDER_ENEMY || c2->type == COLLIDER_ENEMY)
 	{
 		if (c1->type == COLLIDER_PLAYER_SHOT || c2->type == COLLIDER_PLAYER_SHOT)
 		{
@@ -185,7 +185,7 @@ void ModuleBoss::OnCollision(Collider* c1, Collider* c2)
 
 	}
 
-	tail->OnCollision(c1, c2);
+	tail->OnCollision(c1, c2);*/
 }
 
 void ModuleBoss::Arrival()
