@@ -153,7 +153,7 @@ update_status ModuleBoss::Update()
 void ModuleBoss::OnCollision(Collider* c1, Collider* c2)
 {
 //colliders boss
-	/*if (c1->type == COLLIDER_ENEMY || c2->type == COLLIDER_ENEMY)
+	if (c1->type == COLLIDER_ENEMY || c2->type == COLLIDER_ENEMY)
 	{
 		if (c1->type == COLLIDER_PLAYER_SHOT || c2->type == COLLIDER_PLAYER_SHOT)
 		{
@@ -163,29 +163,8 @@ void ModuleBoss::OnCollision(Collider* c1, Collider* c2)
 				alive = false;
 			}
 		}
-
-		else
-			{
-				App->player->OnCollision(c1, c2);
-			}
-		
 	}
-
-	if (c1->type == COLLIDER_WALL || c2->type == COLLIDER_WALL)
-	{
-		if (c1->type == COLLIDER_PLAYER_SHOT || c2->type == COLLIDER_PLAYER_SHOT)
-		{
-			App->particles->OnCollision(c1, c2);
-		}
-
-		else
-		{
-			App->player->OnCollision(c1, c2);
-		}
-
-	}
-
-	tail->OnCollision(c1, c2);*/
+	tail->OnCollision(c1, c2);
 }
 
 void ModuleBoss::Arrival()
