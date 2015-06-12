@@ -190,9 +190,9 @@ update_status ModulePlayer::Update()
 		}
 		if (power_up == 2)
 		{
-			App->particles->AddParticle(App->particles->laser_blue, position.x + 32, position.y + 6, COLLIDER_PLAYER_SHOT);
-			App->particles->AddParticle(App->particles->laser_blue2, position.x + 32, position.y + 6, COLLIDER_PLAYER_SHOT2);
-			App->particles->AddParticle(App->particles->laser_blue3, position.x + 32, position.y + 6, COLLIDER_PLAYER_SHOT2);
+			App->particles->AddParticle(App->particles->laser_blue, position.x + 32, position.y + 5, COLLIDER_PLAYER_SHOT);
+			App->particles->AddParticle(App->particles->laser_blue2, position.x + 32, position.y - 2, COLLIDER_PLAYER_SHOT2);
+			App->particles->AddParticle(App->particles->laser_blue3, position.x + 32, position.y - 2, COLLIDER_PLAYER_SHOT2);
 			laser_tri = true;
 		}
 		charging = false;
