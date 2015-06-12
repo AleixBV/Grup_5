@@ -115,7 +115,6 @@ update_status ModuleBoss::PreUpdate()
 
 update_status ModuleBoss::Update()
 {
-	int frame_num = 0;
 	
 	//Moure cares
 	if (alive)
@@ -131,12 +130,8 @@ update_status ModuleBoss::Update()
 	if (ship_is_here)
 	{
 		App->renderer->Blit(graphics, 3930 - 93, 111, &baby.GetCurrentFrame());
-
-		if (&baby.PeekCurrentFrame() == &baby.frames[10])
-		{
-			can_shoot = true;
-			Shooting();
-		}
+		
+		
 	}
 
 	if (shooting)
