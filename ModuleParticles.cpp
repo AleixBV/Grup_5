@@ -165,6 +165,7 @@ bool ModuleParticles::Start()
 	laser_powerup.anim.loop = false;
 	laser_powerup.anim.speed = 0.5f;
 	laser_powerup.speed.x = 5;
+	laser_powerup.life = 2000;
 	laser_powerup_anim.speed.x = 5;
 
 	/*//Laser powerup_anim

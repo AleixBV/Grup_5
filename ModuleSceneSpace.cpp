@@ -327,7 +327,7 @@ bool ModuleSceneSpace::Start()
 	App->enemy->AddEnemy(App->enemy->tower, 3193, 30, eT, NULL);
 
 	App->particles->AddParticle(App->particles->power_up, 740, 178, COLLIDER_POWER_UP);
-	App->particles->AddParticle(App->particles->power_up, 600, 178, COLLIDER_POWER_UP);
+	App->particles->AddParticle(App->particles->power_up, 1410, 130, COLLIDER_POWER_UP);
 
 	return true;
 }
