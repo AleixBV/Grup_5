@@ -264,19 +264,24 @@ bool ModuleParticles::Start()
 	boss_ex.anim.speed = 0.2f;
 
 	//numbers
-	numbers.anim.frames.PushBack({ 8, 1376, 48, 71 });
-	numbers.anim.frames.PushBack({ 75, 1376, 48, 71 });
-	numbers.anim.frames.PushBack({ 142, 1376, 48, 71 });
-	numbers.anim.frames.PushBack({ 209, 1376, 48, 71 });
-	numbers.anim.frames.PushBack({ 276, 1376, 48, 71 });
-	numbers.anim.frames.PushBack({ 340, 1376, 48, 71 });
-	numbers.anim.frames.PushBack({ 411, 1376, 48, 71 });
-	numbers.anim.frames.PushBack({ 477, 1376, 48, 71 });
-	numbers.anim.frames.PushBack({ 538, 1376, 48, 71 });
-	numbers.anim.frames.PushBack({ 608, 1376, 48, 71 });
-	numbers.anim.frames.PushBack({ 608, 1376, 48, 71 });
+	numbers.anim.frames.PushBack({ 595, 1376, 70, 71 });
+	numbers.anim.frames.PushBack({ 2, 1376, 65, 71 });
+	numbers.anim.frames.PushBack({ 69, 1376, 65, 71 });
+	numbers.anim.frames.PushBack({ 134, 1376, 65, 71 });
+	numbers.anim.frames.PushBack({ 203, 1376, 65, 71 });
+	numbers.anim.frames.PushBack({ 270, 1376, 65, 71 });
+	numbers.anim.frames.PushBack({ 334, 1376, 65, 71 });
+	numbers.anim.frames.PushBack({ 400, 1376, 70, 71 });
+	numbers.anim.frames.PushBack({ 466, 1376, 70, 71 });
+	numbers.anim.frames.PushBack({ 527, 1376, 70, 71 });
+	numbers.anim.frames.PushBack({ 597, 1376, 70, 71 });
+	numbers.anim.frames.PushBack({ 597, 1376, 70, 71 });
 	numbers.anim.loop = false;
 	numbers.anim.speed = 0.015f;
+
+	number10.anim.frames.PushBack({ 550, 1376, 121, 71 });
+	number10.anim.loop = false;
+	number10.anim.speed = 0.015f;
 
 	//UI
 	// lifes

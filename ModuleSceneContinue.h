@@ -6,7 +6,7 @@
 class ModuleSceneContinue : public Module
 {
 public:
-	ModuleSceneContinue(Application* app, bool start_enabled = true);
+	ModuleSceneContinue(Application* app, bool start_enabled = false);
 	~ModuleSceneContinue();
 
 	bool Start();
@@ -18,5 +18,4 @@ public:
 
 	SDL_Texture* graphics;
 	bool fade_out;
-	unsigned int fx_continue;
 };

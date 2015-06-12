@@ -5,7 +5,6 @@
 ModuleSceneContinue::ModuleSceneContinue(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 	graphics = NULL;
-	fx_continue = 0;
 }
 
 ModuleSceneContinue::~ModuleSceneContinue()
@@ -16,20 +15,17 @@ bool ModuleSceneContinue::Start()
 {
 	LOG("Loading Continue assets");
 	bool ret = true;
-	fade_out == false;
+	fade_out = false;
 	App->player->exploding = false;
 
 	graphics = App->textures->Load("rtype/continue.png");
-	//fx_continue = App->audio->LoadFx("rtype/continue.ogg");
-	fx_continue = App->audio->LoadFx("rtype/continue.wav");
-	App->audio->PlayMusic("rtype/Nothing.ogg", 0.0f);
+	App->audio->PlayMusic("rtype/continue.wav", 0.0f);
 	App->renderer->camera.x = App->renderer->camera.y = 0;
 
 	time = SDL_GetTicks();
 
-	App->audio->PlayFx(fx_continue);
-
-	App->particles->AddParticle(App->particles->numbers, SCREEN_WIDTH / 2 - 24, SCREEN_HEIGHT / 2 - 35);
+	App->particles->AddParticle(App->particles->numbers, SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT / 2 - 35);
+	App->particles->AddParticle(App->particles->number10, SCREEN_WIDTH / 2 - 58, SCREEN_HEIGHT / 2 - 35);
 
 	return ret;
 }
@@ -39,6 +35,7 @@ bool ModuleSceneContinue::CleanUp()
 {
 	LOG("Unloading Continue scene");
 
+	App->particles->CleanUpActiveParticles();
 	App->textures->Unload(graphics);
 
 	return true;
@@ -52,13 +49,14 @@ update_status ModuleSceneContinue::Update()
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP && fade_out == false)
 	{
-		App->fade->FadeToBlack(this, App->scene_space, 3.0f);
+		App->fade->FadeToBlack(App->scene_continue, App->scene_space, 3.0f);
 		fade_out = true;
 	}
 
-	if (SDL_GetTicks() - time < 12000)
+	if (SDL_GetTicks() - time > 12000 && fade_out == false)
 	{
 		App->fade->FadeToBlack(App->scene_continue, App->scene_intro, 1.0f);
+		fade_out = true;
 	}
 
 	return UPDATE_CONTINUE;
