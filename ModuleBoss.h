@@ -40,6 +40,8 @@ public:
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
 	void Arrival();
+	void Shooting();
+	void Die();
 	bool shooting;
 
 private:

@@ -13,10 +13,13 @@ ModuleBoss::~ModuleBoss()
 
 bool ModuleBoss::Start()
 {
-	shooting = true;
+	shooting = false;
 	alive = true;
 	ship_is_here = false;
 	can_shoot = false;
+
+	position.x = 3930 - 93;
+	position.y = 125;
 
 	num_hits = 3;
 
@@ -134,6 +137,18 @@ update_status ModuleBoss::Update()
 		}
 	}
 
+	if (shooting)
+	{
+		App->renderer->Blit(graphics, 3930 - 93, 111, &shot.GetCurrentFrame());
+		can_shoot = false;
+
+		if (&shot.PeekCurrentFrame() == &shot.frames[4])
+		{
+			shooting = false;
+			Sleep(1000);
+			can_shoot = true;
+		}
+	}
 
 	SDL_Rect frame;
 	
@@ -201,21 +216,33 @@ void ModuleBoss::Arrival()
 	ship_is_here = true;
 }
 
-
-/*if (shooting == true && a == 1 && e->on_screen == true)
+void ModuleBoss::Shooting()
 {
-	float sx, sy;
 
-	sx = (App->player->position.x - e->position.x);
-	sy = (App->player->position.y - e->position.y);
+	if (shooting == true && can_shoot == true)
+	{
 
-	App->particles->shot.speed.x = sx / sqrt(sx * sx + sy * sy) * 3.0f;
-	App->particles->shot.speed.y = sy / sqrt(sx * sx + sy * sy) * 3.0f;
+		float sx, sy;
+		
+		sx = (App->player->position.x - position.x);
+		sy = (App->player->position.y - position.y);
 
-	App->particles->AddParticle(App->particles->shot, e->position.x, e->position.y, COLLIDER_ENEMY_SHOT);
-}*/
+		App->particles->shot.speed.x = sx / sqrt(sx * sx + sy * sy) * 3.0f;
+		App->particles->shot.speed.y = sy / sqrt(sx * sx + sy * sy) * 3.0f;
+
+		App->particles->AddParticle(App->particles->shot, position.x, position.y, COLLIDER_ENEMY_SHOT);
+	}
+}
+/**/
 //tail
 
+void ModuleBoss::Die()
+{
+	collider_skin_head->to_delete = true;
+	collider_skin_neck->to_delete = true;
+	collider_skin_bottom->to_delete = true;
+	collider_baby->to_delete = true;
+}
 
 BossTail::BossTail(Application* app, SDL_Texture* texture) : App(app), graphics (texture)
 {
