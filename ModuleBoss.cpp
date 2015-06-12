@@ -152,8 +152,8 @@ update_status ModuleBoss::Update()
 			frame = eye[2].GetCurrentFrame();
 			App->renderer->Blit(graphics, 3930 - 198 + 191 - frame.w, 141, &eye[2].GetCurrentFrame());
 
-			/*if (eye[2].IsOver())
-			{*/
+			if (eye[2].IsOver())
+			{
 
 			App->particles->AddParticle(App->particles->boss_ex, 3830, 25);
 			App->particles->AddParticle(App->particles->boss_ex, 3900, 75);
@@ -167,7 +167,7 @@ update_status ModuleBoss::Update()
 			Die();
 
 			break;
-			//}
+			}
 			
 		}
 		return tail->Update();
