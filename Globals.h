@@ -32,6 +32,7 @@ enum update_status
 #define _WORM 1
 #define _TOWER 2
 #define _ROBOT 3
+#define _TOWER2 4
 
 //Boss position
 

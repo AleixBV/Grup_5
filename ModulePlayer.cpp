@@ -48,8 +48,11 @@ bool ModulePlayer::Start()
 	position.x = 120;
 	position.y = 100;
 
-	speed = 1;
+	speed = 1.0f;
 	power_up = 0;
+	charge = 0;
+	charging = false;
+	charging_animation = false;
 	player_state = PLAYER_IDLE;
 	Uint32 delay_time = 0;
 
@@ -75,24 +78,25 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update()
 {
 	player_input = PLAYER_INPUT_IDLE;
+	position.x += speed;
 
 	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 	{
 		if (position.x > (App->renderer->camera.x) / -3)
-			position.x -= 1.2*speed;
+			position.x -= 1.5*speed;
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 	{
 		if (position.x < (App->renderer->camera.x / -3) + SCREEN_WIDTH - 32)
-			position.x += speed;
+			position.x += 1.25*speed;
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
 	{
 		if (position.y < SCREEN_HEIGHT - 16)
 		{
-			position.y += speed;
+			position.y += 1.5*speed;
 
 			player_input = PLAYER_INPUT_DOWN;
 		}
@@ -102,25 +106,77 @@ update_status ModulePlayer::Update()
 	{
 		if (position.y > 0)
 		{
-			position.y -= speed;
+			position.y -= 1.5*speed;
 
 			player_input = PLAYER_INPUT_UP;
 		}
 	}
 
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && charging == false && exploding == false)
+	{
+		charge = SDL_GetTicks();
+		charging = true;
+	}
+
+	if (charging == true && SDL_GetTicks() - charge > 400 && exploding == false)
+	{
+		if (charging_animation == false)
+		{
+			App->particles->AddParticle(App->particles->laser_charged_anim, position.x + 32, position.y - 9);
+			charging_animation = true;
+		}
+	}
+
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP && exploding == false)
 	{
-		if (power_up == 1)
-		{
-			
-			App->particles->AddParticle(App->particles->laser_powerup, position.x + 32, position.y - 9, COLLIDER_PLAYER_SHOT);
-			
-		}
-		else
+		if (SDL_GetTicks() - charge < 400)
 		{
 			App->particles->AddParticle(App->particles->laser_anim, position.x + 32, position.y);
 			App->particles->AddParticle(App->particles->laser, position.x + 28, position.y + 5, COLLIDER_PLAYER_SHOT);
 		}
+
+		else if (SDL_GetTicks() - charge < 550)
+		{
+			App->particles->AddParticle(App->particles->laser_anim, position.x + 32, position.y);
+			App->particles->AddParticle(App->particles->laser_charged1, position.x + 28, position.y + 1, COLLIDER_PLAYER_SHOT_CHARGED);
+		}
+
+		else if (SDL_GetTicks() - charge < 700)
+		{
+			App->particles->AddParticle(App->particles->laser_anim, position.x + 32, position.y);
+			App->particles->AddParticle(App->particles->laser_charged2, position.x + 28, position.y + 1, COLLIDER_PLAYER_SHOT_CHARGED);
+		}
+
+		else if (SDL_GetTicks() - charge < 850)
+		{
+			App->particles->AddParticle(App->particles->laser_anim, position.x + 32, position.y);
+			App->particles->AddParticle(App->particles->laser_charged3, position.x + 28, position.y, COLLIDER_PLAYER_SHOT_CHARGED);
+		}
+
+		else if (SDL_GetTicks() - charge < 1000)
+		{
+			App->particles->AddParticle(App->particles->laser_anim, position.x + 32, position.y);
+			App->particles->AddParticle(App->particles->laser_charged4, position.x + 28, position.y, COLLIDER_PLAYER_SHOT_CHARGED);
+		}
+
+		else if (SDL_GetTicks() - charge > 1000)
+		{
+			App->particles->AddParticle(App->particles->laser_anim, position.x + 32, position.y);
+			App->particles->AddParticle(App->particles->laser_charged5, position.x + 28, position.y - 1, COLLIDER_PLAYER_SHOT_CHARGED);
+		}
+
+		if (power_up == 1)
+		{
+			App->particles->AddParticle(App->particles->laser_powerup, position.x + 16, position.y - 15, COLLIDER_PLAYER_SHOT_POWERUP);
+		}
+		if (power_up == 2)
+		{
+			App->particles->AddParticle(App->particles->laser_blue, position.x + 32, position.y + 6, COLLIDER_PLAYER_SHOT);
+			App->particles->AddParticle(App->particles->laser_blue2, position.x + 32, position.y + 6, COLLIDER_PLAYER_SHOT);
+			App->particles->AddParticle(App->particles->laser_blue3, position.x + 32, position.y + 6, COLLIDER_PLAYER_SHOT);
+		}
+		charging = false;
+		charging_animation = false;
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_IDLE && App->input->GetKey(SDL_SCANCODE_W) == KEY_IDLE || App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
@@ -150,7 +206,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c1->type == COLLIDER_POWER_UP || c2->type == COLLIDER_POWER_UP)
 	{
-		power_up = 1;
+		power_up++;
 	}
 	else if (exploding == false && god_mode == false)
 	{

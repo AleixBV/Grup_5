@@ -24,6 +24,7 @@ bool ModuleSceneSpace::Start()
 
 	player_speed = 2.0f / 3.0f;
 
+
 	App->collision->Enable(); // enable before player
 	App->player->Enable();
 	App->enemy->Enable();
@@ -198,17 +199,17 @@ bool ModuleSceneSpace::Start()
 	// worm
 	float desfase = 3.14f / 11.0f;
 	App->enemy->AddEnemy(App->enemy->worm, 580, 100, eSin2, (4.0f * desfase));
-	App->enemy->AddEnemy(App->enemy->worm, 585, 100, eSin2, (3.0f * desfase));
-	App->enemy->AddEnemy(App->enemy->worm, 590, 100, eSin2, (2.0f * desfase));
-	App->enemy->AddEnemy(App->enemy->worm, 595, 100, eSin2, (desfase));
-	App->enemy->AddEnemy(App->enemy->worm, 600, 100, eSin2, (0.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 590, 100, eSin2, (3.0f * desfase));
+	App->enemy->AddEnemy(App->enemy->worm, 600, 100, eSin2, (2.0f * desfase));
+	App->enemy->AddEnemy(App->enemy->worm, 610, 100, eSin2, (desfase));
+	App->enemy->AddEnemy(App->enemy->worm, 620, 100, eSin2, (0.0f));
 
 	desfase = 3.14f / 12.0f;
-	App->enemy->AddEnemy(App->enemy->worm, 650, 140, eSin, (4.0f * desfase));
-	App->enemy->AddEnemy(App->enemy->worm, 655, 140, eSin, (3.0f * desfase));
-	App->enemy->AddEnemy(App->enemy->worm, 660, 140, eSin, (2.0f * desfase));
-	App->enemy->AddEnemy(App->enemy->worm, 665, 140, eSin, (1.0f * desfase));
-	App->enemy->AddEnemy(App->enemy->worm, 670, 140, eSin, (0.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 660, 140, eSin, (4.0f * desfase));
+	App->enemy->AddEnemy(App->enemy->worm, 670, 140, eSin, (3.0f * desfase));
+	App->enemy->AddEnemy(App->enemy->worm, 680, 140, eSin, (2.0f * desfase));
+	App->enemy->AddEnemy(App->enemy->worm, 690, 140, eSin, (1.0f * desfase));
+	App->enemy->AddEnemy(App->enemy->worm, 700, 140, eSin, (0.0f));
 	
 	//red
 	App->enemy->AddEnemy(App->enemy->red, 750, 130, eSin, 0.0f);
@@ -253,18 +254,18 @@ bool ModuleSceneSpace::Start()
 
 
 	App->enemy->AddEnemy(App->enemy->worm, 1300, 50, eSin, (3.14f / 4.0f));
-	App->enemy->AddEnemy(App->enemy->worm, 1305, 50, eSin, (3.14f / 8.0f));
-	App->enemy->AddEnemy(App->enemy->worm, 1310, 50, eSin, (3.14f / 12.0f));
-	App->enemy->AddEnemy(App->enemy->worm, 1315, 50, eSin, (3.14f / 16.0f));
-	App->enemy->AddEnemy(App->enemy->worm, 1320, 50, eSin, (0.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 1310, 50, eSin, (3.14f / 8.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 1320, 50, eSin, (3.14f / 12.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 1330, 50, eSin, (3.14f / 16.0f));
+	App->enemy->AddEnemy(App->enemy->worm, 1340, 50, eSin, (0.0f));
 
 	App->enemy->AddEnemy(App->enemy->worm, 1370, 115, eSin, (2.0f));
 
 	App->enemy->AddEnemy(App->enemy->worm, 1965, 0, eCurv, NULL);
-	App->enemy->AddEnemy(App->enemy->worm, 1966, 25, eCurv, NULL);
-	App->enemy->AddEnemy(App->enemy->worm, 1967, 50, eCurv, NULL);
-	App->enemy->AddEnemy(App->enemy->worm, 1968, 75, eCurv, NULL);
-	App->enemy->AddEnemy(App->enemy->worm, 1969, 100, eCurv, NULL);
+	App->enemy->AddEnemy(App->enemy->worm, 1966, 20, eCurv, NULL);
+	App->enemy->AddEnemy(App->enemy->worm, 1967, 40, eCurv, NULL);
+	App->enemy->AddEnemy(App->enemy->worm, 1968, 60, eCurv, NULL);
+	App->enemy->AddEnemy(App->enemy->worm, 1969, 80, eCurv, NULL);
 
 	App->enemy->AddEnemy(App->enemy->red, 2400, 140, eSin, (0.0f));
 	App->enemy->AddEnemy(App->enemy->red, 2410, 150, eSin, (3.14f / 4.0f));
@@ -275,18 +276,62 @@ bool ModuleSceneSpace::Start()
 	
 
 	App->enemy->AddEnemy(App->enemy->worm, 2670, 0, eCurv, NULL);
-	App->enemy->AddEnemy(App->enemy->worm, 2670, 25, eCurv, NULL);
-	App->enemy->AddEnemy(App->enemy->worm, 2670, 50, eCurv, NULL);
-	App->enemy->AddEnemy(App->enemy->worm, 2670, 75, eCurv, NULL);
-	App->enemy->AddEnemy(App->enemy->worm, 2670, 100, eCurv, NULL);
-	
+	App->enemy->AddEnemy(App->enemy->worm, 2670, 20, eCurv, NULL);
+	App->enemy->AddEnemy(App->enemy->worm, 2670, 40, eCurv, NULL);
+	App->enemy->AddEnemy(App->enemy->worm, 2670, 60, eCurv, NULL);
+	App->enemy->AddEnemy(App->enemy->worm, 2670, 80, eCurv, NULL);
 
 
 	//tryouts
-	//App->enemy->AddEnemy(App->enemy->worm, 1610, 140, eBot, NULL);
+	App->enemy->AddEnemy(App->enemy->robot, 558, 188, eBot, NULL);
+	App->enemy->AddEnemy(App->enemy->robot, 970, 188, eBot, NULL);
+	App->enemy->AddEnemy(App->enemy->robot, 1100, 188, eBot, NULL);
+	App->enemy->AddEnemy(App->enemy->robot, 1150, 188, eBot, NULL);
+	App->enemy->AddEnemy(App->enemy->robot, 1200, 188, eBot, NULL);
+	App->enemy->AddEnemy(App->enemy->robot, 1270, 160, eBot, NULL);
+	App->enemy->AddEnemy(App->enemy->robot, 1340, 0, eBot, NULL);
+	App->enemy->AddEnemy(App->enemy->robot, 1645, 188, eBot, NULL);
+	App->enemy->AddEnemy(App->enemy->robot, 1785, 155, eBot, NULL);
+	App->enemy->AddEnemy(App->enemy->robot, 2425, 155, eBot, NULL);
+	App->enemy->AddEnemy(App->enemy->robot, 2715, 50, eBot, NULL);
+
+	//App->enemy->AddEnemy(App->enemy->worm, 500, 0, eBot, NULL);
+
+	App->enemy->AddEnemy(App->enemy->tower, 1690, 30, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower, 1722, 30, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower, 1756, 46, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower, 1787, 46, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower2, 1690, 194, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower2, 1722, 194, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower2, 1756, 178, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower2, 1787, 178, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower, 2009, 14, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower, 2044, 14, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower, 2394, 31, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower, 2427, 31, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower, 2458, 14, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower, 2489, 14, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower, 2521, 14, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower, 2553, 14, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower, 2587, 14, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower, 2619, 14, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower, 2713, 48, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower, 2747, 48, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower2, 2713, 178, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower2, 2747, 178, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower, 3033, 14, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower, 3065, 14, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower, 3099, 14, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower, 3129, 14, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower, 3168, 30, eT, NULL);
+	App->enemy->AddEnemy(App->enemy->tower, 3193, 30, eT, NULL);
+
+
+
 
 
 	App->particles->AddParticle(App->particles->power_up, 740, 178, COLLIDER_POWER_UP);
+	App->particles->AddParticle(App->particles->power_up, 600, 178, COLLIDER_POWER_UP);
 
 	return true;
 }
@@ -310,7 +355,7 @@ update_status ModuleSceneSpace::Update()
 {
 	// Move camera forward -----------------------------
 
-	if (App->renderer->camera.x <= _BOSS_POSITION)
+	if (App->renderer->camera.x == (-3930 + SCREEN_WIDTH)*SCREEN_SIZE)
 	{
 		player_speed = 0;
 		camera_speed = 0;

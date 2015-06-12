@@ -8,13 +8,13 @@
 #include "ModuleParticles.h"
 
 
-
 enum eMov_Type
 {
 	eSin,
 	eSin2,
 	eCurv,
-	eBot
+	eBot,
+	eT,
 };
 
 struct Enemy
@@ -31,7 +31,7 @@ struct Enemy
 	float fase;
 	int initial_height;
 	bool floor = false;
-	bool right = false;
+	bool right = true;
 	unsigned int type;
 
 	Enemy();
@@ -64,5 +64,6 @@ public:
 	Enemy red;
 	Enemy worm;
 	Enemy tower;
+	Enemy tower2;
 	Enemy robot;
 };

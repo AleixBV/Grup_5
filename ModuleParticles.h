@@ -15,6 +15,8 @@ struct Particle
 	Uint32 born;
 	Uint32 life;
 	bool fx_played;
+	bool follow_player;
+	unsigned int lifes;
 	Collider* collider;
 
 	Particle();
@@ -50,9 +52,19 @@ public:
 	Particle laser;
 	Particle laser_anim;
 	Particle laser_explosion;
+	Particle laser_charged1;
+	Particle laser_charged2;
+	Particle laser_charged3;
+	Particle laser_charged4;
+	Particle laser_charged5;
+	Particle laser_charged_anim;
+	Particle laser_charged_explosion;
 	Particle shot;
 	Particle power_up;
 	Particle laser_powerup;
 	Particle laser_powerup_anim;
+	Particle laser_blue;
+	Particle laser_blue2;
+	Particle laser_blue3;
 
 };

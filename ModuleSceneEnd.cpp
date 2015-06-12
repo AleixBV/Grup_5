@@ -19,6 +19,7 @@ bool ModuleSceneEnd::Start()
 	App->player->exploding = false;
 
 	graphics = App->textures->Load("rtype/end.png");
+	App->audio->PlayMusic("rtype/Ending.ogg", 0.0f);
 	//App->audio->PlayMusic("rtype/End.ogg", 0.0f);
 	//fx = App->audio->LoadFx("rtype/ending.wav");
 	App->renderer->camera.x = App->renderer->camera.y = 0;
