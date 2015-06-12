@@ -16,6 +16,10 @@ struct Particle
 	Uint32 life;
 	bool fx_played;
 	bool follow_player;
+	bool bounceT = false;
+	bool bounceB = false;
+	bool bounceR = false;
+	bool bounceL = false;
 	unsigned int lifes;
 	Collider* collider;
 

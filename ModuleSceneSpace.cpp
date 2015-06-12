@@ -18,11 +18,17 @@ bool ModuleSceneSpace::Start()
 
 	background = App->textures->Load("rtype/RTYPE-background.png");
 
-	//player_speed = 0.33f;
+	camera_speed = 2.0f;
+
+	boss_alive = true;
+
+	player_speed = 2.0f / 3.0f;
+
 
 	App->collision->Enable(); // enable before player
 	App->player->Enable();
 	App->enemy->Enable();
+	App->boss->Enable();
 	App->audio->PlayMusic("rtype/stage1.ogg", 1.0f);
 
 	App->renderer->camera.x = App->renderer->camera.y = 0;
@@ -276,7 +282,6 @@ bool ModuleSceneSpace::Start()
 	App->enemy->AddEnemy(App->enemy->worm, 2670, 80, eCurv, NULL);
 
 
-
 	//tryouts
 	App->enemy->AddEnemy(App->enemy->robot, 558, 188, eBot, NULL);
 	App->enemy->AddEnemy(App->enemy->robot, 970, 188, eBot, NULL);
@@ -350,19 +355,38 @@ update_status ModuleSceneSpace::Update()
 {
 	// Move camera forward -----------------------------
 
-	//App->player->position.x += player_speed;
-	//int camera = 2;
-	App->renderer->camera.x -= 3;
-
 	if (App->renderer->camera.x == (-3930 + SCREEN_WIDTH)*SCREEN_SIZE)
 	{
-		App->player->speed = 0;
-		App->fade->FadeToBlack(App->scene_space, App->scene_end, 2.0f);
+		player_speed = 0;
+		camera_speed = 0;
+		App->boss->Arrival();
+
+		if (!boss_alive)
+		{
+			if (App->renderer->camera.x == (-3930 + SCREEN_WIDTH)*SCREEN_SIZE )
+			{
+				App->fade->FadeToBlack(App->scene_space, App->scene_end, 2.0f);
+		
+			}
+			
+			player_speed = 1;			
+		}
 	}
+		
+	App->player->position.x += player_speed;
+	App->renderer->camera.x -= camera_speed;
+
+	
 		
 
 	// Draw everything --------------------------------------
 	App->renderer->Blit(background, 0, 0, NULL);
 
 	return UPDATE_CONTINUE;
+}
+
+
+void ModuleSceneSpace::BossIsDead()
+{
+	boss_alive = false;
 }

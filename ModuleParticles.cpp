@@ -222,7 +222,12 @@ bool ModuleParticles::Start()
 	//Laser blue2
 	laser_blue2.anim.frames.PushBack({ 168, 599, 16, 18 });//Diagonal baix esquerra
 	laser_blue2.anim.frames.PushBack({ 147, 632, 8, 18 });//Separació
+<<<<<<< HEAD
 	laser_blue2.anim.frames.PushBack({ 168, 665, 16, 18 });//Diagonal baix dreta
+=======
+	laser_blue2.anim.frames.PushBack({ 160, 657, 32, 34 });//Diagonal baix dreta
+	laser_blue2.anim.frames.PushBack({ 160, 591, 32, 34 });//Diagonal baix esquerra
+>>>>>>> db5f3e1e626c27e948ae4c588e962904dc2efb48
 	laser_blue2.anim.frames.PushBack({ 185, 575, 16, 9 });//Rebot superior
 	laser_blue2.anim.frames.PushBack({ 185, 698, 16, 9 });//Rebot inferior
 	laser_blue2.anim.frames.PushBack({ 226, 632, 8, 18 });//Rebot dreta
@@ -233,9 +238,15 @@ bool ModuleParticles::Start()
 	laser_blue2.life = 10000;
 
 	//Laser blue3
+<<<<<<< HEAD
 	laser_blue3.anim.frames.PushBack({ 168, 665, 16, 18 });//Diagonal baix dreta
 	laser_blue3.anim.frames.PushBack({ 147, 632, 8, 18 });//Separacio
 	laser_blue3.anim.frames.PushBack({ 168, 599, 16, 18 });//Diagonal baix esquerra
+=======
+	laser_blue3.anim.frames.PushBack({ 147, 632, 8, 18 });//Separació
+	laser_blue3.anim.frames.PushBack({ 160, 657, 32, 34 });//Diagonal baix dreta
+	laser_blue3.anim.frames.PushBack({ 160, 591, 32, 34 });//Diagonal baix esquerra
+>>>>>>> db5f3e1e626c27e948ae4c588e962904dc2efb48
 	laser_blue3.anim.frames.PushBack({ 185, 575, 16, 9 });//Rebot superior
 	laser_blue3.anim.frames.PushBack({ 185, 698, 16, 9 });//Rebot inferior
 	laser_blue3.anim.frames.PushBack({ 226, 632, 8, 18 });//Rebot dreta
