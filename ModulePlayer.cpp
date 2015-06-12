@@ -54,6 +54,7 @@ bool ModulePlayer::Start()
 	exploding = false;
 	charging = false;
 	charging_animation = false;
+	laser_tri = false;
 	player_state = PLAYER_IDLE;
 	Uint32 delay_time = 0;
 
@@ -61,8 +62,6 @@ bool ModulePlayer::Start()
 	collider = App->collision->AddCollider({ position.x, position.y, 32, 12 }, COLLIDER_PLAYER, this);
 
 	god_mode = false;
-
-	App->particles->AddParticle(App->particles->black, 0, SCREEN_HEIGHT);
 
 	App->particles->AddParticle(App->particles->bar, SCREEN_WIDTH / 2 - 262, SCREEN_HEIGHT + 5);
 
@@ -99,25 +98,25 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update()
 {
 	player_input = PLAYER_INPUT_IDLE;
-	position.x += speed;
+
 
 	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 	{
 		if (position.x > (App->renderer->camera.x) / -3)
-			position.x -= 1.5*speed;
+			position.x -= 1.2*speed;
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 	{
 		if (position.x < (App->renderer->camera.x / -3) + SCREEN_WIDTH - 32)
-			position.x += 1.25*speed;
+			position.x += speed;
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
 	{
 		if (position.y < (SCREEN_HEIGHT - 16))
 		{
-			position.y += 1.5*speed;
+			position.y += speed;
 
 			player_input = PLAYER_INPUT_DOWN;
 		}
@@ -127,7 +126,7 @@ update_status ModulePlayer::Update()
 	{
 		if (position.y > 0)
 		{
-			position.y -= 1.5*speed;
+			position.y -= speed;
 
 			player_input = PLAYER_INPUT_UP;
 		}
@@ -190,6 +189,13 @@ update_status ModulePlayer::Update()
 		{
 			App->particles->AddParticle(App->particles->laser_powerup, position.x + 16, position.y - 15, COLLIDER_PLAYER_SHOT_POWERUP);
 		}
+		if (power_up == 2)
+		{
+			App->particles->AddParticle(App->particles->laser_blue, position.x + 32, position.y + 6, COLLIDER_PLAYER_SHOT);
+			App->particles->AddParticle(App->particles->laser_blue2, position.x + 32, position.y + 6, COLLIDER_PLAYER_SHOT2);
+			App->particles->AddParticle(App->particles->laser_blue3, position.x + 32, position.y + 6, COLLIDER_PLAYER_SHOT2);
+			laser_tri = true;
+		}
 		charging = false;
 		charging_animation = false;
 	}
@@ -221,7 +227,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c1->type == COLLIDER_POWER_UP || c2->type == COLLIDER_POWER_UP)
 	{
-		power_up = 1;
+		power_up++;
 	}
 	else if (exploding == false && god_mode == false)
 	{

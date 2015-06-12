@@ -12,6 +12,7 @@ Application::Application()
 	scene_continue = new ModuleSceneContinue(this, false);
 	player = new ModulePlayer(this, false);
 	enemy = new ModuleEnemy(this, false);
+	boss = new ModuleBoss(this, false);
 	scene_intro = new ModuleSceneIntro(this, true);
 	scene_end = new ModuleSceneEnd(this, false);
 	fade = new ModuleFadeToBlack(this);
@@ -39,6 +40,7 @@ Application::Application()
 	// Characters
 	AddModule(player);
 	AddModule(enemy);
+	AddModule(boss);
 
 	// Misc
 	AddModule(particles);
@@ -59,6 +61,7 @@ Application::~Application()
 	delete scene_space;
 	delete scene_continue;
 	delete enemy;
+	delete boss;
 	delete player;
 	delete fade;
 	delete collision;

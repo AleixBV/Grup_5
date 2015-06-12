@@ -15,6 +15,7 @@ public:
 	bool Start();
 	update_status Update();
 	bool CleanUp();
+	void BossIsDead();
 
 public:
 	
@@ -22,4 +23,7 @@ public:
 	SDL_Texture* stars;
 
 	float player_speed;
+	float camera_speed;
+	
+	bool boss_alive;
 };

@@ -1,6 +1,7 @@
 #include <math.h>
 #include "Globals.h"
 #include "Application.h"
+
 #include "ModuleParticles.h"
 
 ModuleParticles::ModuleParticles(Application* app, bool start_enabled) : Module(app, start_enabled), graphics(NULL)
@@ -211,30 +212,63 @@ bool ModuleParticles::Start()
 	power_up.anim.loop = false;
 	power_up.anim.speed = 0.0f;
 
+	//Laser blue
+	laser_blue.anim.frames.PushBack({ 122, 640, 16, 3 }); //Pla
+	laser_blue.anim.loop = false;
+	laser_blue.anim.speed = 0.0f;
+	laser_blue.speed.x = 7;
+	laser_blue.life = 10000;
+
+	//Laser blue2
+	laser_blue2.anim.frames.PushBack({ 168, 599, 16, 18 });//Diagonal baix esquerra
+	laser_blue2.anim.frames.PushBack({ 147, 632, 8, 18 });//Separació
+	laser_blue2.anim.frames.PushBack({ 168, 665, 16, 18 });//Diagonal baix dreta
+	laser_blue2.anim.frames.PushBack({ 160, 657, 32, 34 });//Diagonal baix dreta
+	laser_blue2.anim.frames.PushBack({ 160, 591, 32, 34 });//Diagonal baix esquerra
+	laser_blue2.anim.frames.PushBack({ 185, 575, 16, 9 });//Rebot superior
+	laser_blue2.anim.frames.PushBack({ 185, 698, 16, 9 });//Rebot inferior
+	laser_blue2.anim.frames.PushBack({ 226, 632, 8, 18 });//Rebot dreta
+	laser_blue2.anim.loop = false;
+	laser_blue2.anim.speed = 0.0f;
+	laser_blue2.speed.x = 7;
+	laser_blue2.speed.y = -7;
+	laser_blue2.life = 10000;
+
+	//Laser blue3
+	laser_blue3.anim.frames.PushBack({ 168, 665, 16, 18 });//Diagonal baix dreta
+	laser_blue3.anim.frames.PushBack({ 147, 632, 8, 18 });//Separacio
+	laser_blue3.anim.frames.PushBack({ 168, 599, 16, 18 });//Diagonal baix esquerra
+	laser_blue3.anim.frames.PushBack({ 147, 632, 8, 18 });//Separació
+	laser_blue3.anim.frames.PushBack({ 160, 657, 32, 34 });//Diagonal baix dreta
+	laser_blue3.anim.frames.PushBack({ 160, 591, 32, 34 });//Diagonal baix esquerra
+	laser_blue3.anim.frames.PushBack({ 185, 575, 16, 9 });//Rebot superior
+	laser_blue3.anim.frames.PushBack({ 185, 698, 16, 9 });//Rebot inferior
+	laser_blue3.anim.frames.PushBack({ 226, 632, 8, 18 });//Rebot dreta
+	laser_blue3.anim.loop = false;
+	laser_blue3.anim.speed = 0.0f;
+	laser_blue3.speed.x = 7;
+	laser_blue3.speed.y = 7;
+	laser_blue3.life = 10000;
 
 	//UI
 	// lifes
 	lifes.anim.frames.PushBack({ 31, 560, 13, 14 });
 	lifes.anim.loop = false;
-	lifes.speed.x = 1;
+	lifes.speed.x = 0;
+	lifes.follow_window = true;
 	lifes.anim.speed = 0.0f;
-
-	// black
-	black.anim.frames.PushBack({ 511, 626, 286, 16 });
-	black.anim.loop = false;
-	black.speed.x = 1;
-	black.anim.speed = 0.0f; 
 
 	// beam
 	beam.anim.frames.PushBack({ 485, 557, 384, 16 });
 	beam.anim.loop = false;
-	beam.speed.x = 1;
+	beam.speed.x = 0;
+	beam.follow_window = true;
 	beam.anim.speed = 0.0f;
 
 	// bar
 	bar.anim.frames.PushBack({ 405, 585, 201, 8 });
 	bar.anim.loop = false;
-	bar.speed.x = 1;
+	bar.speed.x = 0;
 	bar.anim.speed = 0.0f;
 	bar.bar = true;
 
@@ -279,8 +313,62 @@ update_status ModuleParticles::Update()
 		}
 		else if (SDL_GetTicks() >= p->born)
 		{
-			App->renderer->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
+			if (p == &laser_blue2 || p == &laser_blue3) {
 
+				if (laser_blue2.speed.x > 0 && laser_blue2.speed.y < 0 || laser_blue3.speed.x > 0 && laser_blue3.speed.y < 0){
+					if (p->bounceT == false && p->bounceR == false)
+						App->renderer->Blit(graphics, p->position.x, p->position.y, &p->anim.frames[0]);
+					if (p->bounceT == true) {
+						App->renderer->Blit(graphics, p->position.x, p->position.y, &p->anim.frames[3]);
+						laser_blue2.speed.y *= -1;
+					}
+					else if (p->bounceR == true){
+						App->renderer->Blit(graphics, p->position.x, p->position.y, &p->anim.frames[5]);
+						laser_blue2.speed.x *= -1;
+					}
+				}
+				if (laser_blue2.speed.x > 0 && laser_blue2.speed.y > 0 || laser_blue3.speed.x > 0 && laser_blue3.speed.y > 0){
+					if (p->bounceB == false && p->bounceR == false)
+						App->renderer->Blit(graphics, p->position.x, p->position.y, &p->anim.frames[0]);
+					if (p->bounceB == true) {
+						App->renderer->Blit(graphics, p->position.x, p->position.y, &p->anim.frames[4]);
+						laser_blue2.speed.y *= -1;
+					}
+					else if (p->bounceR == true){
+						App->renderer->Blit(graphics, p->position.x, p->position.y, &p->anim.frames[5]);
+						laser_blue2.speed.x *= -1;
+					}
+				}
+
+				if (laser_blue2.speed.x < 0 && laser_blue2.speed.y > 0 || laser_blue3.speed.x < 0 && laser_blue3.speed.y > 0){
+					if (p->bounceB == false && p->bounceL == false)
+						App->renderer->Blit(graphics, p->position.x, p->position.y, &p->anim.frames[0]);
+					if (p->bounceB == true) {
+						App->renderer->Blit(graphics, p->position.x, p->position.y, &p->anim.frames[4]);
+						laser_blue2.speed.y *= -1;
+					}
+					else if (p->bounceL == true){
+						App->renderer->Blit(graphics, p->position.x, p->position.y, &p->anim.frames[1]);
+						laser_blue2.speed.x *= -1;
+					}
+				}
+				if (laser_blue2.speed.x < 0 && laser_blue2.speed.y < 0 || laser_blue3.speed.x < 0 && laser_blue3.speed.y < 0){
+					if (p->bounceT == false && p->bounceL == false)
+						App->renderer->Blit(graphics, p->position.x, p->position.y, &p->anim.frames[0]);
+					if (p->bounceT == true) {
+						App->renderer->Blit(graphics, p->position.x, p->position.y, &p->anim.frames[3]);
+						laser_blue2.speed.y *= -1;
+					}
+					else if (p->bounceL == true){
+						App->renderer->Blit(graphics, p->position.x, p->position.y, &p->anim.frames[1]);
+						laser_blue2.speed.x *= -1;
+					}
+				}
+
+			}
+			else
+				App->renderer->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
+			
 			if (p->fx_played == false)
 			{
 				p->fx_played = true;
@@ -299,12 +387,17 @@ update_status ModuleParticles::Update()
 			}
 		}
 
+		if (p->follow_window == true)
+		{
+			p->position.x = p->initial_position.x + App->renderer->camera.x / -3;
+		}
+
 		if (p->bar == true)
 		{
 			
 			if (App->player->charging == true)
 			{
-				p->position.x -= bar_move;
+				p->position.x = p->initial_position.x + App->renderer->camera.x / -3 - bar_move;
 
 				if ((SDL_GetTicks() - App->player->charge) / 5 < 200)
 				{
@@ -313,13 +406,15 @@ update_status ModuleParticles::Update()
 				else if ((SDL_GetTicks() - App->player->charge) / 5 > 200)
 					bar_move = 201;
 
-				p->position.x += bar_move;
+				p->position.x = p->initial_position.x + App->renderer->camera.x / -3 + bar_move;
 			}
 			else if (bar_move != 0)
 			{
-				p->position.x -= bar_move;
+				p->position.x = p->initial_position.x + App->renderer->camera.x / -3 - bar_move;
 				bar_move = 0;
 			}
+			else
+				p->position.x = p->initial_position.x + App->renderer->camera.x / -3;
 		}
 
 		tmp = tmp_next;
@@ -346,6 +441,22 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 				delete tmp->data;
 				active.del(tmp);
 				break;
+			}
+
+			else if (c1->type == COLLIDER_PLAYER_SHOT2 || c1->type == COLLIDER_WALL){
+
+				if (c2->type == COLLIDER_WALL || c2->type == COLLIDER_WALL){
+					if (c2->rect.x < c1->rect.x || c1->rect.x < c2->rect.x)
+						tmp->data->bounceL = true;
+					if (c2->rect.x > c1->rect.x || c1->rect.x > c2->rect.x)
+						tmp->data->bounceR = true;
+					if (c2->rect.y < c1->rect.y || c1->rect.y < c2->rect.y)
+						tmp->data->bounceT = true;
+					if (c2->rect.y > c1->rect.y || c1->rect.y > c2->rect.y)
+						tmp->data->bounceB = true;
+				}
+					
+
 			}
 
 			else if (c1->type == COLLIDER_PLAYER_SHOT_CHARGED)
@@ -407,6 +518,7 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 	p->born = SDL_GetTicks() + delay;
 	p->position.x = x;
 	p->position.y = y;
+	p->initial_position = p->position;
 
 	if (collider_type != COLLIDER_NONE)
 	{
@@ -419,7 +531,7 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 // -------------------------------------------------------------
 // -------------------------------------------------------------
 
-Particle::Particle() : fx(0), born(0), life(0), fx_played(false), follow_player(false), bar(false), lifes(0), collider(NULL)
+Particle::Particle() : fx(0), born(0), life(0), fx_played(false), follow_player(false), follow_window(false), bar(false), lifes(0), collider(NULL)
 {
 	position.SetToZero();
 	speed.SetToZero();
@@ -431,8 +543,10 @@ Particle::Particle(const Particle& p) : anim(p.anim), position(p.position), spee
 	born = p.born;
 	life = p.life;
 	follow_player = p.follow_player;
+	follow_window = p.follow_window;
 	lifes = p.lifes;
 	bar = p.bar;
+	initial_position = position;
 }
 
 Particle::~Particle()

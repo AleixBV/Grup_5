@@ -11,12 +11,18 @@ struct Particle
 	Animation anim;
 	unsigned int fx;
 	p2Point<int> position;
+	p2Point<int> initial_position;
 	p2Point<int> speed;
 	Uint32 born;
 	Uint32 life;
 	bool fx_played;
 	bool follow_player;
+	bool follow_window;
 	bool bar;
+	bool bounceT = false;
+	bool bounceB = false;
+	bool bounceR = false;
+	bool bounceL = false;
 	unsigned int lifes;
 	Collider* collider;
 
@@ -64,10 +70,12 @@ public:
 	Particle power_up;
 	Particle laser_powerup;
 	Particle laser_powerup_anim;
+	Particle laser_blue;
+	Particle laser_blue2;
+	Particle laser_blue3;
 
 	//UI
 	Particle lifes;
-	Particle black;
 	Particle beam;
 	Particle bar;
 	int bar_move;

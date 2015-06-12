@@ -54,11 +54,12 @@ public:
 
 	bool exploding;
 
-	float speed;
+	float speed = 1.0f;
 	int power_up;
 	unsigned int charge;
 	bool charging;
 	bool charging_animation;
 	int lifes;
 	bool god_mode;
+	bool laser_tri;
 };
