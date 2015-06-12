@@ -116,7 +116,7 @@ bool ModuleParticles::Start()
 	laser_charged_anim.follow_player = true;
 
 	// Laser explosion charged
-	//laser_charged_explosion.fx = App->audio->LoadFx("rtype/slimeball.wav");
+	laser_charged_explosion.fx = App->audio->LoadFx("rtype/explosion.wav");
 	laser_charged_explosion.anim.frames.PushBack({ 0, 191, 56, 48 });
 	laser_charged_explosion.anim.frames.PushBack({ 56, 191, 56, 48 });
 	laser_charged_explosion.anim.frames.PushBack({ 112, 191, 56, 48 });
@@ -180,6 +180,7 @@ bool ModuleParticles::Start()
 	laser_powerup_anim.life = 1000;*/
 
 	//Explosion_Player
+	explosion.fx = App->audio->LoadFx("rtype/explosion.wav");
 	explosion.anim.frames.PushBack({ 1, 343, 32, 28 });
 	explosion.anim.frames.PushBack({ 35, 343, 32, 28 });
 	explosion.anim.frames.PushBack({ 69, 343, 32, 28 });
