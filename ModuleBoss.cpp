@@ -15,6 +15,7 @@ bool ModuleBoss::Start()
 {
 	ship_is_here = false;
 	can_shoot = false;
+	shooting = 0;
 
 	position.x = 3930 - 93;
 	position.y = 125;
@@ -78,6 +79,13 @@ bool ModuleBoss::Start()
 	baby_shot_after.frames.PushBack({ 636, 1964, 32, 32 });
 	baby_shot_after.loop = false;
 	baby_shot_after.speed = 0.1f;
+
+	/*shot.frames.PushBack({ 577, 2064, 20, 18 });//
+	shot.frames.PushBack({ 600, 2064, 32, 32 });
+	shot.frames.PushBack({ 623, 2064, 32, 32 });
+	shot.frames.PushBack({ 647, 2064, 32, 32 });
+	shot.loop = true;
+	shot.speed = 0.2f;*/
 
 
 	collider_skin_head = App->collision->AddCollider({ 3930-165, 17, 105, 84 }, COLLIDER_WALL, this);
@@ -164,7 +172,9 @@ update_status ModuleBoss::Update()
 			App->particles->AddParticle(App->particles->enemy_death, 3840, 90);
 			App->particles->AddParticle(App->particles->enemy_death, 3840, 150);
 
-			Die();
+			//Die();
+
+			App->fade->FadeToBlack(App->scene_space, App->scene_end, 2.0f);
 
 			break;
 			}
@@ -200,9 +210,17 @@ void ModuleBoss::Shooting()
 
 		if (baby_shot_before.IsOver())
 		{
+
+			if (shooting == 0)
+				shooting = SDL_GetTicks();
+
 			float sx, sy;
 			
-			App->particles->AddParticle(App->particles->boss_sh, position.x, position.y, COLLIDER_ENEMY_SHOT);
+			if (SDL_GetTicks() - shooting > 500)
+			{
+				App->particles->AddParticle(App->particles->boss_sh, position.x, position.y, COLLIDER_ENEMY_SHOT);
+				shooting = 0;
+			}
 			
 			sx = (App->player->position.x - position.x);
 			sy = (App->player->position.y - position.y);
@@ -223,10 +241,12 @@ void ModuleBoss::Shooting()
 
 void ModuleBoss::Die()
 {
+	tail->TailDie();
 	collider_skin_head->to_delete = true;
 	collider_skin_neck->to_delete = true;
 	collider_skin_bottom->to_delete = true;
 	collider_baby->to_delete = true;
+	
 
 	alive = false;
 }
@@ -342,16 +362,16 @@ update_status BossTail::Update()
 				App->renderer->Blit(graphics, position[i].x, position[i].y, &piece_frame[i]);
 			}
 		}
-
-		else
-		{
-			for (int i = 19; i >= 0; i--)
-			{
-				piece_collider[i]->to_delete = true;
-			}
-		}
 	}
 	return UPDATE_CONTINUE;
+}
+
+void BossTail::TailDie()
+{
+	for (int i = 19; i >= 0; i--)
+	{
+		//piece_collider[i]->to_delete = true;
+	}
 }
 
 void BossTail::OnCollision(Collider* c1, Collider* c2)

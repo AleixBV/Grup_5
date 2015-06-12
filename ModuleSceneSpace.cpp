@@ -32,6 +32,7 @@ bool ModuleSceneSpace::Start()
 	App->audio->PlayMusic("rtype/stage1.ogg", 1.0f);
 
 	App->renderer->camera.x = App->renderer->camera.y = 0;
+	App->renderer->camera.x = -9000;
 
 	//Add WALL COLLIDERS
 

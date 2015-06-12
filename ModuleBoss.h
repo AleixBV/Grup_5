@@ -21,7 +21,7 @@ public:
 
 	BossTail(Application* app, SDL_Texture* texture);
 	~BossTail();
-
+	void TailDie();
 	update_status Update();
 	bool CleanUp();
 	void OnCollision(Collider*, Collider*);	
@@ -42,8 +42,9 @@ public:
 	void Arrival();
 	void Shooting();
 	void Die();
+	unsigned int shooting;
 
-private:
+//private:
 
 	Animation body;
 	Animation eye[3];
