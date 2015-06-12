@@ -30,7 +30,7 @@ bool ModuleParticles::Start()
 
 	// Laser particle
 	laser.fx = App->audio->LoadFx("rtype/slimeball.wav");
-	laser.anim.frames.PushBack({ 249, 90, 13, 4 }); 
+	laser.anim.frames.PushBack({ 249, 90, 13, 4 });
 	laser.anim.loop = false;
 	laser.speed.x = 7;
 	laser.life = 1000;
@@ -249,6 +249,20 @@ bool ModuleParticles::Start()
 	laser_blue3.speed.x = 7;
 	laser_blue3.speed.y = 7;
 	laser_blue3.life = 10000;
+
+
+	boss_ex.anim.frames.PushBack({ 64, 415, 64, 64 });
+	boss_ex.anim.frames.PushBack({ 129, 415, 64, 64 });
+	boss_ex.anim.frames.PushBack({ 195, 415, 64, 64 });
+	boss_ex.anim.frames.PushBack({ 260, 415, 64, 64 });
+	boss_ex.anim.frames.PushBack({ 0, 481, 64, 64 });
+	boss_ex.anim.frames.PushBack({ 64, 481, 64, 64 });
+	boss_ex.anim.frames.PushBack({ 129, 481, 64, 64 });
+	boss_ex.anim.frames.PushBack({ 194, 481, 64, 64 });
+	boss_ex.anim.frames.PushBack({ 259, 481, 64, 64 });
+	boss_ex.anim.loop = false;
+	boss_ex.anim.speed = 0.2f;
+
 
 	//UI
 	// lifes

@@ -58,7 +58,6 @@ bool ModulePlayer::Start()
 	player_state = PLAYER_IDLE;
 	Uint32 delay_time = 0;
 
-	// TODO 2: Afegir collider al jugador
 	collider = App->collision->AddCollider({ position.x, position.y, 32, 12 }, COLLIDER_PLAYER, this);
 
 	god_mode = false;
