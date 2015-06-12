@@ -488,14 +488,27 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 			else if (c1->type == COLLIDER_PLAYER_SHOT2 || c1->type == COLLIDER_WALL){
 
 				if (c2->type == COLLIDER_WALL || c2->type == COLLIDER_WALL){
-					if (c2->rect.x < c1->rect.x || c1->rect.x < c2->rect.x)
+										
+					delete tmp->data;
+					active.del(tmp);
+					break;
+					/*if (c2->rect.x < c1->rect.x || c1->rect.x < c2->rect.x) {
 						tmp->data->bounceL = true;
-					if (c2->rect.x > c1->rect.x || c1->rect.x > c2->rect.x)
+						break;
+					}
+						
+					if (c2->rect.x > c1->rect.x || c1->rect.x > c2->rect.x) {
 						tmp->data->bounceR = true;
-					if (c2->rect.y < c1->rect.y || c1->rect.y < c2->rect.y)
+						break;
+					}
+					if (c2->rect.y < c1->rect.y || c1->rect.y < c2->rect.y) {
 						tmp->data->bounceT = true;
-					if (c2->rect.y > c1->rect.y || c1->rect.y > c2->rect.y)
+						break;
+					}
+					if (c2->rect.y > c1->rect.y || c1->rect.y > c2->rect.y) {
 						tmp->data->bounceB = true;
+						break;
+					}*/
 				}
 					
 
