@@ -141,6 +141,7 @@ update_status ModuleBoss::Update()
 	case 0:
 		frame = eye[2].GetCurrentFrame();
 		App->renderer->Blit(graphics, 3930 - 198 + 191 - frame.w, 141, &eye[2].GetCurrentFrame());
+
 		break;
 	}
 
@@ -152,6 +153,37 @@ update_status ModuleBoss::Update()
 void ModuleBoss::OnCollision(Collider* c1, Collider* c2)
 {
 //colliders boss
+	if (c1->type == COLLIDER_ENEMY || c2->type == COLLIDER_ENEMY)
+	{
+		if (c1->type == COLLIDER_PLAYER_SHOT || c2->type == COLLIDER_PLAYER_SHOT)
+		{
+			num_hits--;
+			if (num_hits == 0)
+			{
+				alive = false;
+			}
+		}
+
+		else
+			{
+				App->player->OnCollision(c1, c2);
+			}
+		
+	}
+
+	if (c1->type == COLLIDER_WALL || c2->type == COLLIDER_WALL)
+	{
+		if (c1->type == COLLIDER_PLAYER_SHOT || c2->type == COLLIDER_PLAYER_SHOT)
+		{
+			App->particles->OnCollision(c1, c2);
+		}
+
+		else
+		{
+			App->player->OnCollision(c1, c2);
+		}
+
+	}
 
 	tail->OnCollision(c1, c2);
 }
@@ -210,7 +242,7 @@ BossTail::BossTail(Application* app, SDL_Texture* texture) : App(app), graphics 
 
 	int pas = 6;
 	int pos_y = SCREEN_HEIGHT - 53;
-	int delta_y = 16;
+	int delta_y = 10;
 	int pos_x =  3930 - 120;
 	int delta_x = 16;
 
@@ -219,7 +251,7 @@ BossTail::BossTail(Application* app, SDL_Texture* texture) : App(app), graphics 
 		if (i == 7)
 		{
 			delta_x = 14;
-			delta_y = 13;
+			delta_y = 7;
 			pos_x += 2;
 			pos_y += 2;
 			pas = 5;
@@ -228,7 +260,7 @@ BossTail::BossTail(Application* app, SDL_Texture* texture) : App(app), graphics 
 		if (i == 13)
 		{
 			delta_x = 12;
-			delta_y = 11;
+			delta_y = 5;
 			pos_x += 1;
 			pos_y += 1;
 			pas = 4;
