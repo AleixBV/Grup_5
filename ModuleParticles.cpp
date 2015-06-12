@@ -341,15 +341,10 @@ update_status ModuleParticles::Update()
 					}
 				}
 
-
-
-
 			}
 			else
 				App->renderer->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
-
 			
-
 			if (p->fx_played == false)
 			{
 				p->fx_played = true;
@@ -394,16 +389,16 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 				break;
 			}
 
-			else if (c1->type == COLLIDER_PLAYER_SHOT2){
+			else if (c1->type == COLLIDER_PLAYER_SHOT2 || c1->type == COLLIDER_WALL){
 
-				if (c2->type == COLLIDER_WALL){
-					if (c2->rect.x < c1->rect.x)
+				if (c2->type == COLLIDER_WALL || c2->type == COLLIDER_WALL){
+					if (c2->rect.x < c1->rect.x || c1->rect.x < c2->rect.x)
 						tmp->data->bounceL = true;
-					if (c2->rect.x > c1->rect.x)
+					if (c2->rect.x > c1->rect.x || c1->rect.x > c2->rect.x)
 						tmp->data->bounceR = true;
-					if (c2->rect.y < c1->rect.y)
+					if (c2->rect.y < c1->rect.y || c1->rect.y < c2->rect.y)
 						tmp->data->bounceT = true;
-					if (c2->rect.y > c1->rect.y)
+					if (c2->rect.y > c1->rect.y || c1->rect.y > c2->rect.y)
 						tmp->data->bounceB = true;
 				}
 					
